@@ -3,3 +3,10 @@
 * @file
 * A description of what your module does.
 */
+function computed_field_field_weight_of_weld_compute(&$entity_field, $entity_type, &$entity, $field, $instance, $langcode, $items) {
+  $leg = field_get_items($entity_type, $entity, 'field_leg_size');
+  $length = field_get_items($entity_type, $entity, 'field_weld_length');
+  $density = field_get_items($entity_type, $entity, 'field_filler_density');
+  $entity_field[0]['value'] = 0.5 * $leg[0]['value'] * $leg[0]['value'] * $density[0]['value'] * $length[0]['value'];
+}
+
