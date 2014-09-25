@@ -1,0 +1,11 @@
+name = Units API
+description = Contains several API calls for converting distance, mass, and other units.
+core = 7.x
+files[] = unitsapi.module
+files[] = unitsapi.test
+; Information added by drupal.org packaging script on 2012-11-19
+version = "7.x-1.0"
+core = "7.x"
+project = "unitsapi"
+datestamp = "1353291812"
+
