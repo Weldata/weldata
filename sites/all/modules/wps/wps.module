@@ -82,34 +82,3 @@ function computed_field_field_total_cost_compute(&$entity_field, $entity_type, $
   $result = wps_variable_declaration($entity_type, $entity);
   $entity_field[0]['value'] = $result['total_cost'];
 }
-
-/**
- *Implements Calculation for Weight of Weld
- */
-function computed_field_field_weight_of_weld_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
-  return '<div class="row">' . $entity_field_item['value'] . '<span class="suffix">lbs</span></div>';
-}
-function computed_field_field_weight_of_filler_required_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
- return '<div class="row">' . $entity_field_item['value'] . '<span class="suffix">lbs</span></div>';
-}
-function computed_field_field_arc_on_hours_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
-  return '<div class="row">' . $entity_field_item['value'] . '<span class="suffix">hr</span></div>';
-}
-function computed_field_field_labour_hours_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
-  return '<div class="row">' . $entity_field_item['value'] . '<span class="suffix">hr</span></div>';
-}
-function computed_field_field_total_filler_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
-  return '<div class="row"><span class="prefix">$</span>' . $entity_field_item['value'] . '</div>';
-}
-function computed_field_field_labour_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
-  return '<div class="row"><span class="prefix">$</span>' . $entity_field_item['value'] . '</div>';
-}
-function computed_field_field_total_gas_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
-  return '<div class="row"><span class="prefix">$</span>' . $entity_field_item['value'] . '</div>';
-}
-function computed_field_field_total_power_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
-  return '<div class="row"><span class="prefix">$</span>' . $entity_field_item['value'] . '</div>';
-}
-function computed_field_field_total_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
-  return '<div class="row"><span class="prefix">$</span>' . $entity_field_item['value'] . '</div>';
-}
