@@ -5,6 +5,7 @@
 */
 
 function wps_variable_declaration ($entity_type, $entity){
+  $unit = field_get_items($entity_type, $entity, 'field_leg_size');;
   $leg = field_get_items($entity_type, $entity, 'field_leg_size');
   $weld_length = field_get_items($entity_type, $entity, 'field_weld_length');
   $number_of_joints = field_get_items($entity_type, $entity, 'field_number_of_joints');
@@ -20,6 +21,9 @@ function wps_variable_declaration ($entity_type, $entity){
   $power_cost = field_get_items($entity_type, $entity, 'field_power_cost');
   $deposition_rate = field_get_items($entity_type, $entity, 'field_deposition_rate');
 
+/**
+ * Imperial
+ */
   $weight_of_weld = 0.5 * $leg[0]['value'] * $leg[0]['value'] * $filler_density[0]['value'] * $weld_length[0]['value'] * $number_of_joints[0]['value'];
   $weight_of_filler_required = $weight_of_weld / ($process_efficiency[0]['value'] /100);
   $arc_on_hours = $weight_of_weld / ($process_efficiency[0]['value'] * $deposition_rate[0]['value'] );

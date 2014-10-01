@@ -1,0 +1,10 @@
+name = Amazon AWS
+core = 7.x
+package = OTHER
+
+; Information added by drupal.org packaging script on 2013-08-05
+version = "7.x-1.2"
+core = "7.x"
+project = "aws_amazon"
+datestamp = "1375685468"
+
