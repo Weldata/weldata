@@ -1,0 +1,30 @@
+/*======================== Login Box Styling ========================*/
+#block-logintoboggan-logintoboggan-logged-in, #toboggan-login-link-container {
+  position: absolute;
+  right: 75px;
+  top: 15px;
+  z-index: 999;
+  margin-top: 0;
+}
+#toboggan-login {
+  position: absolute;
+  right: 0;
+  top: 40px; /*Link top posititon + 25px*/
+  background: #fff;
+  width: 200px;
+  padding: 15px;
+  border: 5px solid #ccc;
+  overflow: hidden;	
+  z-index: 999;
+}
+#toboggan-login input[type=submit]{
+    border: 1px solid #dcdcdc;
+    box-shadow: 0 1px 0 0 #ffffff inset;
+    color: #777777;
+    display: inline-block;
+    font-family: arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    width: 200px;
+}

@@ -1,0 +1,35 @@
+/*  
+Sticky Footer Solution
+*/
+
+* {
+  margin:0;padding:0;
+} 
+html, body {
+  height: 100%;
+}
+#page-wrapper {
+  min-height: 100%;
+}
+#page {
+  overflow:auto;
+  padding-bottom: 50px; /* must be same height as the footer */
+}  
+#footer-wrapper, #footer-panels-wrapper {
+  position: relative;
+  height: 125px;
+  margin-top: -125px; /* negative value of footer height */
+  overflow: hidden;
+  clear:both;
+  margin-bottom: 0;
+  background: #2E2E2D;
+}
+
+/*Opera Fix*/
+body:before {
+content:"";
+height:100%;
+float:left;
+width:0;
+margin-top:-32767px;
+}
