@@ -27,9 +27,9 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="wps.module" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/wps.module">
+        <entry file="file://$PROJECT_DIR$/../../../../../wps-test/sites/all/modules/wps/wps.module">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="11" selection-start="1311" selection-end="1311" vertical-scroll-proportion="-0.121323526" vertical-offset="528" max-vertical-offset="1980">
+            <state line="102" column="12" selection-start="5319" selection-end="5319" vertical-scroll-proportion="0.4852941" vertical-offset="1914" max-vertical-offset="2904">
               <folding />
             </state>
           </provider>
@@ -47,6 +47,7 @@
       <list>
         <option value="$PROJECT_DIR$/wps.info" />
         <option value="$PROJECT_DIR$/wps.module" />
+        <option value="$PROJECT_DIR$/../../../../../wps-test/sites/all/modules/wps/wps.module" />
       </list>
     </option>
   </component>
@@ -174,8 +175,8 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -195,6 +196,13 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/wps.module">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="11" selection-start="1311" selection-end="1311" vertical-scroll-proportion="0.0" vertical-offset="528" max-vertical-offset="1980">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wps.module">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="58" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1892">
@@ -298,7 +306,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wps.module">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="11" selection-start="1311" selection-end="1311" vertical-scroll-proportion="-0.121323526" vertical-offset="528" max-vertical-offset="1980">
+        <state line="24" column="11" selection-start="1311" selection-end="1311" vertical-scroll-proportion="16.516129" vertical-offset="974" max-vertical-offset="1980">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../../wps-test/sites/all/modules/wps/wps.module">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="102" column="12" selection-start="5319" selection-end="5319" vertical-scroll-proportion="0.4852941" vertical-offset="1914" max-vertical-offset="2904">
           <folding />
         </state>
       </provider>
