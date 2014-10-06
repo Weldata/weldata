@@ -6,12 +6,6 @@
 
 // TODO : Remove [0]['value'] and try calculation
 
-function weldata_form_weld_estimator_node_form_alter(&$form, &$form_state){
-  //$form['field_thickness']['#states'] = 'invisible';
-  //$form['field_type_of_fillet_groove_weld']['#disabled'] = TRUE;
-  //$form['field_type_of_plug_weld']['#disabled'] = TRUE;
-}
-
 /**
  * Calculate Weight of Weld for Fillet Weld.
  */
@@ -169,7 +163,6 @@ function weldata_variable_declaration ($entity_type, $entity){
   $clad_thickness = field_get_items($entity_type, $entity, 'field_clad_thickness');
   $radius = field_get_items($entity_type, $entity, 'field_radius');
   $diameter = field_get_items($entity_type, $entity, 'field_diameter');
-
 
 
 if ($type_of_weld == 'fillet'){

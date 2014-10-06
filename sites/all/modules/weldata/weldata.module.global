@@ -1,0 +1,253 @@
+<?php
+/**
+* @file
+* Weldata Module.
+*/
+
+// TODO : Remove [0]['value'] and try calculation
+
+function weldata_form_weld_estimator_node_form_alter(&$form, &$form_state){
+  $form['field_dummy']['#access'] = FALSE;
+}
+
+/**
+ * Calculate Weight of Weld for Fillet Weld.
+ */
+function weldata_fillet_weld($leg_size,$weld_length,$number_of_joints,$filler_density,$size_variation,$number_of_joints = 1){
+  $area = 0.5 * $leg_size * $leg_size * $weld_length * $number_of_joints * $filler_density;
+  $weight_of_weld =  [$area + ($area * $size_variation)] * $number_of_joints;
+  return $weight_of_weld;
+}
+
+/**
+ * Calculate Weight of Weld for Single Vee Weld.
+ */
+function weldata_single_vee($length,$bevel_angle,$thickness,$root_gap,$cap_height,$filler_density,$number_of_joints = 1){
+  $radian_angle = ($bevel_angle * M_PI)/180;
+  $l1 = $thickness * tan($radian_angle);
+  $cap_width = $l1 + $l1 + $root_gap;
+  $area = array();
+  $area[0] = ($l1 * $thickness)/2;
+  $area[1] = ($root_gap * $thickness);
+  $area[2] = (0.72 * $cap_height * $cap_width);
+  $weight_of_weld =  array_sum($area) * $length * $filler_density * $number_of_joints;
+  return $weight_of_weld;
+}
+
+/**
+ * Calculate Weight of Weld for Single Bevel Weld.
+ */
+function weldata_single_bevel($length,$bevel_angle,$thickness,$root_gap,$cap_height,$filler_density,$number_of_joints = 1){
+  $radian_angle = ($bevel_angle * M_PI)/180;
+  $cap_width = ($thickness * tan($radian_angle))+ $root_gap;
+  $area = array();
+  $area[0] = ($thickness * $thickness * tan($radian_angle));
+  $area[1] = ($root_gap * $thickness);
+  $area[2] = (0.72 * $cap_height * $cap_width);
+  $weight_of_weld =  array_sum($area) * $length * $filler_density * $number_of_joints;
+  return $weight_of_weld;
+}
+
+/**
+ * Calculate Weight of Weld for Compound Vee Weld.
+ */
+function weldata_compound_vee($length,$thickness,$thickness_bottom,$bevel_angle,$bevel_angle_bottom,$land_thickness,$root_gap,$cap_height,$filler_density,$number_of_joints = 1){
+
+  $radian_angle = ($bevel_angle * M_PI)/180;
+  $radian_angle_bottom = ($bevel_angle_bottom * M_PI)/180;
+  $cap_width = [($thickness_bottom * tan($radian_angle_bottom)*2)+($thickness * tan($radian_angle)*2)] + $root_gap;
+  $area = array();
+  $area[0] = ($thickness * $thickness * tan($radian_angle));
+  $area[1] = ($thickness_bottom * $thickness_bottom * tan($radian_angle_bottom));
+  $area[2] = $root_gap * ($thickness + $thickness_bottom + $land_thickness);
+  $area[3] = 2 * $thickness_bottom * $thickness * tan($radian_angle);
+  $area[4] = 0.8 * $cap_height * $cap_width;
+
+  $volume = array_sum($area) * $length * $number_of_joints;
+  $weight_of_weld = $volume * $filler_density;
+  return $weight_of_weld;
+}
+
+/**
+ * Calculate Weight of Weld for Double Vee Weld.
+ */
+function weldata_double_vee($length,$thickness,$thickness_bottom,$bevel_angle,$bevel_angle_bottom,$land_thickness,$root_gap,$cap_height,$cap_height_bottom,$filler_density,$number_of_joints = 1){
+
+  $radian_angle = ($bevel_angle * M_PI)/180;
+  $radian_angle_bottom = ($bevel_angle_bottom * M_PI)/180;
+  $cap_width = [($thickness_bottom * tan($radian_angle_bottom)*2)+($thickness * tan($radian_angle)*2)] + $root_gap;
+  $area = array();
+  $area[0] = ($thickness * $thickness * tan($radian_angle));
+  $area[1] = ($thickness_bottom * $thickness_bottom * tan($radian_angle_bottom));
+  $area[2] = $root_gap * ($thickness + $thickness_bottom + $land_thickness);
+  $area[3] = 0.8 * $cap_height * $cap_width;
+  $area[4] = 0.8 * $cap_height * [(2 * $thickness * tan($radian_angle)) + $root_gap];
+  $area[5] = 0.8 * $cap_height_bottom * [(2 * $thickness_bottom * tan($radian_angle_bottom)) + $root_gap];
+
+  $volume = array_sum($area) * $length * $number_of_joints;
+  $weight_of_weld = $volume * $filler_density;
+  return $weight_of_weld;
+}
+
+/**
+ * Calculate Weight of Weld for Double Bevel Tee Weld.
+ */
+function weldata_double_bevel_tee($length,$leg_size,$leg_size_2,$bevel_angle,$bevel_angle_bottom,$thickness,$thickness_bottom,$land_thickness,$root_gap,$filler_density,$number_of_joints = 1){
+
+  $radian_angle = ($bevel_angle * M_PI)/180;
+  $radian_angle_bottom = ($bevel_angle_bottom * M_PI)/180;
+  $area = array();
+  $area[0] = ($thickness * $thickness * tan($radian_angle))/2;
+  $area[1] = ($thickness_bottom * $thickness_bottom * tan($radian_angle_bottom))/2;
+  $area[2] = $root_gap * ($thickness + $thickness_bottom + $land_thickness);
+  $area[3] = ($leg_size * $leg_size)/2;
+  $area[4] = ($leg_size_2 * $leg_size_2)/2;
+
+  $volume = array_sum($area) * $length * $number_of_joints;
+  $weight_of_weld = $volume * $filler_density;
+  return $weight_of_weld;
+}
+
+/**
+ * Calculate Weight of Weld for Double Bevel Corner Weld.
+ */
+function weldata_double_bevel_corner($length,$leg_size,$bevel_angle,$bevel_angle_bottom,$thickness,$thickness_bottom,$land_thickness,$cap_height,$root_gap,$filler_density,$number_of_joints = 1){
+
+  $radian_angle = ($bevel_angle * M_PI)/180;
+  $radian_angle_bottom = ($bevel_angle_bottom * M_PI)/180;
+  $area = array();
+  $area[0] = ($thickness * $thickness * tan($radian_angle))/2;
+  $area[1] = ($thickness_bottom * $thickness_bottom * tan($radian_angle_bottom))/2;
+  $area[2] = $root_gap * ($thickness + $thickness_bottom + $land_thickness);
+  $area[3] = ($leg_size * $leg_size)/2;
+  $area[4] = $cap_height * [($thickness_bottom * tan($radian_angle_bottom)) + $root_gap];
+
+  $volume = array_sum($area) * $length * $number_of_joints;
+  $weight_of_weld = $volume * $filler_density;
+  return $weight_of_weld;
+}
+
+function weldata_variable_declaration ($entity_type,$entity){
+  $unit = field_get_items($entity_type, $entity, 'field_unit');
+  $type_of_weld = field_get_items($entity_type, $entity, 'field_type_of_weld');
+  $type_of_groove_weld = field_get_items($entity_type, $entity, 'field_type_of_groove_weld');
+  $type_of_fillet_groove_weld = field_get_items($entity_type, $entity, 'field_type_of_fillet_groove_weld');
+  $type_of_plug_weld = field_get_items($entity_type, $entity, 'field_type_of_plug_weld');
+  $leg_size = field_get_items($entity_type, $entity, 'field_leg_size');
+  $leg_size_2 = field_get_items($entity_type, $entity, 'field_leg_size_2');
+  $weld_length = field_get_items($entity_type, $entity, 'field_weld_length');
+  $number_of_joints = field_get_items($entity_type, $entity, 'field_number_of_joints');
+  $size_variation = field_get_items($entity_type, $entity, 'field_size_variation');
+  $labour_rate = field_get_items($entity_type, $entity, 'field_labour_rate');
+  $filler_density = field_get_items($entity_type, $entity, 'field_filler_density');
+  $filler_cost = field_get_items($entity_type, $entity, 'field_filler_cost');
+  $wire_diameter = field_get_items($entity_type, $entity, 'field_wire_diameter');
+  $wire_feed_speed = field_get_items($entity_type, $entity, 'field_wire_feed_speed');
+  $gas_cost = field_get_items($entity_type, $entity, 'field_gas_cost');
+  $gas_flow = field_get_items($entity_type, $entity, 'field_gas_flow');
+  $process_efficiency = field_get_items($entity_type, $entity, 'field_process_efficiency');
+  $welder_efficiency = field_get_items($entity_type, $entity, 'field_welder_efficiency');
+  $amperage = field_get_items($entity_type, $entity, 'field_amperage');
+  $voltage = field_get_items($entity_type, $entity, 'field_voltage');
+  $power_cost = field_get_items($entity_type, $entity, 'field_power_cost');
+
+  $bevel_angle = field_get_items($entity_type, $entity, 'field_bevel_angle');
+  $bevel_angle_bottom = field_get_items($entity_type, $entity, 'field_bevel_angle_bottom');
+  $thickness = field_get_items($entity_type, $entity, 'field_thickness');
+  $thickness_bottom = field_get_items($entity_type, $entity, 'field_thickness_bottom');
+  $root_gap = field_get_items($entity_type, $entity, 'field_root_gap');
+  $cap_height = field_get_items($entity_type, $entity, 'field_cap_height');
+  $cap_height_bottom = field_get_items($entity_type, $entity, 'field_cap_height_bottom');
+  $land_thickness = field_get_items($entity_type, $entity, 'field_land_thickness');
+
+  $extension = field_get_items($entity_type, $entity, 'field_extension');
+  $extension_thickness = field_get_items($entity_type, $entity, 'field_extension_thickness');
+  $throat = field_get_items($entity_type, $entity, 'field_throat');
+  $clad_length = field_get_items($entity_type, $entity, 'field_clad_length');
+  $clad_thickness = field_get_items($entity_type, $entity, 'field_clad_thickness');
+  $radius = field_get_items($entity_type, $entity, 'field_radius');
+  $diameter = field_get_items($entity_type, $entity, 'field_diameter');
+
+if ($type_of_weld == 'fillet'){
+     $weight_of_weld = weldata_fillet_weld($leg_size[0]['value'],$weld_length[0]['value'],$number_of_joints[0]['value'],$filler_density[0]['value'],$size_variation[0]['value'],$number_of_joints[0]['value']);
+  }
+  elseif ($type_of_weld == 'groove' && $type_of_groove_weld == 'single_v'){
+     $weight_of_weld = weldata_single_vee($weld_length[0]['value'],$bevel_angle[0]['value'],$thickness[0]['value'],$root_gap[0]['value'],$cap_height[0]['value'],$filler_density[0]['value'],$number_of_joints[0]['value']);
+  }
+  elseif($type_of_weld == 'groove' && $type_of_groove_weld == 'single_bevel'){
+    $weight_of_weld = weldata_single_bevel($weld_length[0]['value'],$bevel_angle[0]['value'],$thickness[0]['value'],$root_gap[0]['value'],$cap_height[0]['value'],$filler_density[0]['value'],$number_of_joints[0]['value']);
+  }
+  elseif($type_of_weld == 'groove' && $type_of_groove_weld == 'compound_v'){
+    $weight_of_weld = weldata_compound_vee($weld_length[0]['value'],$thickness[0]['value'],$thickness_bottom[0]['value'],$bevel_angle[0]['value'],$bevel_angle_bottom[0]['value'],$land_thickness[0]['value'],$root_gap[0]['value'],$cap_height[0]['value'],$filler_density[0]['value'],$number_of_joints[0]['value']);
+  }
+  elseif($type_of_weld == 'groove' && $type_of_groove_weld == 'double_v'){
+    $weight_of_weld = weldata_double_vee($weld_length[0]['value'],$thickness[0]['value'],$thickness_bottom[0]['value'],$bevel_angle[0]['value'],$bevel_angle_bottom[0]['value'],$land_thickness[0]['value'],$root_gap[0]['value'],$cap_height[0]['value'],$cap_height_bottom[0]['value'],$filler_density[0]['value'],$number_of_joints[0]['value']);
+  }
+  elseif($type_of_weld == 'fillet_groove' && $type_of_fillet_groove_weld == 'double_bevel_tee'){
+    $weight_of_weld = weldata_double_bevel_tee($weld_length[0]['value'],$leg_size[0]['value'],$leg_size_2[0]['value'],$bevel_angle[0]['value'],$bevel_angle_bottom[0]['value'],$thickness[0]['value'],$thickness_bottom[0]['value'],$land_thickness[0]['value'],$root_gap[0]['value'],$filler_density[0]['value'],$number_of_joints[0]['value']);
+  }
+  elseif($type_of_weld == 'fillet_groove' && $type_of_fillet_groove_weld == 'double_bevel_corner'){
+    $weight_of_weld = weldata_double_bevel_corner($weld_length[0]['value'],$leg_size[0]['value'],$bevel_angle[0]['value'],$bevel_angle_bottom[0]['value'],$thickness[0]['value'],$thickness_bottom[0]['value'],$land_thickness[0]['value'],$cap_height[0]['value'],$root_gap[0]['value'],$filler_density[0]['value'],$number_of_joints[0]['value']);
+}
+
+
+$deposition_rate = M_PI * [($wire_diameter[0]['value'] * $wire_diameter[0]['value'])/4] * ($wire_feed_speed[0]['value']*60) * $filler_density[0]['value'];
+  $weight_of_filler_required = $weight_of_weld / ($process_efficiency[0]['value'] /100);
+  $arc_on_hours = $weight_of_weld / ($process_efficiency[0]['value'] * $deposition_rate);
+  $labour_hours = $arc_on_hours / ($welder_efficiency[0]['value'] /100);
+  $total_filler_cost = $weight_of_filler_required * $filler_cost[0]['value'];
+  $labour_cost = $labour_hours * $labour_rate[0]['value'];
+  $total_gas_cost = $arc_on_hours * $gas_flow[0]['value'] * $gas_cost[0]['value'];
+  $total_power_cost = ($voltage[0]['value'] * $amperage[0]['value'] * $arc_on_hours * $power_cost[0]['value']) / 1000;
+  $total_cost = $total_filler_cost + $labour_cost + $total_gas_cost + $total_power_cost;
+
+  return array(
+    'weight_of_weld' => $weight_of_weld,
+    'weight_of_filler_required' => $weight_of_filler_required,
+    'arc_on_hours' => $arc_on_hours,
+    'labour_hours' => $labour_hours,
+    'total_filler_cost' => $total_filler_cost,
+    'labour_cost'=> $labour_cost,
+    'total_gas_cost'=> $total_gas_cost,
+    'total_power_cost'=> $total_power_cost,
+    'total_cost' => $total_cost
+  );
+}
+
+/**
+ *Implements a dummy function to get all values and store it in a $GLOBALS array
+ */
+function computed_field_field_dummy_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $GLOBALS['result'] = weldata_variable_declaration($entity_type, $entity);
+}
+
+/**
+ *Implements Calculation for Weight of Weld
+ */
+function computed_field_field_weight_of_weld_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $entity_field[0]['value'] = $GLOBALS['result']['weight_of_weld'];
+}
+function computed_field_field_weight_of_filler_required_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $entity_field[0]['value'] = $GLOBALS['result']['weight_of_filler_required'];
+}
+function computed_field_field_arc_on_hours_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $entity_field[0]['value'] = $GLOBALS['result']['arc_on_hours'];
+}
+function computed_field_field_labour_hours_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $entity_field[0]['value'] = $GLOBALS['result']['labour_hours'];
+}
+function computed_field_field_total_filler_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $entity_field[0]['value'] = $GLOBALS['result']['total_filler_cost'];
+}
+function computed_field_field_labour_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $entity_field[0]['value'] = $GLOBALS['result']['labour_cost'];
+}
+function computed_field_field_total_gas_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $entity_field[0]['value'] = $GLOBALS['result']['total_gas_cost'];
+}
+function computed_field_field_total_power_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $entity_field[0]['value'] = $GLOBALS['result']['total_power_cost'];
+}
+function computed_field_field_total_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $entity_field[0]['value'] = $GLOBALS['result']['total_cost'];
+}
