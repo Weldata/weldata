@@ -1,0 +1,105 @@
+<?php
+/**
+* @file
+* A description of what your module does.
+*/
+
+function weldata_form_weld_estimator_node_form_alter(&$form, &$form_state){
+  //$form['field_thickness']['#states'] = 'invisible';
+  //$form['field_type_of_fillet_groove_weld']['#disabled'] = TRUE;
+  //$form['field_type_of_plug_weld']['#disabled'] = TRUE;
+}
+
+
+function weldata_variable_declaration ($entity_type, $entity){
+  $unit = field_get_items($entity_type, $entity, 'field_unit');
+  $type_of_weld = field_get_items($entity_type, $entity, 'field_type_of_weld');
+  $leg = field_get_items($entity_type, $entity, 'field_leg_size');
+  $weld_length = field_get_items($entity_type, $entity, 'field_weld_length');
+  $number_of_joints = field_get_items($entity_type, $entity, 'field_number_of_joints');
+  $size_variation = field_get_items($entity_type, $entity, 'field_size_variation');
+  $labour_rate = field_get_items($entity_type, $entity, 'field_labour_rate');
+  $filler_density = field_get_items($entity_type, $entity, 'field_filler_density');
+  $filler_cost = field_get_items($entity_type, $entity, 'field_filler_cost');
+  $gas_cost = field_get_items($entity_type, $entity, 'field_gas_cost');
+  $gas_flow = field_get_items($entity_type, $entity, 'field_gas_flow');
+  $process_efficiency = field_get_items($entity_type, $entity, 'field_process_efficiency');
+  $welder_efficiency = field_get_items($entity_type, $entity, 'field_welder_efficiency');
+  $amperage = field_get_items($entity_type, $entity, 'field_amperage');
+  $voltage = field_get_items($entity_type, $entity, 'field_voltage');
+  $power_cost = field_get_items($entity_type, $entity, 'field_power_cost');
+  $wire_diameter = field_get_items($entity_type, $entity, 'field_wire_diameter');
+  $wire_feed_speed = field_get_items($entity_type, $entity, 'field_wire_feed_speed');
+
+/**
+ * Imperial
+ */
+ $fillet_weld_area = 0.5 * $leg[0]['value'] * $leg[0]['value'] * $weld_length[0]['value'] * $number_of_joints[0]['value']* $filler_density[0]['value'];
+
+  if ($type_of_weld == 'fillet'){
+    $weight_of_weld =  $fillet_weld_area + ($fillet_weld_area * $size_variation[0]['value']);
+  }
+
+  $deposition_rate = M_PI * [($wire_diameter[0]['value'] * $wire_diameter[0]['value'])/4] * ($wire_feed_speed[0]['value'] * 60) * $filler_density[0]['value'];
+
+  $weight_of_filler_required = $weight_of_weld / ($process_efficiency[0]['value'] /100);
+  $arc_on_hours = $weight_of_weld / ($process_efficiency[0]['value'] * $deposition_rate);
+  $labour_hours = $arc_on_hours / ($welder_efficiency[0]['value'] /100);
+  $total_filler_cost = $weight_of_filler_required * $filler_cost[0]['value'];
+  $labour_cost = $labour_hours * $labour_rate[0]['value'];
+  $total_gas_cost = $arc_on_hours * $gas_flow[0]['value'] * $gas_cost[0]['value'];
+  $total_power_cost = ($voltage[0]['value'] * $amperage[0]['value'] * $arc_on_hours * $power_cost[0]['value']) / 1000;
+  $total_cost = $total_filler_cost + $labour_cost + $total_gas_cost + $total_power_cost;
+
+  return array(
+    'weight_of_weld' => $weight_of_weld,
+    'weight_of_filler_required' => $weight_of_filler_required,
+    'arc_on_hours' => $arc_on_hours,
+    'labour_hours' => $labour_hours,
+    'total_filler_cost' => $total_filler_cost,
+    'labour_cost'=> $labour_cost,
+    'total_gas_cost'=> $total_gas_cost,
+    'total_power_cost'=> $total_power_cost,
+    'total_cost' => $total_cost
+  );
+}
+
+/**
+ *Implements Calculation for Weight of Weld
+ */
+function computed_field_field_weight_of_weld_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = weldata_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['weight_of_weld'];
+}
+function computed_field_field_weight_of_filler_required_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = weldata_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['weight_of_filler_required'];
+}
+function computed_field_field_arc_on_hours_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = weldata_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['arc_on_hours'];
+}
+function computed_field_field_labour_hours_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = weldata_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['labour_hours'];
+}
+function computed_field_field_total_filler_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = weldata_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['total_filler_cost'];
+}
+function computed_field_field_labour_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = weldata_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['labour_cost'];
+}
+function computed_field_field_total_gas_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = weldata_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['total_gas_cost'];
+}
+function computed_field_field_total_power_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = weldata_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['total_power_cost'];
+}
+function computed_field_field_total_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = weldata_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['total_cost'];
+}

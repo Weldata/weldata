@@ -1,33 +1,9 @@
 /* ICAMMA - 2015 Styles*/
-/*#header-wrapper {
- height: 125px;
-}*/
-#branding {
-	padding: 15px 0 48px 25px;
-}
-#menu-bar-wrapper {
-	margin-bottom: 50px;
-}
-#block-search-form {
-	float: right !important;
-}
-#search-block-form {
-	margin: 0.4em 0 0 0;
-}
-#block-search-form input.form-text {
-	width: 225px;
-	margin-bottom: 0;
-}
-/*Registration Form*/
-form#weld-estimator-node-form div.form-type-radio{
-	display: inline;
-}
-/*Abstract Form*/
-div.grippie {
-	display: none;
-}
 
 /*Weld Estimator Form*/
+form#weld-estimator-node-form div.form-type-radio{
+    display: inline;
+}
 div.group-weld-geometry-right {
     float: right;
     width: 50%;
@@ -36,7 +12,7 @@ div.group-weld-geometry-left, div.group-power-left{
     float: left;
     width: 100%;
 }
-div.group-weld-geometry-left div.form-wrapper, div.group-power-left div.form-wrapper {
+form#weld-estimator-node-form .inline-block div.form-wrapper {
     display: inline-block;
     width: 50%;
 }
