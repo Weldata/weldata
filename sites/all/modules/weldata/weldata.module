@@ -265,7 +265,7 @@ function computed_field_field_total_cost_compute(&$entity_field, $entity_type, $
  *Implements Display for Computed Field
  */
 function computed_field_field_weight_of_weld_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
-  //weldata_calculator('node',$entity);
+  weldata_calculator('node',$entity);
   if ($GLOBALS['result']['unit'] == 'metric'){
     return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
   }else {
