@@ -2,4 +2,5 @@ name = WelData
 description = A description of what your module does.
 core = 7.x
 package = Weldata
+scripts[] = scripts/jquery.ba-replacetext.min.js
 scripts[] = scripts/weldata.js

@@ -3,8 +3,22 @@
         attach: function(context, settings) {
 //******************************Begin my code
 
-            //$abstractPage_title = $('body.section-submit-abstract h1#page-title',context).text("Submit Abstract");
-            //$paperPage_title = $('body.section-upload-full-paper h1#page-title',context).text("Submit Full Paper");
+  $('form#weld-estimator-node-form div#edit-field-unit input[type=radio]',context).click(function(){
+      if($(this).val() == 'metric'){
+          $('form#weld-estimator-node-form span.field-suffix',context).each(function(){
+              $(this).replaceText('inch','mm');
+              $(this).replaceText('lb','kg');
+              $(this).replaceText('CFH','CMH');
+          });
+      }else if($(this).val() == 'imperial'){
+          $('form#weld-estimator-node-form span.field-suffix',context).each(function(){
+              $(this).replaceText('mm','inch');
+              $(this).replaceText('kg','lb');
+              $(this).replaceText('CMH','CFH');
+          });
+      }
+  });
+
 
 
 //******************************I'm done with my code
