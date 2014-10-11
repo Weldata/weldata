@@ -280,51 +280,43 @@ function computed_field_field_weight_of_filler_required_display($field, $entity_
   }
 }
 function computed_field_field_arc_on_hours_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
-  if ($GLOBALS['result']['unit'] == 'metric'){
-    return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
-  }else {
-    return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
-  }
+    return $entity_field_item['value'].'<span class="field-suffix">hrs</span>';
 }
 function computed_field_field_labour_hours_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
-  if ($GLOBALS['result']['unit'] == 'metric'){
-    return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
-  }else {
-    return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
-  }
+    return $entity_field_item['value'].'<span class="field-suffix">hrs</span>';
 }
 function computed_field_field_total_filler_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
   if ($GLOBALS['result']['unit'] == 'metric'){
-    return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
+    return $entity_field_item['value'].'<span class="field-suffix">Rupees</span>';
   }else {
-    return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
+    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
   }
 }
 function computed_field_field_labour_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
   if ($GLOBALS['result']['unit'] == 'metric'){
-    return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
+    return $entity_field_item['value'].'<span class="field-suffix">Rupees</span>';
   }else {
-    return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
+    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
   }
 }
 function computed_field_field_total_gas_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
   if ($GLOBALS['result']['unit'] == 'metric'){
-    return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
+    return $entity_field_item['value'].'<span class="field-suffix">Rupees</span>';
   }else {
-    return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
+    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
   }
 }
 function computed_field_field_total_power_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
   if ($GLOBALS['result']['unit'] == 'metric'){
-    return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
+    return $entity_field_item['value'].'<span class="field-suffix">Rupees</span>';
   }else{
-    return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
+    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
   }
 }
 function computed_field_field_total_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
   if ($GLOBALS['result']['unit'] == 'metric'){
-    return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
+    return $entity_field_item['value'].'<span class="field-suffix">Rupees</span>';
   }else{
-    return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
+    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
   }
 }
