@@ -19,9 +19,6 @@
       }
   });
 
-  $('div.view-history table#views-aggregator-datatable ).each();
-
-
 
 //******************************I'm done with my code
         }

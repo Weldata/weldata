@@ -3,6 +3,45 @@
 * @file
 * Weldata Module.
 */
+//TODO: $GLOBALS['result'] doesn't work for computed_display() in views. So create a new $GLOBALS['unit'] for the first field used in views and then use that for other computed_display() functions
+
+
+/**
+ * Implements hook_form_FORM_ID_alter
+ * Used to alter the units - #field_suffix
+ */
+function weldata_form_weld_estimator_node_form_alter(&$form, &$form_state){
+//TODO: Add separate submit function to alter field_suffix
+  $form['actions']['preview']['#value'] = "Calculate";
+  $node = $form_state['node'];
+  if(isset($node->nid)){
+    $unit = field_get_items('node', $node, 'field_unit')[0]['value'];
+    if($unit == 'metric'){
+      //Weld Length
+      $form['field_weld_length'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
+      //Leg Size
+      $form['field_leg_size'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
+      //
+
+    }
+  }
+}
+
+
+/**
+ * Implements hook_node_view
+ * Used to alter the units
+ */
+function weldata_node_view($node, $view_mode, $langcode) {
+//TODO: Check if hook_node_view_alter() is a better option than this function.
+  $unit = field_get_items('node', $node, 'field_unit')[0]['value'];
+  if ($unit == 'metric'){
+  //Weld Length
+  $node->content['field_weld_length'][0]['#markup'] = $node->content['field_weld_length']['#items'][0]['value'].'<span class="field-suffix">mm</span>';
+  //Leg Size
+  $node->content['field_leg_size'][0]['#markup'] = $node->content['field_leg_size']['#items'][0]['value'].'<span class="field-suffix">mm</span>';
+  }
+}
 
 /**
  * Calculate Weight of Weld for Fillet Weld.
@@ -259,7 +298,13 @@ function computed_field_field_total_power_cost_compute(&$entity_field, $entity_t
 function computed_field_field_total_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
   $entity_field[0]['value'] = $GLOBALS['result']['total_cost'];
 }
-
+function computed_field_field_weld_length_unit_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items){
+  if ($GLOBALS['result']['unit'] == 'metric'){
+    $entity_field[0]['value'] = 'mm';
+  } else {
+    $entity_field[0]['value'] = 'inch';
+  }
+}
 
 /**
  *Implements Display for Computed Field
@@ -319,4 +364,7 @@ function computed_field_field_total_cost_display($field, $entity_field_item, $en
   }else{
     return $entity_field_item['value'].'<span class="field-suffix">$</span>';
   }
+}
+function computed_field_field_weld_length_unit_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
+  return '<span class="field-suffix">'.$entity_field_item["value"].'</span>';
 }
