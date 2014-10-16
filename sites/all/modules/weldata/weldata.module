@@ -46,7 +46,6 @@ function weldata_form_weld_estimator_node_form_alter(&$form, &$form_state){
       $form['field_wire_diameter'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
       $form['field_wire_feed_speed'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm/min';
       $form['field_gas_flow'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'CMH';
-
     }
   }
 }
