@@ -208,9 +208,9 @@ function weldata_slot($thickness,$slot_length,$slot_width,$filler_density,$numbe
 }
 
 /**
- * Calculate Weight of Weld for Patch Build Up.
+ * Calculate Weight of Weld for Patch Build Up and Cavity Build Up.
  */
-function weldata_patch($top_length,$top_width,$bottom_length,$bottom_width,$height_of_patch,$filler_density,$number_of_joints){
+function weldata_patch_cavity($top_length,$top_width,$bottom_length,$bottom_width,$height_of_patch,$filler_density,$number_of_joints){
   $a = ($bottom_length - $top_length)/2;
   $b = ($bottom_width - $top_width)/2;
   //$a = atan($height_of_patch/$a);
@@ -221,6 +221,16 @@ function weldata_patch($top_length,$top_width,$bottom_length,$bottom_width,$heig
   $weight_of_weld = array_sum($volume) * $filler_density * $number_of_joints;
   return $weight_of_weld;
 }
+/**
+ * Calculate Weight of Weld for Patch Build Up and Cavity Build Up.
+ */
+function weldata_pipe_clad($clad_length,$clad_thickness,$diameter,$filler_density,$number_of_joints){
+  $volume = ($clad_length * $clad_thickness * $diameter) * $number_of_joints;
+  $weight_of_weld = $volume * $filler_density;
+  return $weight_of_weld;
+}
+
+
 
 function weldata_calculator($entity_type, $entity){
   //Common Variables
@@ -249,8 +259,7 @@ function weldata_calculator($entity_type, $entity){
 
 
   $throat = field_get_items($entity_type, $entity, 'field_throat');
-  $clad_length = field_get_items($entity_type, $entity, 'field_clad_length');
-  $clad_thickness = field_get_items($entity_type, $entity, 'field_clad_thickness');
+
 
 
 /**
@@ -333,17 +342,23 @@ if($type_of_weld == 'plug_slot'){
   }
 }
 
-// For Patch Build Up
-if($type_of_weld == 'patch'){
+// For Patch Build Up and Cavity Build Up
+if($type_of_weld == 'patch' || $type_of_weld == 'cavity'){
   $top_length = field_get_items($entity_type, $entity, 'field_top_length')[0]['value'];
   $top_width = field_get_items($entity_type, $entity, 'field_top_width')[0]['value'];
   $bottom_length = field_get_items($entity_type, $entity, 'field_bottom_length')[0]['value'];
   $bottom_width = field_get_items($entity_type, $entity, 'field_bottom_width')[0]['value'];
   $height_of_patch = field_get_items($entity_type, $entity, 'field_height_of_patch')[0]['value'];
-  $weight_of_weld = weldata_patch($top_length,$top_width,$bottom_length,$bottom_width,$height_of_patch,$filler_density,$number_of_joints);
+  $weight_of_weld = weldata_patch_cavity($top_length,$top_width,$bottom_length,$bottom_width,$height_of_patch,$filler_density,$number_of_joints);
 }
 
-
+// For Pipe Clad
+if($type_of_weld == 'pipe_clad'){
+   $clad_length = field_get_items($entity_type, $entity, 'field_clad_length')[0]['value'];
+   $clad_thickness = field_get_items($entity_type, $entity, 'field_clad_thickness')[0]['value'];
+   $diameter = field_get_items($entity_type, $entity, 'field_diameter')[0]['value'];
+   $weight_of_weld = weldata_pipe_clad($clad_length,$clad_thickness,$diameter,$filler_density,$number_of_joints);
+}
 
   $deposition_rate = M_PI * (($wire_diameter * $wire_diameter)/4) * ($wire_feed_speed * 60) * $filler_density;
   $weight_of_filler_required = $weight_of_weld / ($process_efficiency);
@@ -416,16 +431,14 @@ function computed_field_field_weight_of_weld_display($field, $entity_field_item,
   weldata_calculator('node',$entity);
   if ($GLOBALS['result']['unit'] == 'metric'){
     return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
-  }else {
-    return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
   }
+    return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
 }
 function computed_field_field_weight_of_filler_required_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
   if ($GLOBALS['result']['unit'] == 'metric'){
     return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
-  }else {
-    return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
   }
+    return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
 }
 function computed_field_field_arc_on_hours_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
     return $entity_field_item['value'].'<span class="field-suffix">hrs</span>';
@@ -436,37 +449,32 @@ function computed_field_field_labour_hours_display($field, $entity_field_item, $
 function computed_field_field_total_filler_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
   if ($GLOBALS['result']['unit'] == 'metric'){
     return $entity_field_item['value'].'<span class="field-suffix">Rupees</span>';
-  }else {
-    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
   }
+    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
 }
 function computed_field_field_labour_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
   if ($GLOBALS['result']['unit'] == 'metric'){
     return $entity_field_item['value'].'<span class="field-suffix">Rupees</span>';
-  }else {
-    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
   }
+    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
 }
 function computed_field_field_total_gas_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
   if ($GLOBALS['result']['unit'] == 'metric'){
     return $entity_field_item['value'].'<span class="field-suffix">Rupees</span>';
-  }else {
-    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
   }
+    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
 }
 function computed_field_field_total_power_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
   if ($GLOBALS['result']['unit'] == 'metric'){
     return $entity_field_item['value'].'<span class="field-suffix">Rupees</span>';
-  }else{
-    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
   }
+    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
 }
 function computed_field_field_total_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
   if ($GLOBALS['result']['unit'] == 'metric'){
     return $entity_field_item['value'].'<span class="field-suffix">Rupees</span>';
-  }else{
-    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
   }
+    return $entity_field_item['value'].'<span class="field-suffix">$</span>';
 }
 function computed_field_field_weld_length_unit_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
   return '<span class="field-suffix">'.$entity_field_item["value"].'</span>';
