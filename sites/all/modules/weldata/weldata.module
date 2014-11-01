@@ -5,6 +5,7 @@
 */
 //Todo: Change field_suffix value in database
 //Todo: Use $radius instead of $diameter in plug and slot welds
+//Todo: Move field_get_items from weld_calculator to their respective calculation functions
 
 /**
  * Implements hook_form_FORM_ID_alter
@@ -201,11 +202,25 @@ function weldata_plug($length,$diameter,$filler_density,$number_of_joints){
  * Calculate Weight of Weld for Slot Weld.
  */
 function weldata_slot($thickness,$slot_length,$slot_width,$filler_density,$number_of_joints){
-  $volume = (M_PI * $slot_width * $slot_width )* $number_of_joints;
+  $volume = (((M_PI * $slot_width * $slot_width)/4) + ($slot_length * $slot_width)) * $thickness * $number_of_joints;
   $weight_of_weld = $volume * $filler_density;
   return $weight_of_weld;
 }
 
+/**
+ * Calculate Weight of Weld for Patch Build Up.
+ */
+function weldata_patch($top_length,$top_width,$bottom_length,$bottom_width,$height_of_patch,$filler_density,$number_of_joints){
+  $a = ($bottom_length - $top_length)/2;
+  $b = ($bottom_width - $top_width)/2;
+  //$a = atan($height_of_patch/$a);
+  $volume = array();
+  $volume[0] = ($top_length * $top_width * $height_of_patch);
+  $volume[1] = ($a * $bottom_length * $height_of_patch);
+  $volume[2] = ($b * $bottom_width * $height_of_patch);
+  $weight_of_weld = array_sum($volume) * $filler_density * $number_of_joints;
+  return $weight_of_weld;
+}
 
 function weldata_calculator($entity_type, $entity){
   //Common Variables
@@ -305,6 +320,7 @@ if($type_of_weld == 'fillet_groove') {
   }
 }
 
+// For Plug and Slot Weld
 if($type_of_weld == 'plug_slot'){
   $diameter = field_get_items($entity_type, $entity, 'field_diameter')[0]['value'];
   if($type_of_plug_weld == 'plug'){
@@ -313,9 +329,20 @@ if($type_of_weld == 'plug_slot'){
     $thickness = field_get_items($entity_type, $entity, 'field_thickness')[0]['value'];
     $slot_length = field_get_items($entity_type, $entity, 'field_slot_length')[0]['value'];
     $slot_width = field_get_items($entity_type, $entity, 'field_slot_width')[0]['value'];
-  $weight_of_weld = weldata_slot($thickness,$slot_length,$slot_width,$filler_density,$number_of_joints);
+    $weight_of_weld = weldata_slot($thickness,$slot_length,$slot_width,$filler_density,$number_of_joints);
   }
 }
+
+// For Patch Build Up
+if($type_of_weld == 'patch'){
+  $top_length = field_get_items($entity_type, $entity, 'field_top_length')[0]['value'];
+  $top_width = field_get_items($entity_type, $entity, 'field_top_width')[0]['value'];
+  $bottom_length = field_get_items($entity_type, $entity, 'field_bottom_length')[0]['value'];
+  $bottom_width = field_get_items($entity_type, $entity, 'field_bottom_width')[0]['value'];
+  $height_of_patch = field_get_items($entity_type, $entity, 'field_height_of_patch')[0]['value'];
+  $weight_of_weld = weldata_patch($top_length,$top_width,$bottom_length,$bottom_width,$height_of_patch,$filler_density,$number_of_joints);
+}
+
 
 
   $deposition_rate = M_PI * (($wire_diameter * $wire_diameter)/4) * ($wire_feed_speed * 60) * $filler_density;
