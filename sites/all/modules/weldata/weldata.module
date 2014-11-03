@@ -3,235 +3,54 @@
 * @file
 * Weldata Module.
 */
+//Todo: Complete weldata_node_view() in weldata.view.inc
 //Todo: Change field_suffix value in database
 //Todo: Use $radius instead of $diameter in plug and slot welds
 //Todo: Move field_get_items from weld_calculator to their respective calculation functions
 
-/**
- * Implements hook_form_FORM_ID_alter
- * Used to alter the units - #field_suffix
- */
-function weldata_form_weld_estimator_node_form_alter(&$form, &$form_state){
-//TODO: Use ajax in this function to alter field_suffix
-  $form['actions']['preview']['#value'] = "Calculate";
-  $node = $form_state['node'];
-  if(isset($node->nid)){
-    $unit = field_get_items('node', $node, 'field_unit')[0]['value'];
-    if($unit == 'metric'){
-      $form['field_weld_length'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_leg_size'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_leg_size_2'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_slot_length'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_slot_width'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_top_length'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_bottom_length'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_top_width'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_bottom_width'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_height_of_patch'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_thickness'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_thickness_bottom'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-
-      $form['field_cap_height'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_cap_height_bottom'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_extension'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_extension_thickness'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_throat'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_clad_length'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_clad_thickness'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_root_gap'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_radius'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_diameter'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_land_thickness'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      //Filler
-      $form['field_filler_density'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'g/cc';
-      $form['field_wire_diameter'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm';
-      $form['field_wire_feed_speed'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'mm/min';
-      $form['field_gas_flow'][LANGUAGE_NONE][0]['value']['#field_suffix'] = 'CMH';
-    }
-  }
-}
-
+//For Compound Vee Weight of Weld Calculations
+module_load_include('inc', 'weldata', 'includes/weldata.compound_vee');
+//For Double Bevel Corner Weight of Weld Calculations
+module_load_include('inc', 'weldata', 'includes/weldata.double_bevel_corner');
+//For Double Bevel CornerTee Weight of Weld Calculations
+module_load_include('inc', 'weldata', 'includes/weldata.double_bevel_tee');
+//For Double Vee Weight of Weld Calculations
+module_load_include('inc', 'weldata', 'includes/weldata.double_vee');
+//For Fillet Weight of Weld Calculations
+module_load_include('inc', 'weldata', 'includes/weldata.fillet');
+//For J Groove Weight of Weld Calculations
+module_load_include('inc', 'weldata', 'includes/weldata.j_groove');
+//For Patch and Cavity Weight of Weld Calculations
+module_load_include('inc', 'weldata', 'includes/weldata.patch_cavity');
+//For Pipe Clad Weight of Weld Calculations
+module_load_include('inc', 'weldata', 'includes/weldata.pipe_clad');
+//For Plug Weight of Weld Calculations
+module_load_include('inc', 'weldata', 'includes/weldata.plug');
+//For Single Vee Weight of Weld Calculations
+module_load_include('inc', 'weldata', 'includes/weldata.single_vee');
+//For Single Bevel Weight of Weld Calculations
+module_load_include('inc', 'weldata', 'includes/weldata.single_bevel');
+//For Slot Weight of Weld Calculations
+module_load_include('inc', 'weldata', 'includes/weldata.slot');
 
 /**
- * Implements hook_node_view
- * Used to alter the units
+ * Implements hook_hook_info().
+ * Moves form_alter functions to weldata.form.inc
+ * Moves node_view functions to weldata.view.inc
  */
-function weldata_node_view($node, $view_mode, $langcode) {
-//TODO: Check if hook_node_view_alter() is a better option than this function.
-  $unit = field_get_items('node', $node, 'field_unit')[0]['value'];
-  if ($unit == 'metric'){
-  //Weld Length
-  $node->content['field_weld_length'][0]['#markup'] = $node->content['field_weld_length']['#items'][0]['value'].'<span class="field-suffix">mm</span>';
-  //Leg Size
-  $node->content['field_leg_size'][0]['#markup'] = $node->content['field_leg_size']['#items'][0]['value'].'<span class="field-suffix">mm</span>';
-  }
+function weldata_hook_info() {
+  $hooks['form_weld_estimator_node_form_alter'] = array(
+    'group' => 'form',
+  );
+  $hooks['node_view'] = array(
+    'group' => 'view',
+  );
+  return $hooks;
 }
 
 /**
- * Calculate Weight of Weld for Fillet Weld.
+ * Function to Calculate
  */
-function weldata_fillet_weld($weld_length,$leg_size,$filler_density,$size_variation,$number_of_joints){
-  $area = 0.5 * $leg_size * $leg_size * $weld_length * $number_of_joints * $filler_density;
-  $weight_of_weld =  ($area + ($area * $size_variation)) * $number_of_joints;
-  return $weight_of_weld;
-}
-
-/**
- * Calculate Weight of Weld for Single Vee Weld.
- */
-function weldata_single_vee($length,$bevel_angle,$thickness,$root_gap,$cap_height,$filler_density,$number_of_joints){
-  $l1 = $thickness * tan(deg2rad($bevel_angle));
-  $cap_width = $l1 + $l1 + $root_gap;
-  $area = array();
-  $area[0] = ($l1 * $thickness)/2;
-  $area[1] = ($root_gap * $thickness);
-  $area[2] = (0.72 * $cap_height * $cap_width);
-  $weight_of_weld =  array_sum($area) * $length * $filler_density * $number_of_joints;
-  return $weight_of_weld;
-}
-
-/**
- * Calculate Weight of Weld for Single Bevel Weld.
- */
-function weldata_single_bevel($length,$bevel_angle,$thickness,$root_gap,$cap_height,$filler_density,$number_of_joints){
-  $cap_width = ($thickness * tan(deg2rad($bevel_angle)))+ $root_gap;
-  $area = array();
-  $area[0] = ($thickness * $thickness * tan(deg2rad($bevel_angle)));
-  $area[1] = ($root_gap * $thickness);
-  $area[2] = (0.72 * $cap_height * $cap_width);
-  $weight_of_weld =  array_sum($area) * $length * $filler_density * $number_of_joints;
-  return $weight_of_weld;
-}
-
-/**
- * Calculate Weight of Weld for Compound Vee Weld.
- */
-function weldata_compound_vee($length,$thickness,$thickness_bottom,$bevel_angle,$bevel_angle_bottom,$land_thickness,$root_gap,$cap_height,$filler_density,$number_of_joints){
-  $cap_width = (($thickness_bottom * tan(deg2rad($bevel_angle_bottom))*2)+($thickness * tan(deg2rad($bevel_angle))*2)) + $root_gap;
-  $area = array();
-  $area[0] = ($thickness * $thickness * tan(deg2rad($bevel_angle)));
-  $area[1] = ($thickness_bottom * $thickness_bottom * tan(deg2rad($bevel_angle_bottom)));
-  $area[2] = $root_gap * ($thickness + $thickness_bottom + $land_thickness);
-  $area[3] = 2 * $thickness_bottom * $thickness * tan(deg2rad($bevel_angle));
-  $area[4] = 0.8 * $cap_height * $cap_width;
-
-  $volume = array_sum($area) * $length * $number_of_joints;
-  $weight_of_weld = $volume * $filler_density;
-  return $weight_of_weld;
-}
-
-/**
- * Calculate Weight of Weld for Double Vee Weld.
- */
-function weldata_double_vee($length,$thickness,$thickness_bottom,$bevel_angle,$bevel_angle_bottom,$land_thickness,$root_gap,$cap_height,$cap_height_bottom,$filler_density,$number_of_joints){
-  $cap_width = (($thickness_bottom * tan(deg2rad($bevel_angle_bottom))*2)+($thickness * tan(deg2rad($bevel_angle))*2)) + $root_gap;
-  $area = array();
-  $area[0] = ($thickness * $thickness * tan(deg2rad($bevel_angle)));
-  $area[1] = ($thickness_bottom * $thickness_bottom * tan(deg2rad($bevel_angle_bottom)));
-  $area[2] = $root_gap * ($thickness + $thickness_bottom + $land_thickness);
-  $area[3] = 0.8 * $cap_height * $cap_width;
-  $area[4] = 0.8 * $cap_height * [(2 * $thickness * tan(deg2rad($bevel_angle))) + $root_gap];
-  $area[5] = 0.8 * $cap_height_bottom * ((2 * $thickness_bottom * tan(deg2rad($bevel_angle_bottom))) + $root_gap);
-
-  $volume = array_sum($area) * $length * $number_of_joints;
-  $weight_of_weld = $volume * $filler_density;
-  return $weight_of_weld;
-}
-
-/**
- * Calculate Weight of Weld for Double Bevel Tee Weld.
- */
-function weldata_double_bevel_tee($length,$leg_size,$leg_size_2,$bevel_angle,$bevel_angle_bottom,$thickness,$thickness_bottom,$land_thickness,$root_gap,$filler_density,$number_of_joints){
-  $area = array();
-  $area[0] = ($thickness * $thickness * tan(deg2rad($bevel_angle)))/2;
-  $area[1] = ($thickness_bottom * $thickness_bottom * tan(deg2rad($bevel_angle_bottom)))/2;
-  $area[2] = $root_gap * ($thickness + $thickness_bottom + $land_thickness);
-  $area[3] = ($leg_size * $leg_size)/2;
-  $area[4] = ($leg_size_2 * $leg_size_2)/2;
-
-  $volume = array_sum($area) * $length * $number_of_joints;
-  $weight_of_weld = $volume * $filler_density;
-  return $weight_of_weld;
-}
-
-/**
- * Calculate Weight of Weld for Double Bevel Corner Weld.
- */
-function weldata_double_bevel_corner($length,$leg_size,$bevel_angle,$bevel_angle_bottom,$thickness,$thickness_bottom,$land_thickness,$cap_height,$root_gap,$filler_density,$number_of_joints){
-  $area = array();
-  $area[0] = ($thickness * $thickness * tan(deg2rad($bevel_angle)))/2;
-  $area[1] = ($thickness_bottom * $thickness_bottom * tan(deg2rad($bevel_angle_bottom)))/2;
-  $area[2] = $root_gap * ($thickness + $thickness_bottom + $land_thickness);
-  $area[3] = ($leg_size * $leg_size)/2;
-  $area[4] = $cap_height * (($thickness_bottom * tan(deg2rad($bevel_angle_bottom))) + $root_gap);
-
-  $volume = array_sum($area) * $length * $number_of_joints;
-  $weight_of_weld = $volume * $filler_density;
-  return $weight_of_weld;
-}
-
-/**
- * Calculate Weight of Weld for J Groove Weld.
- */
-function weldata_j_groove($length,$extension,$extension_thickness,$thickness,$cap_height,$root_gap,$bevel_angle,$radius,$filler_density,$number_of_joints){
-  $l1 = $thickness - $extension_thickness - $radius;
-  $area = array();
-  $area[0] = ($l1 * $l1 * tan(deg2rad($bevel_angle)))/2;
-  $area[1] = (M_PI * $radius * $radius)/4;
-  $area[2] = $radius * $l1;
-  $area[3] = $extension * ($thickness - $extension_thickness);
-  $area[4] = $root_gap * $thickness;
-  $area[5] = (($l1  * tan(deg2rad($bevel_angle))) + $radius + $extension + $root_gap) * $cap_height * 0.72;
-
-  $volume = array_sum($area) * $length * $number_of_joints;
-  $weight_of_weld = $volume * $filler_density;
-  return $weight_of_weld;
-}
-/**
- * Calculate Weight of Weld for Plug Weld.
- */
-function weldata_plug($length,$diameter,$filler_density,$number_of_joints){
-  $area = (M_PI * $diameter * $diameter)/4;
-
-  $volume = $area * $length * $number_of_joints;
-  $weight_of_weld = $volume * $filler_density;
-  return $weight_of_weld;
-}
-
-/**
- * Calculate Weight of Weld for Slot Weld.
- */
-function weldata_slot($thickness,$slot_length,$slot_width,$filler_density,$number_of_joints){
-  $volume = (((M_PI * $slot_width * $slot_width)/4) + ($slot_length * $slot_width)) * $thickness * $number_of_joints;
-  $weight_of_weld = $volume * $filler_density;
-  return $weight_of_weld;
-}
-
-/**
- * Calculate Weight of Weld for Patch Build Up and Cavity Build Up.
- */
-function weldata_patch_cavity($top_length,$top_width,$bottom_length,$bottom_width,$height_of_patch,$filler_density,$number_of_joints){
-  $a = ($bottom_length - $top_length)/2;
-  $b = ($bottom_width - $top_width)/2;
-  //$a = atan($height_of_patch/$a);
-  $volume = array();
-  $volume[0] = ($top_length * $top_width * $height_of_patch);
-  $volume[1] = ($a * $bottom_length * $height_of_patch);
-  $volume[2] = ($b * $bottom_width * $height_of_patch);
-  $weight_of_weld = array_sum($volume) * $filler_density * $number_of_joints;
-  return $weight_of_weld;
-}
-/**
- * Calculate Weight of Weld for Patch Build Up and Cavity Build Up.
- */
-function weldata_pipe_clad($clad_length,$clad_thickness,$diameter,$filler_density,$number_of_joints){
-  $volume = ($clad_length * $clad_thickness * $diameter) * $number_of_joints;
-  $weight_of_weld = $volume * $filler_density;
-  return $weight_of_weld;
-}
-
-
-
 function weldata_calculator($entity_type, $entity){
   //Common Variables
   $unit = field_get_items($entity_type, $entity, 'field_unit')[0]['value'];
