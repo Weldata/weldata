@@ -1,18 +1,10 @@
-/* ICAMMA - 2015 Styles*/
+/* Weldata Styles*/
 
 /*Weld Estimator Form*/
 form#weld-estimator-node-form div.form-type-radio{
     display: inline;
 }
-div.group-weld-geometry-right {
-    float: right;
-    width: 50%;
-}
-div.group-weld-geometry-left, div.group-power-left{
-    float: left;
-    width: 100%;
-}
-form#weld-estimator-node-form .inline-block div.form-wrapper {
+.field-inline-block div.form-wrapper {
     display: inline-block;
     width: 50%;
 }
