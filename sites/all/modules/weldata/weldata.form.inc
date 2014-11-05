@@ -1,5 +1,17 @@
 <?php
 /**
+* Implements hook_form_alter
+* Used as a dummy function, so that drupal reads this file - https://api.drupal.org/api/drupal/modules!system!system.api.php/function/hook_form_FORM_ID_alter/7#comment-8714
+*/
+function weldata_form_alter(&$form, &$form_state){
+
+}
+
+/*function weldata_form_pqr_wps_node_form_alter(&$form, &$form_state) {
+  unset($form['YOURFIELD']['und']['#options']['_none']);
+}*/
+
+/**
 * Implements hook_form_FORM_ID_alter
 * Used to alter the units - #field_suffix
 */
