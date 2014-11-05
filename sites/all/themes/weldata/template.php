@@ -10,7 +10,6 @@
  * on "footheme".
  */
 
-
 /**
  * Override or insert variables for the html template.
  */

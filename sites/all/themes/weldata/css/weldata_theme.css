@@ -1,11 +1,19 @@
 /* Weldata Styles*/
 
 /*Weld Estimator Form*/
-form#weld-estimator-node-form div.form-type-radio{
+form#weld-cost-estimator-node-form div.form-type-radio, form#pqr-wps-node-form div.form-type-radio {
     display: inline;
 }
 .field-inline-block div.form-wrapper {
     display: inline-block;
     width: 50%;
 }
-
+.horizontal-tabs ul.horizontal-tabs-list li:hover, .horizontal-tabs ul.horizontal-tabs-list li:focus {
+  background-color: #fff;
+}
+.horizontal-tabs ul.horizontal-tabs-list li a:hover, .horizontal-tabs ul.horizontal-tabs-list li:hover  {
+  background-color: #fff;
+}
+#edit-field-dummy, #edit-field-dummy-1, #edit-field-dummy-2, #edit-field-dummy-3, #edit-field-dummy-4{
+display: none;
+}
