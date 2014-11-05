@@ -39,7 +39,7 @@ module_load_include('inc', 'weldata', 'includes/weldata.slot');
  * Moves node_view functions to weldata.view.inc
  */
 function weldata_hook_info() {
-  $hooks['form_weld_estimator_node_form_alter'] = array(
+  $hooks['form_alter'] = array(
     'group' => 'form',
   );
   $hooks['node_view'] = array(
