@@ -4,6 +4,10 @@ sites/*/settings*.php
 # Ignore paths that contain user-generated content.
 sites/*/files
 sites/*/private
+
+#Weldata Custom Ignore paths
+database_backup/
 .idea/
 pdftk_free-2.02-win-setup.exe
 Weld Cost Express  2002.release2.xls
+pqr-wps
