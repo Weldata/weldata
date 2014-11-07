@@ -9,6 +9,11 @@
  * name will be "footheme_preprocess_hook". Tip - you can search/replace
  * on "footheme".
  */
+ 
+function weldata_print_pdf_tcpdf_alter($pdf, $html, $meta) {
+  $pdf->setPrintHeader(FALSE);
+  $pdf->SetPrintFooter(FALSE);
+}
 
 /**
  * Override or insert variables for the html template.
