@@ -3,6 +3,7 @@
 * @file
 * Weldata Module.
 */
+//Todo: Use 'safe_value' instead of 'value' for getting variables value or use check_plain
 //Todo: Complete weldata_node_view() in weldata.view.inc
 //Todo: Change field_suffix value in database
 //Todo: Use $radius instead of $diameter in plug and slot welds
