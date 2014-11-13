@@ -9,11 +9,14 @@
  * name will be "footheme_preprocess_hook". Tip - you can search/replace
  * on "footheme".
  */
- 
-function weldata_print_pdf_tcpdf_alter($pdf, $html, $meta) {
-  $pdf->setPrintHeader(FALSE);
-  $pdf->SetPrintFooter(FALSE);
+function weldata_preprocess_print(&$variables) {
+  $vars = $variables;
+  $node = $variables['node'];
+  if($node->type == 'pqr_wps'){
+    $variables['type'] =  field_view_field('node', $node, 'field_type_or_grade');
+  }
 }
+
 
 /**
  * Override or insert variables for the html template.
