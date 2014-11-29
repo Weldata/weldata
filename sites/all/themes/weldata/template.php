@@ -18,6 +18,12 @@ function weldata_preprocess_print(&$variables) {
 }
 
 
+function weldata_date_combo($variables) {
+  return theme('form_element', $variables);
+}
+
+
+
 /**
  * Override or insert variables for the html template.
  */
