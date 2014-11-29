@@ -1,0 +1,13 @@
+diff -r 685862da5967 field_group_multiple.module
+--- a/field_group_multiple.module	Wed Aug 20 10:03:44 2014 +0530
++++ b/field_group_multiple.module	Wed Aug 20 14:18:12 2014 +0530
+@@ -334,7 +334,8 @@
+           continue; // when a field is deleted, but the group not updated
+         }
+ 
+-        $langcode = field_language($entity_type, $entity, $field_name); 
++        $langcode = field_language($entity_type, $entity, $field_name);
++        $langcode = !empty($langcode) ? $langcode : LANGUAGE_NONE;
+         $field_state = field_form_get_state($form[$field_name][$langcode]['#field_parents'], $field_name, $langcode, $form_state);
+         $field = $field_state['field'];
+         $instance = $field_state['instance'];
