@@ -1,6 +1,7 @@
 <?php
 /**
- * @file field_group_multiple.field_ui.inc
+ * @file
+ * field_group_multiple.field_ui.inc
  */
 
 function field_group_multiple_field_ui_overview_form_alter(&$form, &$form_state, $display_overview = FALSE) {
@@ -20,10 +21,10 @@ function field_group_multiple_field_overview_submit($form, &$form_state) {
 
 
 function _field_group_multiple_field_ui_overview_operation($form, &$form_state, $op) {
-  if (!isset($form['fields'])) return ;
+  if (!isset($form['fields'])) return;
 
   $map = array();
-  foreach (element_children($form['fields'],TRUE) as $field_name) {
+  foreach (element_children($form['fields'], TRUE) as $field_name) {
     if (isset($form['fields'][$field_name]['#row_type']) && $form['fields'][$field_name]['#row_type'] == 'field') {
       if (isset($form['fields'][$field_name]['parent_wrapper']['parent']['#value']) && !empty($form['fields'][$field_name]['parent_wrapper']['parent']['#value'])) {
         $map[$field_name] = $form['fields'][$field_name]['parent_wrapper']['parent']['#value'];
@@ -42,7 +43,7 @@ function _field_group_multiple_field_ui_overview_operation($form, &$form_state, 
 
           $unsorted = array_keys($map, $field_name);
           $sorted = array();
-          foreach($unsorted as $unsorted_field){
+          foreach ($unsorted as $unsorted_field) {
             $sorted[$unsorted_field] = array('#weight' => $form_state['values']['fields'][$unsorted_field]['weight']);
           }
           $group->children = element_children($sorted, TRUE);
@@ -99,7 +100,6 @@ function _field_group_multiple_default_format_settings($group) {
     '#attributes' => array('class' => array('field-group-parent-type')),
   );
 
-
   if (!empty($default_parent_type)) {
     $field_group_types = field_group_formatter_info();
     $mode = $group->mode == 'form' ? 'form' : 'display';
@@ -148,10 +148,10 @@ function _field_group_multiple_default_format_summary($group) {
   $min_cardinality = _field_group_multiple_get_max_cardinality($cardinalities);
   $info = '<em>This value depends on the shortest selected "number of values" of the grouped fields.</em>';
   if ($min_cardinality == FIELD_CARDINALITY_UNLIMITED) {
-    return '<div class="description">' . t('The maximal amount of items that can be added is unlimited.<br/>' . $info , array('!count' => $min_cardinality)) . '</div>';
+    return '<div class="description">' . t('The maximal amount of items that can be added is unlimited.<br/>' . $info, array('!count' => $min_cardinality)) . '</div>';
   }
   else {
-    return '<div class="description">' . t('The maximal amount of items that can be added is !count.<br/>' . $info , array('!count' => $min_cardinality)) . '</div>';
+    return '<div class="description">' . t('The maximal amount of items that can be added is !count.<br/>' . $info, array('!count' => $min_cardinality)) . '</div>';
   }
 
 }
@@ -179,11 +179,11 @@ function _field_group_multiple_table_format_settings($group) {
   $form = _field_group_multiple_default_format_settings($group);
 
   $form['instance_settings']['row_titles'] = array(
-          '#title' => t("Row Titles"),
-          '#description' => t("If you want col 1 to render as row titles enter them as csv's, the first value is the col header, use -none- as the first to omit header e.g -none-,Red,Green,Blue or Colors,Red,Green,Blue ."),
-          '#type' => 'textarea',
-          '#default_value' => isset($group->format_settings['instance_settings']['row_titles']) ? $group->format_settings['instance_settings']['row_titles'] : '');
-  
+    '#title' => t("Row Titles"),
+    '#description' => t("If you want col 1 to render as row titles enter them as csv's, the first value is the col header, use -none- as the first to omit header e.g -none-,Red,Green,Blue or Colors,Red,Green,Blue ."),
+    '#type' => 'textarea',
+    '#default_value' => isset($group->format_settings['instance_settings']['row_titles']) ? $group->format_settings['instance_settings']['row_titles'] : '',
+  );
 
   return $form;
 }

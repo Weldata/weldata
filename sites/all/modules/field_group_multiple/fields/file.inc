@@ -1,16 +1,9 @@
 <?php
 /**
+ * @file
  * Override for file_field_widget_form
- *
- * @param unknown_type $form
- * @param unknown_type $form_state
- * @param unknown_type $field
- * @param unknown_type $instance
- * @param unknown_type $langcode
- * @param unknown_type $items
- * @param unknown_type $delta
- * @param unknown_type $element
  */
+
 function field_group_multiple_file_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
 
   $defaults = array(
@@ -25,11 +18,10 @@ function field_group_multiple_file_field_widget_form(&$form, &$form_state, $fiel
   $field_state = field_form_get_state($element['#field_parents'], $field['field_name'], $langcode, $form_state);
   if (isset($field_state['items'])) {
     $items = $field_state['items'];
-     
   }
 
   // FIELD GROUP MULTIPLE: if delta then map
-  if(isset($items[$delta])){
+  if (isset($items[$delta])) {
     $tmp = $items[$delta];
     $items[0] = $tmp;
   }
@@ -42,14 +34,14 @@ function field_group_multiple_file_field_widget_form(&$form, &$form_state, $fiel
     '#upload_validators' => file_field_widget_upload_validators($field, $instance),
     '#value_callback' => 'file_field_widget_value',
   //'#process' => array_merge($element_info['#process'], array('file_field_widget_process')),
-    '#process' => array_merge($element_info['#process'], array('field_group_multiple_file_field_widget_process')),  
+    '#process' => array_merge($element_info['#process'], array('field_group_multiple_file_field_widget_process')),
     '#progress_indicator' => $instance['widget']['settings']['progress_indicator'],
-  // Allows this field to return an array instead of a single value.
+    // Allows this field to return an array instead of a single value.
     '#extended' => TRUE,
   );
 
   // FIELD GROUP MULTIPLE:
-  if (true || $field['cardinality'] == 1) {
+  if (TRUE || $field['cardinality'] == 1) {
     // Set the default value.
     $element['#default_value'] = !empty($items) ? $items[0] : $defaults;
     //$element['#default_value'] = !empty($items) ? $items[$delta] : $defaults;
@@ -106,7 +98,7 @@ function field_group_multiple_file_field_widget_form(&$form, &$form_state, $fiel
   return $elements;
 }
 
-function field_group_multiple_file_field_widget_process($element, &$form_state, $form){
+function field_group_multiple_file_field_widget_process($element, &$form_state, $form) {
   $prefix = $element['#prefix'];
   $suffix = $element['#suffix'];
 
@@ -121,7 +113,7 @@ function field_group_multiple_file_field_widget_process($element, &$form_state, 
   $element = file_field_widget_process($element, $form_state, $form);
 
   // hack for cardinality check
-  foreach(element_children($element) as $key){
+  foreach (element_children($element) as $key) {
     if (isset($backup_ajax[$key]['#ajax'])) {
       $element[$key]['#ajax']['path'] = $backup_ajax[$key]['#ajax']['path'];
       $element[$key]['#ajax']['wrapper'] = $backup_ajax[$key]['#ajax']['wrapper'];
@@ -137,29 +129,22 @@ function field_group_multiple_file_field_widget_process($element, &$form_state, 
 }
 
 
-function field_group_multiple_process_field_file_submit(&$values, $field_name, $langcode, $field_info, $form_values){
+function field_group_multiple_process_field_file_submit(&$values, $field_name, $langcode, $field_info, $form_values) {
 
   $function = $field_info['module'] . '_field_is_empty';
 
   foreach ($form_values as $delta => $value) {
     if (isset($value[$field_name])) {
 
-      if (isset($value[$field_name]['0'])) {
+      if (isset($value[$field_name][$langcode]['0'])) {
         // composite value
-
-        $values[$field_name]['empty'][$delta] = $function($value[$field_name]['0'], $field_info);
-        $values[$field_name]['values'][$langcode][$delta] = $value[$field_name]['0'];
-        if($values[$field_name]['empty'][$delta]){
-          $values[$field_name]['values'][$langcode][$delta] = null;
+        $values[$field_name]['empty'][$delta] = $function($value[$field_name][$langcode]['0'], $field_info);
+        $values[$field_name]['values'][$langcode][$delta] = $value[$field_name][$langcode]['0'];
+        if ($values[$field_name]['empty'][$delta]) {
+          $values[$field_name]['values'][$langcode][$delta] = NULL;
         }
 
       }
-      //       else{
-      //         // single value
-      //         $value_key = array_pop($columns);
-      //         $values[$field_name]['empty'][$delta] = $function($value[$field_name], $info);
-      //         $values[$field_name]['values'][$langcode][$delta] = $value[$field_name];
-      //       }
     }
   }
 }
