@@ -8,6 +8,7 @@
 //Todo: Change field_suffix value in database
 //Todo: Use $radius instead of $diameter in plug and slot welds
 //Todo: Move field_get_items from weld_calculator to their respective calculation functions
+//Todo: Check form_load_include, a replacement for module_load_include
 
 //For Compound Vee Weight of Weld Calculations
 module_load_include('inc', 'weldata', 'includes/weldata.compound_vee');
