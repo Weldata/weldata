@@ -10,21 +10,21 @@
   position: absolute;
   right: 0;
   top: 40px; /*Link top posititon + 25px*/
-  background: #fff;
+  background: #2e2e2d;
   width: 200px;
   padding: 15px;
-  border: 5px solid #ccc;
   overflow: hidden;	
   z-index: 999;
 }
 #toboggan-login input[type=submit]{
-    border: 1px solid #dcdcdc;
-    box-shadow: 0 1px 0 0 #ffffff inset;
-    color: #777777;
+    border:none;
     display: inline-block;
     font-family: arial;
     font-size: 15px;
     font-weight: bold;
     padding: 6px 24px;
     width: 200px;
+}
+div#block-logintoboggan-logintoboggan-logged-in {
+	color: #fff;
 }
