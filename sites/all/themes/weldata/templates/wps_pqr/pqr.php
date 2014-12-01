@@ -10,25 +10,25 @@
       </tr>
       <tr>
         <th>Date</th>
-        <td >&nbsp;</td>
+        <td ><?php print render($date); ?></td>
         <th>Revision</th>
-        <td>&nbsp;</td>
+        <td><?php //print render($revision); ?></td>
       </tr>
       <tr>
-        <th colspan="2" class="border top none" >PQR Number</th>
-        <td colspan="2">&nbsp;</td>
+        <th colspan="2" class="border top none">PQR Number</th>
+        <td colspan="2"><?php print render($title); ?></td>
       </tr>
       <tr>
         <th colspan="2">WPS Used</th>
-        <td colspan="2">&nbsp;</td>
+        <td colspan="2"><?php print render($wps_used); ?></td>
       </tr>
       <tr>
         <th colspan="2">Welding Process(es) Used</th>
-        <td colspan="2">&nbsp;</td>
+        <td colspan="2"><?php print render($welding_process); ?></td>
       </tr>
       <tr>
         <th colspan="2">Process(es) Type(s)</th>
-        <td colspan="2">&nbsp;</td>
+        <td colspan="2"><?php print render($process_type); ?></td>
       </tr>
       <tr>
         <td colspan="6" class="border top">
@@ -37,8 +37,8 @@
             JOINTS (QW-402)
             </caption>
             <tr>
-              <td><div class="joint-image"><?php print $joint_image; ?></div>
-                <div class="joint-text"><?php print $joint_type; ?>Design of Test Coupon (sketch, figure or reference) <br>
+              <td><div class="joint-image"><?php print render($joint_image); ?></div>
+                <div class="joint-text"><?php print render($joint_type); ?>Design of Test Coupon (sketch, figure or reference) <br>
                   (For combination qualifications, the deposited weld metal thickness shall be recorded for each filler metal or process used)</div></td>
             </tr>
           </table></td>
@@ -53,15 +53,15 @@
     </tr>
   <tr>
     <td colspan="5">Material Specification</td>
-    <td colspan="3" class="border right value"><?php print $material_specification; ?></td>
+    <td colspan="3" class="border right value"><?php print render($material_specification); ?></td>
     <td colspan="2">Temperature</td>
-    <td colspan="6" class="border right value"><?php print $temperature; ?></td>
+    <td colspan="6" class="border right value"><?php print render($pwht_temperature); ?></td>
     </tr>
   <tr>
     <td colspan="5" scope="row">Type or Grade or UNS Number</td>
-    <td colspan="3" scope="row" class="border right value"><?php print $uns_no; ?></td>
+    <td colspan="3" scope="row" class="border right value"><?php print render($type_grade_uns); ?></td>
     <td colspan="2">Time</td>
-    <td colspan="6" class="border right value">--Time--</td>
+    <td colspan="6" class="border right value"><?php print render($pwht_time); ?></td>
     </tr>
   <tr>
     <td rowspan="2" scope="row">P No.</td>
@@ -73,29 +73,29 @@
     <td rowspan="2" scope="row">Group No.</td>
     <td rowspan="2" class="border right value">--Group No.--</td>
     <td colspan="2" scope="row">Other</td>
-    <td colspan="6" scope="row" class="border right">&nbsp;</td>
+    <td colspan="6" scope="row" class="border right"><?php print render($other_pwht); ?></td>
     </tr>
   <tr>
     <td colspan="8" scope="row" class="border right">&nbsp;</td>
   </tr>
   <tr>
     <td colspan="5" scope="row">Thickness of Test Coupon</td>
-    <td colspan="3" scope="row" class="border right">&nbsp;</td>
+    <td colspan="3" scope="row" class="border right"><?php print render($thickness_test_coupon); ?></td>
     <td colspan="8" class="border right">&nbsp;</td>
     </tr>
   <tr>
     <td colspan="5" scope="row">Diameter of Test Coupon</td>
-    <td colspan="3" scope="row" class="border right">&nbsp;</td>
+    <td colspan="3" scope="row" class="border right"><?php print render($diameter_test_coupon); ?></td>
     <td colspan="8" class="border right bottom">&nbsp;</td>
     </tr>
   <tr>
     <td colspan="5" scope="row">Maximum Pass Thickness</td>
-    <td colspan="3" scope="row" class="border right">&nbsp;</td>
+    <td colspan="3" scope="row" class="border right"><?php print render($maximum_pass_thickness); ?></td>
     <th colspan="8" scope="col" class="border right"><div class="heading">GAS (QW-408)</div></th>
     </tr>
   <tr>
     <td colspan="2" scope="col" >Other</td>
-    <td colspan="6" class="border right" scope="col">&nbsp;</td>
+    <td colspan="6" class="border right" scope="col"><?php print render($other_base_metals); ?></td>
     <th colspan="8" scope="col" class="border right">Percent Composition</th>
     </tr>
   <tr>
