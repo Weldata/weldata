@@ -1,0 +1,154 @@
+<?php
+/**
+* @file
+* A description of what your module does.
+*/
+
+$GLOBALS['function_name'] = null;
+
+function wps_variable_declaration ($entity_type, $entity){
+  $leg = field_get_items($entity_type, $entity, 'field_leg_size');
+  $weld_length = field_get_items($entity_type, $entity, 'field_weld_length');
+  $number_of_joints = field_get_items($entity_type, $entity, 'field_number_of_joints');
+  $labour_rate = field_get_items($entity_type, $entity, 'field_labour_rate');
+  $filler_density = field_get_items($entity_type, $entity, 'field_filler_density');
+  $filler_cost = field_get_items($entity_type, $entity, 'field_filler_cost');
+  $gas_cost = field_get_items($entity_type, $entity, 'field_gas_cost');
+  $gas_flow = field_get_items($entity_type, $entity, 'field_gas_flow');
+  $process_efficiency = field_get_items($entity_type, $entity, 'field_process_efficiency');
+  $welder_efficiency = field_get_items($entity_type, $entity, 'field_welder_efficiency');
+  $amperage = field_get_items($entity_type, $entity, 'field_amperage');
+  $voltage = field_get_items($entity_type, $entity, 'field_voltage');
+  $power_cost = field_get_items($entity_type, $entity, 'field_power_cost');
+  $deposition_rate = field_get_items($entity_type, $entity, 'field_deposition_rate');
+
+  $weight_of_weld = 0.5 * $leg[0]['value'] * $leg[0]['value'] * $filler_density[0]['value'] * $weld_length[0]['value'] * $number_of_joints[0]['value'];
+  //$weight_of_filler_required = $weight_of_weld / ($process_efficiency[0]['value'] /100);
+  //$arc_on_hours = $weight_of_weld / ($process_efficiency[0]['value'] * $deposition_rate[0]['value'] );
+  //$labour_hours = $arc_on_hours / ($welder_efficiency[0]['value'] /100);
+  //$total_filler_cost = $weight_of_filler_required * $filler_cost[0]['value'];
+  //$labour_cost = $labour_hours * $labour_rate[0]['value'];
+  //$total_gas_cost = $arc_on_hours * $gas_flow[0]['value'] * $gas_cost[0]['value'];
+  //$total_power_cost = ($voltage[0]['value'] * $amperage[0]['value'] * $arc_on_hours * $power_cost[0]['value']) / 1000;
+  //$total_cost = $total_filler_cost + $labour_cost + $total_gas_cost + $total_power_cost;
+
+  return array(
+    'weight_of_weld' => $weight_of_weld,
+    'weight_of_filler_required' => $weight_of_filler_required,
+    'arc_on_hours' => $arc_on_hours,
+    'labour_hours' => $labour_hours,
+    'total_filler_cost' => $total_filler_cost,
+    'labour_cost'=> $labour_cost,
+    'total_gas_cost'=> $total_gas_cost,
+    'total_power_cost'=> $total_power_cost,
+    'total_cost' => $total_cost
+  );
+}
+
+/**
+ *Implements Calculation for Weight of Weld
+ */
+function computed_field_field_weight_of_weld_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  foreach($entity_field as $key => $value) {  //Unset fields in-case of multiple values for a single field
+    unset($entity_field[$key]);
+  }
+  $result = wps_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['weight_of_weld'];
+  $entity_field[1]['value'] = $result['weight_of_weld'] * 10;
+}
+function computed_field_field_weight_of_filler_required_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = wps_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['weight_of_filler_required'];
+  $entity_field[1]['value'] = $result['weight_of_weld'] * 10;
+}
+function computed_field_field_arc_on_hours_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = wps_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['arc_on_hours'];
+}
+function computed_field_field_labour_hours_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = wps_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['labour_hours'];
+}
+function computed_field_field_total_filler_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = wps_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['total_filler_cost'];
+}
+function computed_field_field_labour_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = wps_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['labour_cost'];
+}
+function computed_field_field_total_gas_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = wps_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['total_gas_cost'];
+}
+function computed_field_field_total_power_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = wps_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['total_power_cost'];
+}
+function computed_field_field_total_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $result = wps_variable_declaration($entity_type, $entity);
+  $entity_field[0]['value'] = $result['total_cost'];
+}
+
+/**
+ *Implements Display for Weight of Weld
+ */
+function computed_field_field_weight_of_weld_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
+  //If computed field supports multiple values and we need separate prefixes/suffixes, check if the function is executed first and then when the function is executed the second time, use your second suffix.
+  if ($GLOBALS['function_name'] == __FUNCTION__){
+     return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
+  }
+  $GLOBALS['function_name'] = __FUNCTION__;
+  return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
+}
+function computed_field_field_weight_of_filler_required_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
+}
+function computed_field_field_arc_on_hours_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
+  if ($GLOBALS['function_name'] == __FUNCTION__){
+    return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
+  }
+  $GLOBALS['function_name'] = __FUNCTION__;
+  return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
+}
+function computed_field_field_labour_hours_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
+  if ($GLOBALS['function_name'] == __FUNCTION__){
+    return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
+  }
+  $GLOBALS['function_name'] = __FUNCTION__;
+  return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
+}
+function computed_field_field_total_filler_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
+  if ($GLOBALS['function_name'] == __FUNCTION__){
+    return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
+  }
+  $GLOBALS['function_name'] = __FUNCTION__;
+  return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';;
+}
+function computed_field_field_labour_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
+  if ($GLOBALS['function_name'] == __FUNCTION__){
+    return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
+  }
+  $GLOBALS['function_name'] = __FUNCTION__;
+  return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
+}
+function computed_field_field_total_gas_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
+  if ($GLOBALS['function_name'] == __FUNCTION__){
+    return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
+  }
+  $GLOBALS['function_name'] = __FUNCTION__;
+  return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
+}
+function computed_field_field_total_power_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
+  if ($GLOBALS['function_name'] == __FUNCTION__){
+    return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
+  }
+  $GLOBALS['function_name'] = __FUNCTION__;
+  return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
+}
+function computed_field_field_total_cost_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
+  if ($GLOBALS['function_name'] == __FUNCTION__){
+    return $entity_field_item['value'].'<span class="field-suffix">kg</span>';
+  }
+  $GLOBALS['function_name'] = __FUNCTION__;
+  return $entity_field_item['value'].'<span class="field-suffix">lbs</span>';
+}
