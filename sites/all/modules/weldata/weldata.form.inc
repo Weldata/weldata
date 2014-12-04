@@ -7,9 +7,17 @@ function weldata_form_alter(&$form, &$form_state){
 
 }
 
-/*function weldata_form_pqr_wps_node_form_alter(&$form, &$form_state) {
-  unset($form['YOURFIELD']['und']['#options']['_none']);
-}*/
+/**
+* Implements hook_form_FORM_ID_alter
+* Used to alter pqr_wps form
+* $form['fgm_node_pqr_wps_form_group_gas_table']['fields']['items'][0]['field_type_of_shielding'][LANGUAGE_NONE]['value']['#default_value']
+*/
+function weldata_form_pqr_wps_node_form_alter(&$form, &$form_state) {
+  $form['fgm_node_pqr_wps_form_group_gas_table']['fields']['items'][0]['field_type_of_shielding'][LANGUAGE_NONE]['value']['#default_value'] = 'Shielding Gas';
+    $form['fgm_node_pqr_wps_form_group_gas_table']['fields']['items'][1]['field_type_of_shielding'][LANGUAGE_NONE]['value']['#default_value'] = 'Backing Gas';
+	  $form['fgm_node_pqr_wps_form_group_gas_table']['fields']['items'][2]['field_type_of_shielding'][LANGUAGE_NONE]['value']['#default_value'] = 'Trailing Gas';
+}
+
 
 /**
 * Implements hook_form_FORM_ID_alter
