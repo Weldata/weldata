@@ -233,18 +233,18 @@
     </tr>
   <tr>
     <td colspan="6" scope="col" >Position of Groove</td>
-    <td colspan="2" scope="col" class="border right">&nbsp;</td>
+    <td colspan="2" scope="col" class="border right"><?php print render($groove_position); ?></td>
     <th colspan="8" scope="col" class="border right"><div class="heading">TECHNIQUE (QW-410)</div></th>
     </tr>
   <tr>
     <td colspan="6">Weld Progression (Uphill, Downhill)</td>
-    <td colspan="2" class="border right">&nbsp;</td>
+    <td colspan="2" class="border right"><?php print render($weld_progression); ?></td>
     <td colspan="5">Travel Speed</td>
     <td colspan="3" class="border right">&nbsp;</td>
     </tr>
   <tr>
     <td colspan="2">Other</td>
-    <td colspan="6" class="border right">&nbsp;</td>
+    <td colspan="6" class="border right"><?php print render($other_postion); ?></td>
     <td colspan="5">String or Weave Bead</td>
     <td colspan="3" class="border right">&nbsp;</td>
     </tr>
