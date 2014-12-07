@@ -108,16 +108,16 @@
   <tr>
     <td colspan="8" class="border right bottom">&nbsp;</td>
     <th colspan="2" scope="row">Shielding</th>
-    <td colspan="2">&nbsp;</td>
-    <td colspan="2">&nbsp;</td>
-    <td colspan="2" class="border right">&nbsp;</td>
+    <td colspan="2"><?php print render($shielding_gas); ?></td>
+    <td colspan="2"><?php print render($shielding_mixture); ?></td>
+    <td colspan="2" class="border right"><?php print render($shielding_flow_rate); ?></td>
     </tr>
   <tr>
     <th colspan="8" class="border right" scope="col"><div class="heading">FILLER METALS (QW-404)</div></th>
     <th colspan="2" scope="row">Trailing</th>
-    <td colspan="2">&nbsp;</td>
-    <td colspan="2">&nbsp;</td>
-    <td colspan="2" class="border right">&nbsp;</td>
+    <td colspan="2"><?php print render($trailing_gas); ?></td>
+    <td colspan="2"><?php print render($trailing_mixture); ?></td>
+    <td colspan="2" class="border right"><?php print render($trailing_flow_rate); ?></td>
     </tr>
   <tr>
     <th colspan="5" scope="col">Layer (combination welds)</th>
@@ -125,9 +125,9 @@
     <th scope="col">--2--</th>
     <th scope="col" class="border right">--3--</th>
     <th colspan="2" scope="row">Backing</th>
-    <td colspan="2">&nbsp;</td>
-    <td colspan="2">&nbsp;</td>
-    <td colspan="2" class="border right">&nbsp;</td>
+    <td colspan="2"><?php print render($backing_gas); ?></td>
+    <td colspan="2"><?php print render($backing_mixture); ?></td>
+    <td colspan="2" class="border right"><?php print render($backing_flow_rate); ?></td>
     </tr>
   <tr>
     <td colspan="5" scope="row">SFA Specification</td>
@@ -135,7 +135,7 @@
     <td >&nbsp;</td>
     <td class="border right">&nbsp;</td>
     <th colspan="2" scope="row">Other</th>
-    <td colspan="6" class="border right">&nbsp;</td>
+    <td colspan="6" class="border right"><?php print render($other_gas); ?></td>
     </tr>
   <tr>
     <td colspan="5" scope="row">AWS Classification</td>
@@ -171,7 +171,7 @@
     <td>&nbsp;</td>
     <td class="border right">&nbsp;</td>
     <td colspan="4">Current</td>
-    <td colspan="4" class="border right">&nbsp;</td>
+    <td colspan="4" class="border right"><?php print render($current); ?></td>
     </tr>
   <tr>
     <td colspan="5" scope="row">Supplemental Filler Metal</td>
@@ -179,7 +179,7 @@
     <td>&nbsp;</td>
     <td class="border right">&nbsp;</td>
     <td colspan="4">Polarity</td>
-    <td colspan="4" class="border right">&nbsp;</td>
+    <td colspan="4" class="border right"><?php print render($polarity); ?></td>
     </tr>
   <tr>
     <td colspan="5" scope="row">Electrode Flux Classification</td>
@@ -187,7 +187,7 @@
     <td>&nbsp;</td>
     <td class="border right">&nbsp;</td>
     <td colspan="4">Amperage</td>
-    <td colspan="4" class="border right">&nbsp;</td>
+    <td colspan="4" class="border right"><?php print render($amperage); ?></td>
     </tr>
   <tr>
     <td colspan="5" scope="row">Flux Type</td>
@@ -195,15 +195,15 @@
     <td>&nbsp;</td>
     <td class="border right">&nbsp;</td>
     <td colspan="4">Voltage</td>
-    <td colspan="4" class="border right">&nbsp;</td>
+    <td colspan="4" class="border right"><?php print render($voltage); ?></td>
     </tr>
   <tr>
     <td colspan="5" scope="row">Flux Trade Name</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td class="border right">&nbsp;</td>
-    <td colspan="4">Tungsten Electrode Size</td>
-    <td colspan="4" class="border right">&nbsp;</td>
+    <td colspan="4"><span style="color: #FF0004">Tungsten</span> Electrode Size</td>
+    <td colspan="4" class="border right"><?php print render($electrode_size); ?></td>
     </tr>
   <tr>
     <td colspan="5" scope="row">Weld Metal Thickness</td>
@@ -211,13 +211,13 @@
     <td>&nbsp;</td>
     <td class="border right">&nbsp;</td>
     <td colspan="4">Transfer Mode for GMAW</td>
-    <td colspan="4" class="border right">&nbsp;</td>
+    <td colspan="4" class="border right"><?php print render($transfer_mode); ?></td>
     </tr>
   <tr>
-    <td colspan="2" scope="row">Other</td>
+    <td colspan="2" style="color: #FF0004" scope="row">Other</td>
     <td colspan="6" scope="row" class="border right">&nbsp;</td>
-    <td colspan="2">Other</td>
-    <td colspan="6" class="border right">&nbsp;</td>
+    <td colspan="2" style="color: #FF0004">Other</td>
+    <td colspan="6" class="border right"><?php print render($other_electrical); ?></td>
     </tr>
   <tr>
     <td colspan="8" scope="row" class="border right">&nbsp;</td>
