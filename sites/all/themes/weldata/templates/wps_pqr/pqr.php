@@ -240,43 +240,43 @@
     <td colspan="6">Weld Progression (Uphill, Downhill)</td>
     <td colspan="2" class="border right"><?php print render($weld_progression); ?></td>
     <td colspan="5">Travel Speed</td>
-    <td colspan="3" class="border right">&nbsp;</td>
+    <td colspan="3" class="border right"><?php print render($travel_speed); ?></td>
     </tr>
   <tr>
     <td colspan="2">Other</td>
     <td colspan="6" class="border right"><?php print render($other_postion); ?></td>
     <td colspan="5">String or Weave Bead</td>
-    <td colspan="3" class="border right">&nbsp;</td>
+    <td colspan="3" class="border right"><?php print render($string_weave); ?></td>
     </tr>
   <tr>
     <th colspan="8" class="border right" scope="col">&nbsp;</th>
     <td colspan="5">Oscillation</td>
-    <td colspan="3" class="border right">&nbsp;</td>
+    <td colspan="3" class="border right"><?php print render($oscillation); ?></td>
     </tr>
   <tr>
     <td colspan="8" scope="row" class="border right bottom">&nbsp;</td>
     <td colspan="5">Multipass or Single Pass (per side)</td>
-    <td colspan="3" class="border right">&nbsp;</td>
+    <td colspan="3" class="border right"><?php print render($multipass); ?></td>
     </tr>
   <tr>
     <th colspan="8" scope="col" class="border right"><div class="heading">PREHEAT (QW-406)</div></th>
     <td colspan="5">Single or Multiple Electrodes</td>
-    <td colspan="3" class="border right">&nbsp;</td>
+    <td colspan="3" class="border right"><?php print render($electrodes); ?></td>
     </tr>
   <tr>
     <td colspan="4" scope="col" >Preheat Temperature</td>
-    <td colspan="4" scope="col" class="border right">&nbsp;</td>
+    <td colspan="4" scope="col" class="border right"><?php print render($preheat_temperature); ?></td>
     <td colspan="2">Other</td>
-    <td colspan="6" class="border right">&nbsp;</td>
+    <td colspan="6" class="border right"><?php print render($other_technique); ?></td>
     </tr>
   <tr>
     <td colspan="4">Interpass Temperature</td>
-    <td colspan="4" class="border right">&nbsp;</td>
+    <td colspan="4" class="border right"><?php print render($interpass_temperature); ?></td>
     <td colspan="8" class="border right">&nbsp;</td>
     </tr>
   <tr>
     <td colspan="2">Other</td>
-    <td colspan="6" class="border right">&nbsp;</td>
+    <td colspan="6" class="border right"><?php print render($other_preheat); ?></td>
     <td colspan="8" class="border right">&nbsp;</td>
     </tr>
   <tr>
@@ -449,9 +449,9 @@
       <tbody>
         <tr>
           <td>Manufacturer or Contractor</td>
-          <td>&nbsp;</td>
+          <td><?php print render($manufacturer); ?></td>
           <td>Certified By</td>
-          <td>&nbsp;</td>
+          <td><?php print render($certified_by); ?></td>
         </tr>
         <tr>
           <td class="signature">Signature</td>
@@ -461,9 +461,9 @@
         </tr>
         <tr>
           <td colspan="1">Document Prepared Date</td>
-          <td>&nbsp;</td>
+          <td><?php print render($prepared_date); ?></td>
           <td>Printed Date</td>
-          <td>&nbsp;</td>
+          <td><?php print render($printed_date); ?></td>
         </tr>
       </tbody>
     </table>
