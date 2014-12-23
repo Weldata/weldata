@@ -10,9 +10,9 @@
       </tr>
       <tr>
         <th>Date</th>
-        <td ><?php print render($date); ?></td>
+        <td ><?php print render($prepared_date); ?></td>
         <th>Revision</th>
-        <td><?php //print render($revision); ?></td>
+        <td><?php print render($revision); ?></td>
       </tr>
       <tr>
         <th colspan="2" class="border top none">PQR Number</th>
@@ -294,7 +294,7 @@
 
 <div class="page-2" id="tests">
   <div class="page-header">Procedure Qualification Record Form QW-483 (BACK) </div>
-  <div class="pqr-no">PQR Number:<span>--PQR No. Here--</span></div>
+  <div class="pqr-no">PQR Number:<span><?php print render($title); ?></span></div>
   <div class="table">
     <table id="tensile-test">
       <caption>
@@ -389,11 +389,11 @@
       </caption>
       <tbody>
         <tr>
-          <td>Results Satisfactory : <span>YES/No</span></td>
-          <td>Penetration into Parent Metal : <span>YES/No</span></td>
+          <td>Results Satisfactory : <span><?php print render($fillet_weld_result); ?></span></td>
+          <td>Penetration into Parent Metal : <span><?php print render($fillet_weld_penetration); ?></span></td>
         </tr>
         <tr>
-          <td colspan="2" class="macro-results">Macro - Results : </td>
+          <td colspan="2" class="macro-results">Macro - Results : <span><?php print render($fillet_weld_macro_result); ?></span></td>
         </tr>
       </tbody>
     </table>
@@ -406,15 +406,15 @@
       <tbody>
         <tr>
           <td class="left">Type of Test</td>
-          <td>&nbsp;</td>
+          <td><?php print render($test_type); ?></td>
         </tr>
         <tr>
           <td class="left">Deposit Analysis</td>
-          <td>&nbsp;</td>
+          <td><?php print render($deposit_analysis); ?></td>
         </tr>
         <tr>
           <td class="left">Other</td>
-          <td>&nbsp;</td>
+          <td><?php print render($other_other_tests); ?></td>
         </tr>
       </tbody>
     </table>
@@ -424,19 +424,19 @@
       <tbody>
         <tr>
           <td class="left resize">Welder’s Name</td>
-          <td class="left">&nbsp;</td>
+          <td class="left"><?php print render($welder_name); ?></td>
           <td class="left resize">Clock No.</td>
-          <td class="left">&nbsp;</td>
+          <td class="left"><?php print render($clock_number); ?></td>
         </tr>
         <tr>
           <td class="left resize">Stamp Number</td>
-          <td class="left">&nbsp;</td>
+          <td class="left"><?php print render($stamp_number); ?></td>
           <td class="left resize">Laboratory Test No.</td>
-          <td class="left">&nbsp;</td>
+          <td class="left"><?php print render($lab_test_number); ?></td>
         </tr>
         <tr>
           <td class="left resize">Tests Conducted by</td>
-          <td colspan="3" >&nbsp;</td>
+          <td colspan="3"><?php print render($test_conducted_by); ?></td>
         </tr>
       </tbody>
     </table>
