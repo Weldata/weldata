@@ -4,6 +4,46 @@
  * @file
  * Template.php - process theme data for your sub-theme.
  */
+ 
+ 
+ /**
+ * Implements hook_date_combo
+ * Removes Fieldset from date fields
+ */
+function weldata_date_combo($variables) {
+  return theme('form_element', $variables);
+}
+
+/**
+* Altering Date Popup to remove labels and description for specific field
+*/
+/*function weldata_date_popup_process_alter(&$element, &$form_state, $context) {
+  unset($element['date']['#description']);
+  unset($element['date']['#title']);
+}*/
+
+
+/**
+* Custom theme function for the login/register link.
+* Change "Register" to create an account
+*/
+function weldata_lt_login_link($variables) {
+// Only display register text if registration is allowed.
+	if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
+		return t('Log in / Create an account');
+	}
+	else {
+		return t('Log in');
+	}
+}
+
+// Convert username to link in logged in users.
+function weldata_lt_loggedinblock(){
+  global $user;
+  return l(check_plain($user->name), 'user/' . $user->uid) .' | ' . l(t('Log out'), 'user/logout');
+}
+ 
+ 
 
 /**
  * Implements hook_preprocess_print
@@ -35,10 +75,3 @@ function weldata_preprocess_print(&$variables) {
   }
 }
 
-/**
- * Implements hook_date_combo
- * Removes Fieldset from date fields
- */
-function weldata_date_combo($variables) {
-  return theme('form_element', $variables);
-}
