@@ -202,7 +202,7 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td class="border right">&nbsp;</td>
-    <td colspan="4"><span style="color: #FF0004">Tungsten</span> Electrode Size</td>
+    <td colspan="4">Electrode Size</td>
     <td colspan="4" class="border right"><?php print render($electrode_size); ?></td>
     </tr>
   <tr>
@@ -217,11 +217,11 @@
     <td colspan="2" style="color: #FF0004" scope="row">Other</td>
     <td colspan="6" scope="row" class="border right">&nbsp;</td>
     <td colspan="2" style="color: #FF0004">Other</td>
-    <td colspan="6" class="border right"><?php print render($other_electrical); ?></td>
+    <td colspan="6" class="border right">&nbsp;</td>
     </tr>
   <tr>
     <td colspan="8" scope="row" class="border right">&nbsp;</td>
-    <td colspan="8" class="border right">&nbsp;</td>
+    <td colspan="8" class="border right"><?php print render($other_electrical); ?></td>
   </tr>
   <tr>
     <td colspan="8" scope="row" class="border right bottom">&nbsp;</td>

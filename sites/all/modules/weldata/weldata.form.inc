@@ -23,7 +23,7 @@ function weldata_form_pqr_wps_node_form_alter(&$form, &$form_state) {
 * Implements hook_form_FORM_ID_alter
 * Used to alter the units - #field_suffix
 */
-function weldata_form_weld_estimator_node_form_alter(&$form, &$form_state){
+function weldata_form_weld_cost_estimator_node_form_alter(&$form, &$form_state){
 //TODO: Use ajax in this function to alter field_suffix
 $form['actions']['preview']['#value'] = "Calculate";
 $node = $form_state['node'];

@@ -1,0 +1,90 @@
+guid,Spec.,Grade,UNS,Condition,P,G,KSI,D1.1 Group,Nominal composition ,Product form
+1,API-500,B,K03000,,1,1,58,I,C,Tube
+2,API 5L,X46,,,1,1,63,U,C-Mn,Smls.&Wld. Pipe & Tube
+3,API 5L,"A25,CI.I",,,1,1,45,U,C-Mn,Smls.&Wld. Pipe & Tube
+4,API 5L,X65,,,1,2,77,U,C-Mn,Smls.&Wld. Pipe & Tube
+5,API 5L,B,,,1,1,60,I,C-Mn,Smls.&Wld. Pipe & Tube
+6,MSS,WPHY-46,,,1,1,63,U,C-Mn,Smls.&Wld. Pipe & Tube
+7,MSS,WPHY-42,,,1,1,60,U,C-Mn,Smls.&Wld. Pipe & Tube
+8,SA-106,B,K03006,,1,1,60,I,C-Mn-Si,Sml.Pipe
+9,SA-182,"F6a,CI.1",K91151,,6,1,70,U,13Cr,Forging 
+10,SA-183,F304L,S30403,,8,1,65,U,18Cr-8Ni,Forging 
+11,SA-199,T21,K31545,,5A,1,60,U,3Cr-1Mo,Smls.Tube
+12,SA-199,T9,K90941,,5B,1,60,U,9Cr-1Mo,Smls.Tube
+13,SA-217,WC5,J22000,,4,1,70,U,0.75Ni-1Mo-0.75Cr,Casting
+14,SA-225,D,K12004,,10A,1,75,U,Mn-0.5Ni-V,Plate
+15,SA-234,WP91,K90901,,15E,1,85,U,9Cr-1Mo-V,Piping Fitting
+16,SA-234,WP9,k90941,,5B,1,60,U,9Cr-1Mo,Piping Fitting
+17,SA-240,TypeXM-21,S30452,,8,1,85,U,18Cr-8Ni-N,Plate
+18,SA-240,TypeXM-27,S44627,,10I,1,65,U,27Cr-1Mo,"Plate,Sheet & Strip"
+19,SA-268,29 Apr,S44700,,10J,1,80,U,29Cr-4Mo,Smls. & Welded Tube
+20,SA-268,TP409,S40900,,7,1,55,U,11Cr-Ti,Smls. & Welded Tube
+21,SA-268,TP429,S42900,,6,2,60,U,15Cr,Smls. & Welded Tube
+22,SA-352,LC2,J22500,,9A,1,70,U,2.5Ni,Casting
+23,SA-352,LCC,J02505,,1,2,70,U,C-Mn-Si,Casting
+24,SA-358,304,S30400,,8,1,75,U,18Cr-8Ni,Fusion Welded Pipe
+25,SA-358,304L,S30403,,8,1,70,U,18Cr-8Ni,Fusion Welded Pipe
+26,SA-358,304H,S30409,,8,1,75,U,18Cr-8Ni,Fusion Welded Pipe
+27,SA-358,304LN,S30453,,8,1,75,U,18Cr-8Ni-N,Fusion Welded Pipe
+28,SA-36,,K02600,,1,1,58,I,C-Mn-Si,"Plate, Bar& Shapes"
+29,SA-387,"12,CI.1",K11757,,4,1,55,U,1Cr-0.5Mo,Plate
+30,SA-387,"21,CI.1",K31545,,5A,1,60,U,3Cr-1Mo,Plate
+31,SA-420,WPL9,K22035,,9A,1,63,U,2Ni-1Cu,Piping Fitting
+32,SA-420,WPL3,K31918,,9B,1,65,U,3.5Ni,Piping Fitting
+33,SA-479,S44400,S44400,,7,2,60,U,18Cr-2Mo,Bars & Shapes
+34,SA-517,P,K21650,,11B,8,105,M,1.25Ni-1Cr-0.5Mo,Plate
+35,SA-522,Type II,K71340,,11A,1,100,U,7Ni,Forging 
+36,SA-53,"Type E,Gr,A",K02504,,1,1,48,U,C,Resist. Welded Pipe
+37,SA-533,"Type C,CI.3",K12554,,11A,4,100,U,Mn-0.5Mo-0.75Ni,Plate
+38,SA-533,"Type C,CI.2",K12554,,3,3,90,U,Mn-0.5Mo-0.75Ni,Plate
+39,SA-533,"Type C,CI.1",K12554,,3,3,80,U,Mn-0.5Mo-0.75Ni,Plate
+40,SA-537,CI. 1,K12437,,1,2,65,II,C-Mn-Si,Plate
+41,SA-537,CI. 1,K12437,,1,2,70,II,C-Mn-Si,Plate
+42,SA-542,"B,CI. 1",K21590,,5C,4,105,U,2.25Cr-1Mo,Plate
+43,SA-671,CE60,K02402,,1,1,60,U,C-Mn-Si,Fusion Welded Pipe
+44,SA-691,"1CR,CI. 1",K11757,,4,1,55,U,1Cr-0.5Mo,Fusion Welded Pipe
+45,SA-691,"1CR,CI. 2",K11757,,4,1,65,U,1Cr-0.5Mo,Fusion Welded Pipe
+46,SA-731,TPXM-27,S44627,,10I,1,65,U,27Cr-1Mo,Sml. & Welded Pope
+47,SA-738,B,K12001,,1,3,85,U,C-Mn-Si-Cb,Plate
+48,SA-789,S32550,S32550,,10H,1,110,U,25Cr-5Ni-3Mo-2Cu,Smls. & Welded Tube
+49,SA-789,S32900,S32900,,10H,1,90,U,26Cr-4Ni-Mo,Smls. & Welded Tube
+50,SA-790,S31803,S31803,,10H,1,90,U,22Cr-5Ni-3Mo-N,Smls. & Welded Tube
+51,SA-803,26 03 2003,S44660,,10K,1,85,U,26Cr-3Ni-3Mo,Welded Tube
+52,SA-813,TP304N,S30451,,8,,80,U,18Cr-8Ni-N,Welded Tube
+53,SA-832,21V,K31830,,5C,1,85,U,3Cr-3Mo-V-Ti-B,Plate
+54,SB-171,,C61400,,35,,70,U,90Cu-7Al-3Fe,Plate & Sheet
+55,SB-171,,C71500,,34,,50,U,70Cu-30Ni,Plate & Sheet
+56,SB-171,,C71500,,34,,45,U,70Cu-30Ni,Plate & Sheet
+57,SB-171,,C63000,,35,,90,U,81Cu-10Al-5Ni-3Fe,Plate & Sheet
+58,SB-171,,C63000,,35,,80,U,81Cu-10Al-5Ni-3Fe,Plate & Sheet
+59,SB-171,,C61400,,35,,65,U,90Cu-7Al-3Fe,Plate & Sheet
+60,SB-171,,C36500,,32,,40,U,60Cu-39Zn-Pb,Plate & Sheet
+61,SB-171,,C63000,,35,,85,U,81Cu-10Al-5Ni-3Fe,Plate & Sheet
+62,SB-209,5083,A95083,,25,,36,U,Al-4.4Mg-Mn,Plate & Sheet
+63,SB-209,6061,A96061,,23,,24,U,Al-Mg-Si-Cu,Plate & Sheet
+64,SB-210,Alclad 3003,,,21,,13,U,Al-Mn-Cu,Smls. Tube
+65,SB-221,6063,A96063,,23,,17,U,Al-Mg-Si,"Bar,Rod & Shapes"
+66,SB-221,5154,A95154,,22,,30,U,Al-3.5Mg,"Bar,Rod & Shapes"
+67,SB-234,5454,A95454,,22,,31,U,Al-2.7Mg-Mn,Smls.Tube
+68,SB-241,1060,A91060,,21,,8.5,U,99.60Al,Smls. Pipe & Tube
+69,SB-247,5083,A95083,,25,,38,U,Al-4.4Mg-Mn,Forging 
+70,SB-265,3,R50550,,52,,65,U,Ti,"Plate, Sheet & Strip"
+71,SB-338,12,R53400,,52,,70,U,Ti-0.3Mo-0.8Ni,Smls. & Welded Tube
+72,SB-338,9,R56320,,53,,90,U,Ti-3Al-2.5V,Smls. & Welded Tube
+73,SB-348,2H,R50400,,51,,50,U,Ti,Bars & Billets
+74,SB-348,7H,R52400,,51,,50,U,Ti-Pd,Bars & Billets
+75,SB-363,WPT 1,R50250,,51,,35,U,Ti,Smls. &Welded Fittings
+76,SB-366,,N06002,,43,,100,U,47Ni-22Cr-18Fe-9Mo,Fittings
+77,SB-366,,N02201,,41,,50,U,99.0Ni-Low C,Fittings
+78,SB-366,,N06985,,45,,90,U,47Ni-22Cr-20Fe-7Mo,Fittings
+79,SB-366,,N06625,,43,,110,U,60Ni-22Cr-9Mo-3.5Cb,Fittings
+80,SB-366,,N08020,,45,,80,U,35Ni-35Fe-20Cr-Cb,Fittings
+81,SB-395,,C19200,,31,,38,U,99.7Cu-Fe-P,Smls. Tube
+82,SB-434,,N10003,,44,,100,U,70Ni-16Mo-7Cr-5Fe,"Plate, Sheet & Strip"
+83,SB-463,,N08026,,45,,80,U,35Ni-30Fe-24Cr-6Mo-3Cu,"Plate, Sheet & Strip"
+84,SB-550,R60702,R60702,,61,,55,U,99.0Zr,Bar & Wire
+85,SB-551,R60705,R60705,,62,,80,U,95.5Zr+2.5Cb,"Plate, Sheet & Strip"
+86,SB-564,,N06059,,43,,100,U,59.Ni-23Cr-16Mo,Forging 
+87,SB-573,,N10003,,44,,100,U,70Ni-16Mo-7Cr-5Fe,Rod
+88,SB-626,,N06030,,45,,85,U,40Ni-29Cr-15Fe-5Mo,Welded Tube
+89,SB-98,,C65500,,33,,52,U,97Cu-3Si,"Rod, Bar & Shapes"
