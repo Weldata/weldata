@@ -1,0 +1,14 @@
+diff --git a/theme/js/entityconnect.js b/theme/js/entityconnect.js
+index a36c9ae..9bbaccb 100644
+--- a/theme/js/entityconnect.js
++++ b/theme/js/entityconnect.js
+@@ -45,6 +45,9 @@
+       $(".entityconnect-edit input").click(function() {
+ 
+         var wrapper = $(this).parents(".entityconnect-edit");
++        if ($('.field-widget-entityreference-view-widget').length) {
++          wrapper = wrapper.parents;
++        }
+ 
+         text = $(wrapper).siblings("[type='text']");
+         radio = $(wrapper).siblings("[type='radio']");

@@ -61,7 +61,7 @@ function homebox_features_export_render($module = 'foo', $data) {
     // Load the page
     $page = homebox_get_page($name);
     // Create exported settings
-    $export = var_export($page->settings, 1);
+    $export = features_var_export($page->settings);
     // Fix spacing
     $export = str_replace("\n", "\n  ", $export);
     // Add to code

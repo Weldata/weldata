@@ -45,6 +45,9 @@
       $(".entityconnect-edit input").click(function() {
 
         var wrapper = $(this).parents(".entityconnect-edit");
+        if ($('.field-widget-entityreference-view-widget').length) {
+          wrapper = wrapper.parents;
+        }
 
         text = $(wrapper).siblings("[type='text']");
         radio = $(wrapper).siblings("[type='radio']");
