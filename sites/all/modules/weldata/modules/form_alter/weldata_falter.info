@@ -1,0 +1,5 @@
+name = WelData Form Alter
+description = Containes codes to alter forms.
+core = 7.x
+package = Weldata
+dependencies[] = weldata
