@@ -76,19 +76,15 @@ function weldata_wce_calculator($entity_type, $entity){
 	break;
 	
 	case "groove":
-  $bevel_angle = field_get_items($entity_type, $entity, 'field_bevel_angle')[0]['value'];
-  $thickness = field_get_items($entity_type, $entity, 'field_thickness')[0]['value'];
-  $root_gap = field_get_items($entity_type, $entity, 'field_root_gap')[0]['value'];
-  $cap_height = field_get_items($entity_type, $entity, 'field_cap_height')[0]['value'];
   	switch($type_of_groove_weld){
     case "single_v":
-	     $weight_of_weld = weldata_single_vee($weld_length,$bevel_angle,$thickness,$root_gap,$cap_height,$filler_density,$number_of_joints);
+	     $weight_of_weld = weldata_wce_single_vee($entity_type, $entity, $filler_density, $number_of_joints);
 	break;
 	case "single_bevel":
 	    $weight_of_weld = weldata_single_bevel($weld_length,$bevel_angle,$thickness,$root_gap,$cap_height,$filler_density,$number_of_joints);
 	break;
 	case "compound_v":
-	    $thickness_bottom = field_get_items($entity_type, $entity, 'field_thickness_bottom')[0]['value'];
+	$thickness_bottom = field_get_items($entity_type, $entity, 'field_thickness_bottom')[0]['value'];
     $bevel_angle_bottom = field_get_items($entity_type, $entity, 'field_bevel_angle_bottom')[0]['value'];
     $land_thickness = field_get_items($entity_type, $entity, 'field_land_thickness')[0]['value'];
 
@@ -104,7 +100,7 @@ function weldata_wce_calculator($entity_type, $entity){
 	case "j_groove":
 	$extension = field_get_items($entity_type, $entity, 'field_extension')[0]['value'];
     $extension_thickness = field_get_items($entity_type, $entity, 'field_extension_thickness')[0]['value'];
-    $radius = field_get_items($entity_type, $entity, 'field_radius')[0]['value'];
+    $radius = (field_get_items($entity_type, $entity, 'field_diameter')[0]['value'])/2;
     $weight_of_weld = weldata_j_groove($weld_length,$extension,$extension_thickness,$thickness,$cap_height,$root_gap,$bevel_angle,$radius,$filler_density,$number_of_joints);
 	break;
   	} 
