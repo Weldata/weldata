@@ -8,7 +8,18 @@
 /**
  * Calculate Weight of Weld for Double Bevel Tee Weld.
  */
-function weldata_double_bevel_tee($length,$leg_size,$leg_size_2,$bevel_angle,$bevel_angle_bottom,$thickness,$thickness_bottom,$land_thickness,$root_gap,$filler_density,$number_of_joints){
+function weldata_double_bevel_tee($wrapper,$length,$filler_density,$number_of_joints){
+
+  $bevel_angle = $wrapper->field_groove_weld->field_bevel_angle->value();
+  $bevel_angle_bottom = $wrapper->field_groove_weld->field_bevel_angle_bottom->value();
+  $thickness = $wrapper->field_groove_weld->field_thickness->value();
+  $thickness_bottom = $wrapper->field_groove_weld->field_thickness_bottom->value();
+  $land_thickness = $wrapper->field_groove_weld->field_land_thickness->value();
+  $root_gap = $wrapper->field_groove_weld->field_root_gap->value();
+  $leg_size = $wrapper->field_groove_weld->field_leg_size->value();
+  $leg_size_2 = $wrapper->field_groove_weld->field_leg_size_2->value();
+
+
   $area = array();
   $area[0] = ($thickness * $thickness * tan(deg2rad($bevel_angle)))/2;
   $area[1] = ($thickness_bottom * $thickness_bottom * tan(deg2rad($bevel_angle_bottom)))/2;

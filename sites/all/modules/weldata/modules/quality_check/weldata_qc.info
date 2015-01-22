@@ -1,0 +1,5 @@
+name = Weldata Quality Check
+description = Checks if user generated PQR and WPS comply with codes and standards.
+core = 7.x
+package = Weldata
+dependencies[] = weldata

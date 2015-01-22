@@ -8,7 +8,13 @@
 /**
  * Calculate Weight of Weld for Single Bevel Weld.
  */
-function weldata_single_bevel($length,$bevel_angle,$thickness,$root_gap,$cap_height,$filler_density,$number_of_joints){
+function weldata_single_bevel($wrapper,$length,$filler_density,$number_of_joints){
+
+  $bevel_angle = $wrapper->field_groove_weld->field_bevel_angle->value();
+  $thickness = $wrapper->field_groove_weld->field_thickness->value();
+  $root_gap = $wrapper->field_groove_weld->field_root_gap->value();
+  $cap_height = $wrapper->field_groove_weld->field_cap_height->value();
+
   $cap_width = ($thickness * tan(deg2rad($bevel_angle)))+ $root_gap;
   $area = array();
   $area[0] = ($thickness * $thickness * tan(deg2rad($bevel_angle)));

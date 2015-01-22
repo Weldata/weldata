@@ -8,9 +8,16 @@
 /**
  * Calculate Weight of Weld for Compound Vee Weld.
  */
-function weldata_compound_vee($length,$thickness,$thickness_bottom,$bevel_angle,$bevel_angle_bottom,$land_thickness,$root_gap,$cap_height,$filler_density,$number_of_joints){
-	
-  	
+function weldata_compound_vee($wrapper,$length,$filler_density,$number_of_joints){
+
+  $bevel_angle = $wrapper->field_groove_weld->field_bevel_angle->value();
+  $bevel_angle_bottom = $wrapper->field_groove_weld->field_bevel_angle_bottom->value();
+  $thickness = $wrapper->field_groove_weld->field_thickness->value();
+  $thickness_bottom = $wrapper->field_groove_weld->field_thickness_bottom->value();
+  $land_thickness = $wrapper->field_groove_weld->field_land_thickness->value();
+  $root_gap = $wrapper->field_groove_weld->field_root_gap->value();
+  $cap_height = $wrapper->field_groove_weld->field_cap_height->value();
+
   $cap_width = (($thickness_bottom * tan(deg2rad($bevel_angle_bottom))*2)+($thickness * tan(deg2rad($bevel_angle))*2)) + $root_gap;
   $area = array();
   $area[0] = ($thickness * $thickness * tan(deg2rad($bevel_angle)));

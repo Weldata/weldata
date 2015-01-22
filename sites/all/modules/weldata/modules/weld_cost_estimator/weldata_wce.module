@@ -41,15 +41,13 @@ module_load_include('inc', 'weldata_wce', 'calculators/weldata_wce.slot');
  * Function to Calculate
  */
 function weldata_wce_calculator($entity_type, $entity){
+
+  //Entity Metadata Wrapper to get Field Collection Values
+  $wrapper = entity_metadata_wrapper($entity_type, $entity);
   //Common Variables
   //$unit = field_get_items($entity_type, $entity, 'field_unit')[0]['value'];
   $type_of_weld = field_get_items($entity_type, $entity, 'field_type_of_weld')[0]['value'];
-  $type_of_groove_weld = field_get_items($entity_type, $entity, 'field_type_of_groove_weld')[0]['value'];
-  $type_of_fillet_groove_weld = field_get_items($entity_type, $entity, 'field_type_of_fillet_groove_weld')[0]['value'];
-  $type_of_plug_weld = field_get_items($entity_type, $entity, 'field_type_of_plug_weld')[0]['value'];
   $weld_length = field_get_items($entity_type, $entity, 'field_weld_length')[0]['value'];
-  
-  
   $filler_density = field_get_items($entity_type, $entity, 'field_filler_density')[0]['value'];
   $number_of_joints = field_get_items($entity_type, $entity, 'field_number_of_joints')[0]['value'];
 
@@ -66,93 +64,63 @@ function weldata_wce_calculator($entity_type, $entity){
   $power_cost = field_get_items($entity_type, $entity, 'field_power_cost')[0]['value'];
   $throat = field_get_items($entity_type, $entity, 'field_throat');
 
-
 /**
  * Variable Declarations for Fillet Welds
  */
  switch($type_of_weld) {
     case "fillet":
-    $weight_of_weld = weldata_wce_fillet_weld($entity_type, $entity, $filler_density, $number_of_joints);
+    $weight_of_weld = weldata_wce_fillet_weld($wrapper, $filler_density, $number_of_joints);
 	break;
 	
 	case "groove":
+    $type_of_groove_weld = $wrapper->field_groove_weld->field_type_of_groove_weld->value();
   	switch($type_of_groove_weld){
     case "single_v":
-	     $weight_of_weld = weldata_wce_single_vee($entity_type, $entity, $filler_density, $number_of_joints);
+	     $weight_of_weld = weldata_wce_single_vee($wrapper, $filler_density, $number_of_joints);
 	break;
 	case "single_bevel":
-	    $weight_of_weld = weldata_single_bevel($weld_length,$bevel_angle,$thickness,$root_gap,$cap_height,$filler_density,$number_of_joints);
+	    $weight_of_weld = weldata_single_bevel($wrapper,$weld_length,$filler_density,$number_of_joints);
 	break;
 	case "compound_v":
-	$thickness_bottom = field_get_items($entity_type, $entity, 'field_thickness_bottom')[0]['value'];
-    $bevel_angle_bottom = field_get_items($entity_type, $entity, 'field_bevel_angle_bottom')[0]['value'];
-    $land_thickness = field_get_items($entity_type, $entity, 'field_land_thickness')[0]['value'];
-
-    $weight_of_weld = weldata_compound_vee($weld_length,$thickness,$thickness_bottom,$bevel_angle,$bevel_angle_bottom,$land_thickness,$root_gap,$cap_height,$filler_density,$number_of_joints);
+   $weight_of_weld = weldata_compound_vee($wrapper,$weld_length,$filler_density,$number_of_joints);
 	break;
 	case "double_v":
-    $thickness_bottom = field_get_items($entity_type, $entity, 'field_thickness_bottom')[0]['value'];
-    $bevel_angle_bottom = field_get_items($entity_type, $entity, 'field_bevel_angle_bottom')[0]['value'];
-    $land_thickness = field_get_items($entity_type, $entity, 'field_land_thickness')[0]['value'];
-    $cap_height_bottom = field_get_items($entity_type, $entity, 'field_cap_height_bottom')[0]['value'];
-    $weight_of_weld = weldata_double_vee($weld_length,$thickness,$thickness_bottom,$bevel_angle,$bevel_angle_bottom,$land_thickness,$root_gap,$cap_height,$cap_height_bottom,$filler_density,$number_of_joints);	
+    $weight_of_weld = weldata_double_vee($wrapper,$weld_length,$filler_density,$number_of_joints);
 	break;
 	case "j_groove":
-	$extension = field_get_items($entity_type, $entity, 'field_extension')[0]['value'];
-    $extension_thickness = field_get_items($entity_type, $entity, 'field_extension_thickness')[0]['value'];
-    $radius = (field_get_items($entity_type, $entity, 'field_diameter')[0]['value'])/2;
-    $weight_of_weld = weldata_j_groove($weld_length,$extension,$extension_thickness,$thickness,$cap_height,$root_gap,$bevel_angle,$radius,$filler_density,$number_of_joints);
+    $weight_of_weld = weldata_j_groove($wrapper,$weld_length,$filler_density,$number_of_joints);
 	break;
   	} 
 	break;//End of groove weld
-	case "fillet_groove": 
-  $leg_size = field_get_items($entity_type, $entity, 'field_leg_size')[0]['value'];
-  $bevel_angle = field_get_items($entity_type, $entity, 'field_bevel_angle')[0]['value'];
-  $bevel_angle_bottom = field_get_items($entity_type, $entity, 'field_bevel_angle_bottom')[0]['value'];
-  $root_gap = field_get_items($entity_type, $entity, 'field_root_gap')[0]['value'];
-  $cap_height = field_get_items($entity_type, $entity, 'field_cap_height')[0]['value'];
-  $thickness = field_get_items($entity_type, $entity, 'field_thickness')[0]['value'];
-  $thickness_bottom = field_get_items($entity_type, $entity, 'field_thickness_bottom')[0]['value'];
-  $land_thickness = field_get_items($entity_type, $entity, 'field_land_thickness')[0]['value'];
+	case "fillet_groove":
+    $type_of_fillet_groove_weld = $wrapper->field_fillet_groove_weld->field_type_of_fillet_groove_weld->value();
     switch($type_of_fillet_groove_weld){
 		case "double_bevel_tee":
-	$leg_size_2 = field_get_items($entity_type, $entity, 'field_leg_size_2')[0]['value'];
-    $weight_of_weld = weldata_double_bevel_tee($weld_length,$leg_size,$leg_size_2,$bevel_angle,$bevel_angle_bottom,$thickness,$thickness_bottom,$land_thickness,$root_gap,$filler_density,$number_of_joints);
+    $weight_of_weld = weldata_double_bevel_tee($wrapper,$weld_length,$filler_density,$number_of_joints);
 		break;
 	    case "double_bevel_corner":
-		$weight_of_weld = weldata_double_bevel_corner($weld_length,$leg_size,$bevel_angle,$bevel_angle_bottom,$thickness,$thickness_bottom,$land_thickness,$cap_height,$root_gap,$filler_density,$number_of_joints);
+		$weight_of_weld = weldata_double_bevel_corner($wrapper,$weld_length,$filler_density,$number_of_joints);
 		break;
 	}
 	break; //End of Fillet and Groove Weld
 	case "plug_slot":
-	$diameter = field_get_items($entity_type, $entity, 'field_diameter')[0]['value'];
+    $type_of_plug_weld = $wrapper->field_plug_slot_weld->field_type_of_plug_weld->value();
 	   switch($type_of_plug_weld){
 	     case "plug":
-		  $weight_of_weld = weldata_plug($weld_length,$diameter,$filler_density,$number_of_joints);
+		  $weight_of_weld = weldata_wce_plug($wrapper,$weld_length,$filler_density,$number_of_joints);
 		 break;
 		 case "slot":
-    $thickness = field_get_items($entity_type, $entity, 'field_thickness')[0]['value'];
-    $slot_length = field_get_items($entity_type, $entity, 'field_weld_length')[0]['value'];
-    $slot_width = field_get_items($entity_type, $entity, 'field_top_width')[0]['value'];
-    $weight_of_weld = weldata_slot($thickness,$slot_length,$slot_width,$filler_density,$number_of_joints);
+    $weight_of_weld = weldata_slot($wrapper,$weld_length,$filler_density,$number_of_joints);
 		 break;
 	   }
 	break; //End of plug_slot
 	
-	case "patch": //Implementation of (OR) statement in switch
+	case "patch": //Implementation of "OR" statement in switch
 	case "cavity":
-  $top_length = field_get_items($entity_type, $entity, 'field_top_length')[0]['value'];
-  $top_width = field_get_items($entity_type, $entity, 'field_top_width')[0]['value'];
-  $bottom_length = field_get_items($entity_type, $entity, 'field_bottom_length')[0]['value'];
-  $bottom_width = field_get_items($entity_type, $entity, 'field_bottom_width')[0]['value'];
-  $height_of_patch = field_get_items($entity_type, $entity, 'field_thickness')[0]['value'];
-  $weight_of_weld = weldata_patch_cavity($top_length,$top_width,$bottom_length,$bottom_width,$height_of_patch,$filler_density,$number_of_joints);	
+  $weight_of_weld = weldata_patch_cavity($wrapper,$filler_density,$number_of_joints);
 	break;
 	case "pipe_clad":
-   $clad_length = field_get_items($entity_type, $entity, 'field_weld_length')[0]['value'];
-   $clad_thickness = field_get_items($entity_type, $entity, 'field_thickness')[0]['value'];
-   $diameter = field_get_items($entity_type, $entity, 'field_diameter')[0]['value'];
-   $weight_of_weld = weldata_pipe_clad($clad_length,$clad_thickness,$diameter,$filler_density,$number_of_joints);	
+   $weight_of_weld = weldata_pipe_clad($wrapper,$weld_length,$filler_density,$number_of_joints);
 	break;
  }
 

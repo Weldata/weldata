@@ -8,7 +8,11 @@
 /**
  * Calculate Weight of Weld for Plug Weld.
  */
-function weldata_plug($length,$diameter,$filler_density,$number_of_joints){
+function weldata_wce_plug($wrapper,$length,$filler_density,$number_of_joints){
+
+  $diameter = $wrapper->field_groove_weld->field_diameter->value();
+
+
   $area = (M_PI * $diameter * $diameter)/4;
 
   $volume = $area * $length * $number_of_joints;

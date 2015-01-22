@@ -9,9 +9,8 @@
 /**
 * Calculate Weight of Weld for Fillet Weld.
 */
-function weldata_wce_fillet_weld($entity_type, $entity, $filler_density, $number_of_joints){
+function weldata_wce_fillet_weld( $wrapper, $filler_density, $number_of_joints){
 
-  $wrapper = entity_metadata_wrapper($entity_type, $entity);
   $weld_length = $wrapper->field_fillet_weld->field_weld_length->value();
   $leg_size = $wrapper->field_fillet_weld->field_leg_size->value();
   $size_variation = ($wrapper->field_fillet_weld->field_size_variation->value())/100;		
