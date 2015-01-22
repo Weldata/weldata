@@ -8,8 +8,9 @@
 /**
  * Calculate Weight of Weld for J Groove Weld.
  */
-function weldata_j_groove($wrapper,$length,$filler_density,$number_of_joints){
+function weldata_j_groove($wrapper,$filler_density,$number_of_joints){
 
+  $length = $wrapper->field_groove_weld->field_weld_length->value();
   $bevel_angle = $wrapper->field_groove_weld->field_bevel_angle->value();
   $extension = $wrapper->field_groove_weld->field_extension->value();
   $thickness = $wrapper->field_groove_weld->field_thickness->value();

@@ -8,8 +8,9 @@
 /**
  * Calculate Weight of Weld for Slot Weld.
  */
-function weldata_slot($wrapper,$slot_length,$filler_density,$number_of_joints){
+function weldata_slot($wrapper,$filler_density,$number_of_joints){
 
+  $slot_length = $wrapper->field_groove_weld->field_weld_length->value();
   $slot_width = $wrapper->field_groove_weld->field_top_width->value();
   $thickness = $wrapper->field_groove_weld->field_thickness->value();
 

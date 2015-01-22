@@ -47,7 +47,6 @@ function weldata_wce_calculator($entity_type, $entity){
   //Common Variables
   //$unit = field_get_items($entity_type, $entity, 'field_unit')[0]['value'];
   $type_of_weld = field_get_items($entity_type, $entity, 'field_type_of_weld')[0]['value'];
-  $weld_length = field_get_items($entity_type, $entity, 'field_weld_length')[0]['value'];
   $filler_density = field_get_items($entity_type, $entity, 'field_filler_density')[0]['value'];
   $number_of_joints = field_get_items($entity_type, $entity, 'field_number_of_joints')[0]['value'];
 
@@ -79,16 +78,16 @@ function weldata_wce_calculator($entity_type, $entity){
 	     $weight_of_weld = weldata_wce_single_vee($wrapper, $filler_density, $number_of_joints);
 	break;
 	case "single_bevel":
-	    $weight_of_weld = weldata_single_bevel($wrapper,$weld_length,$filler_density,$number_of_joints);
+	    $weight_of_weld = weldata_single_bevel($wrapper,$filler_density,$number_of_joints);
 	break;
 	case "compound_v":
-   $weight_of_weld = weldata_compound_vee($wrapper,$weld_length,$filler_density,$number_of_joints);
+   $weight_of_weld = weldata_compound_vee($wrapper,$filler_density,$number_of_joints);
 	break;
 	case "double_v":
-    $weight_of_weld = weldata_double_vee($wrapper,$weld_length,$filler_density,$number_of_joints);
+    $weight_of_weld = weldata_double_vee($wrapper,$filler_density,$number_of_joints);
 	break;
 	case "j_groove":
-    $weight_of_weld = weldata_j_groove($wrapper,$weld_length,$filler_density,$number_of_joints);
+    $weight_of_weld = weldata_j_groove($wrapper,$filler_density,$number_of_joints);
 	break;
   	} 
 	break;//End of groove weld
@@ -96,10 +95,10 @@ function weldata_wce_calculator($entity_type, $entity){
     $type_of_fillet_groove_weld = $wrapper->field_fillet_groove_weld->field_type_of_fillet_groove_weld->value();
     switch($type_of_fillet_groove_weld){
 		case "double_bevel_tee":
-    $weight_of_weld = weldata_double_bevel_tee($wrapper,$weld_length,$filler_density,$number_of_joints);
+    $weight_of_weld = weldata_double_bevel_tee($wrapper,$filler_density,$number_of_joints);
 		break;
 	    case "double_bevel_corner":
-		$weight_of_weld = weldata_double_bevel_corner($wrapper,$weld_length,$filler_density,$number_of_joints);
+		$weight_of_weld = weldata_double_bevel_corner($wrapper,$filler_density,$number_of_joints);
 		break;
 	}
 	break; //End of Fillet and Groove Weld
@@ -107,10 +106,10 @@ function weldata_wce_calculator($entity_type, $entity){
     $type_of_plug_weld = $wrapper->field_plug_slot_weld->field_type_of_plug_weld->value();
 	   switch($type_of_plug_weld){
 	     case "plug":
-		  $weight_of_weld = weldata_wce_plug($wrapper,$weld_length,$filler_density,$number_of_joints);
+		  $weight_of_weld = weldata_wce_plug($wrapper,$filler_density,$number_of_joints);
 		 break;
 		 case "slot":
-    $weight_of_weld = weldata_slot($wrapper,$weld_length,$filler_density,$number_of_joints);
+    $weight_of_weld = weldata_slot($wrapper,$filler_density,$number_of_joints);
 		 break;
 	   }
 	break; //End of plug_slot
@@ -120,7 +119,7 @@ function weldata_wce_calculator($entity_type, $entity){
   $weight_of_weld = weldata_patch_cavity($wrapper,$filler_density,$number_of_joints);
 	break;
 	case "pipe_clad":
-   $weight_of_weld = weldata_pipe_clad($wrapper,$weld_length,$filler_density,$number_of_joints);
+   $weight_of_weld = weldata_pipe_clad($wrapper,$filler_density,$number_of_joints);
 	break;
  }
 
@@ -135,7 +134,7 @@ function weldata_wce_calculator($entity_type, $entity){
   $total_cost = $total_filler_cost + $labour_cost + $total_gas_cost + $total_power_cost;
 
   $GLOBALS['result'] = array(
-    'unit' => $unit,
+    'unit' => 'imperial',
     'weight_of_weld' => $weight_of_weld,
     'weight_of_filler_required' => $weight_of_filler_required,
     'arc_on_hours' => $arc_on_hours,
@@ -179,13 +178,6 @@ function computed_field_field_total_power_cost_compute(&$entity_field, $entity_t
 }
 function computed_field_field_total_cost_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
   $entity_field[0]['value'] = $GLOBALS['result']['total_cost'];
-}
-function computed_field_field_weld_length_unit_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items){
-  if ($GLOBALS['result']['unit'] == 'metric'){
-    $entity_field[0]['value'] = 'mm';
-  } else {
-    $entity_field[0]['value'] = 'inch';
-  }
 }
 
 /**
@@ -239,7 +231,4 @@ function computed_field_field_total_cost_display($field, $entity_field_item, $en
     return $entity_field_item['value'].'<span class="field-suffix">Rupees</span>';
   }
     return $entity_field_item['value'].'<span class="field-suffix">$</span>';
-}
-function computed_field_field_weld_length_unit_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
-  return '<span class="field-suffix">'.$entity_field_item["value"].'</span>';
 }

@@ -8,8 +8,9 @@
 /**
  * Calculate Weight of Weld for Compound Vee Weld.
  */
-function weldata_compound_vee($wrapper,$length,$filler_density,$number_of_joints){
+function weldata_compound_vee($wrapper,$filler_density,$number_of_joints){
 
+  $length = $wrapper->field_groove_weld->field_weld_length->value();
   $bevel_angle = $wrapper->field_groove_weld->field_bevel_angle->value();
   $bevel_angle_bottom = $wrapper->field_groove_weld->field_bevel_angle_bottom->value();
   $thickness = $wrapper->field_groove_weld->field_thickness->value();
