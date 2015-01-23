@@ -70,7 +70,6 @@ function weldata_wce_calculator($entity_type, $entity){
     case "fillet":
     $weight_of_weld = weldata_wce_fillet_weld($wrapper, $filler_density, $number_of_joints);
 	break;
-	
 	case "groove":
     $type_of_groove_weld = $wrapper->field_groove_weld->field_type_of_groove_weld->value();
   	switch($type_of_groove_weld){

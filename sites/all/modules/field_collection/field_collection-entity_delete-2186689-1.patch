@@ -1,0 +1,27 @@
+diff --git a/field_collection.module b/field_collection.module
+index 6462014..d0daf4c 100644
+--- a/field_collection.module
++++ b/field_collection.module
+@@ -56,6 +56,7 @@ function field_collection_entity_info() {
+        ),
+     ),
+     'access callback' => 'field_collection_item_access',
++    'deletion callback' => 'field_collection_item_delete',
+     'metadata controller class' => 'FieldCollectionItemMetadataController'
+   );
+ 
+@@ -792,6 +793,14 @@ function field_collection_item_access($op, FieldCollectionItemEntity $item = NUL
+ }
+ 
+ /**
++ * Deletion callback
++ */
++function field_collection_item_delete($id) {
++  $fci = field_collection_item_load($id);
++  $fci->delete();
++}
++
++/**
+  * Implements hook_theme().
+  */
+ function field_collection_theme() {

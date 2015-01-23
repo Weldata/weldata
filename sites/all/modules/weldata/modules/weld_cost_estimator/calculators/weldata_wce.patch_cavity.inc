@@ -10,11 +10,11 @@
  */
 function weldata_patch_cavity($wrapper,$filler_density,$number_of_joints){
 
-  $top_length = $wrapper->field_groove_weld->field_top_length->value();
-  $top_width = $wrapper->field_groove_weld->field_top_width->value();
-  $height_of_patch = $wrapper->field_groove_weld->field_thickness->value();
-  $bottom_length = $wrapper->field_groove_weld->field_bottom_length->value();
-  $bottom_width = $wrapper->field_groove_weld->field_bottom_width->value();
+  $top_length = $wrapper->field_patch_cavity->field_top_length->value();
+  $top_width = $wrapper->field_patch_cavity->field_top_width->value();
+  $height_of_patch = $wrapper->field_patch_cavity->field_thickness->value();
+  $bottom_length = $wrapper->field_patch_cavity->field_bottom_length->value();
+  $bottom_width = $wrapper->field_patch_cavity->field_bottom_width->value();
 
   $a = ($bottom_length - $top_length)/2;
   $b = ($bottom_width - $top_width)/2;

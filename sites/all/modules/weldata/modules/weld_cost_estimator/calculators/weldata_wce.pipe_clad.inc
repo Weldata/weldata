@@ -10,9 +10,9 @@
  */
 function weldata_pipe_clad($wrapper,$filler_density,$number_of_joints){
 
-  $clad_length = $wrapper->field_groove_weld->field_weld_length->value();
-  $diameter = $wrapper->field_groove_weld->field_diameter->value();
-  $clad_thickness = $wrapper->field_groove_weld->field_thickness->value();
+  $clad_length = $wrapper->field_pipe_clad->field_weld_length->value();
+  $diameter = $wrapper->field_pipe_clad->field_diameter->value();
+  $clad_thickness = $wrapper->field_pipe_clad->field_thickness->value();
 
   $volume = ($clad_length * $clad_thickness * $diameter) * $number_of_joints;
   $weight_of_weld = $volume * $filler_density;

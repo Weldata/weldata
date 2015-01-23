@@ -10,15 +10,15 @@
  */
 function weldata_double_bevel_tee($wrapper,$filler_density,$number_of_joints){
 
-  $length = $wrapper->field_groove_weld->field_weld_length->value();
-  $bevel_angle = $wrapper->field_groove_weld->field_bevel_angle->value();
-  $bevel_angle_bottom = $wrapper->field_groove_weld->field_bevel_angle_bottom->value();
-  $thickness = $wrapper->field_groove_weld->field_thickness->value();
-  $thickness_bottom = $wrapper->field_groove_weld->field_thickness_bottom->value();
-  $land_thickness = $wrapper->field_groove_weld->field_land_thickness->value();
-  $root_gap = $wrapper->field_groove_weld->field_root_gap->value();
-  $leg_size = $wrapper->field_groove_weld->field_leg_size->value();
-  $leg_size_2 = $wrapper->field_groove_weld->field_leg_size_2->value();
+  $length = $wrapper->field_fillet_groove_weld->field_weld_length->value();
+  $bevel_angle = $wrapper->field_fillet_groove_weld->field_bevel_angle->value();
+  $bevel_angle_bottom = $wrapper->field_fillet_groove_weld->field_bevel_angle_bottom->value();
+  $thickness = $wrapper->field_fillet_groove_weld->field_thickness->value();
+  $thickness_bottom = $wrapper->field_fillet_groove_weld->field_thickness_bottom->value();
+  $land_thickness = $wrapper->field_fillet_groove_weld->field_land_thickness->value();
+  $root_gap = $wrapper->field_fillet_groove_weld->field_root_gap->value();
+  $leg_size = $wrapper->field_fillet_groove_weld->field_leg_size->value();
+  $leg_size_2 = $wrapper->field_fillet_groove_weld->field_leg_size_2->value();
 
 
   $area = array();
