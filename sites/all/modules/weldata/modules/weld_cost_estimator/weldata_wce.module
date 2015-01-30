@@ -9,7 +9,7 @@
 //Todo: Use $radius instead of $diameter in plug and slot welds
 //Todo: Move field_get_items from weld_calculator to their respective calculation functions
 //Todo: Remove module_load_include and use classes for auto-loading using files[] array in .info file
-
+//Todo: Use $entity->field_name[LANGUAGE_NONE][0]['value'] instead of field_get_items().
 
 //For Compound Vee Weight of Weld Calculations
 module_load_include('inc', 'weldata_wce', 'calculators/weldata_wce.compound_vee');
@@ -147,11 +147,33 @@ function weldata_wce_calculator($entity_type, $entity){
   return $GLOBALS['result'];
 }
 
+function weldata_test_calculator($entity_type, $entity){
+	
+	$test = $entity->field_labour_rate[LANGUAGE_NONE][0]['value'];
+
+  var_dump($test);
+
+  $GLOBALS['result'] = array(
+    'unit' => 'imperial',
+    'weight_of_weld' => 10,
+    'weight_of_filler_required' => 20,
+    'arc_on_hours' => 30,
+    'labour_hours' => 40,
+    'total_filler_cost' => 50,
+    'labour_cost'=> 60,
+    'total_gas_cost'=> 70,
+    'total_power_cost'=> 80,
+    'total_cost' => 90,
+  );
+  return $GLOBALS['result'];
+
+}
+
 /**
  *Implements Calculation for Weight of Weld
  */
 function computed_field_field_weight_of_weld_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
-  weldata_wce_calculator($entity_type, $entity);
+  weldata_test_calculator($entity_type, $entity);
   $entity_field[0]['value'] = $GLOBALS['result']['weight_of_weld'];
 }
 function computed_field_field_weight_of_filler_required_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
