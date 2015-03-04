@@ -3,16 +3,5 @@ description = Performs Weld Cost Estimation Calculations
 core = 7.x
 package = Weldata
 dependencies[] = weldata
-; Calculators
-files[] = calculators/weldata_wce.compound_vee.inc
-files[] = calculators/weldata_wce.double_bevel_corner.inc
-files[] = calculators/weldata_wce.double_bevel_tee.inc
-files[] = calculators/weldata_wce.double_vee.inc
-files[] = calculators/weldata_wce.fillet.inc
-files[] = calculators/weldata_wce.j_groove.inc
-files[] = calculators/weldata_wce.patch_cavity.inc
-files[] = calculators/weldata_wce.pipe_clad.inc
-files[] = calculators/weldata_wce.plug.inc
-files[] = calculators/weldata_wce.single_bevel.inc
-files[] = calculators/weldata_wce.single_vee.inc
-files[] = calculators/weldata_wce.slot.inc
+; Files
+files[] = weldata_wce_calculator.php

@@ -147,13 +147,8 @@ function weldata_wce_calculator($entity_type, $entity){
   return $GLOBALS['result'];
 }
 
-function weldata_test_calculator($entity_type, $entity){
-	
-	$test = $entity->field_labour_rate[LANGUAGE_NONE][0]['value'];
-
-  var_dump($test);
-
-  $GLOBALS['result'] = array(
+/*function weldata_test_calculator($entity_type, $entity){
+   $GLOBALS['result'] = array(
     'unit' => 'imperial',
     'weight_of_weld' => 10,
     'weight_of_filler_required' => 20,
@@ -166,9 +161,8 @@ function weldata_test_calculator($entity_type, $entity){
     'total_cost' => 90,
   );
   return $GLOBALS['result'];
-
 }
-
+*/
 /**
  *Implements Calculation for Weight of Weld
  */
