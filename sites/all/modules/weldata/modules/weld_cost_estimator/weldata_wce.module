@@ -167,7 +167,7 @@ function weldata_wce_calculator($entity_type, $entity){
  *Implements Calculation for Weight of Weld
  */
 function computed_field_field_weight_of_weld_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
-  weldata_test_calculator($entity_type, $entity);
+  weldata_wce_calculator($entity_type, $entity);
   $entity_field[0]['value'] = $GLOBALS['result']['weight_of_weld'];
 }
 function computed_field_field_weight_of_filler_required_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
