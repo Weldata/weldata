@@ -43,7 +43,15 @@ function weldata_lt_loggedinblock(){
   return l(check_plain($user->name), 'user/' . $user->uid) .' | ' . l(t('Log out'), 'user/logout');
 }
  
- 
+function weldata_get_array_value($node, $variables_array) { 
+	$field_collection = array();
+	$entity_wrapper = entity_metadata_wrapper('node', $node);
+	foreach ($entity_wrapper->$variables_array as $field_collection_wrapper) {
+	  $field_collection[] = $field_collection_wrapper->value();
+	} 
+    //print implode(", ", $field_collection);
+	return $field_collection;
+}
 
 /**
  * Implements hook_preprocess_print
@@ -51,27 +59,49 @@ function weldata_lt_loggedinblock(){
  */
 function weldata_preprocess_print(&$variables) {
   $node = $variables['node'];
-  $display = array ('label' => 'hidden');
-  if($node->type == 'pqr_wps'){
-    $variables['date'] =  field_view_field('node', $node, 'field_date',$display);
-    $variables['revision'] =  field_view_field('node', $node, 'field_revision',$display);
-    $variables['wps_used'] =  field_view_field('node', $node, 'field_wps_number',$display);
-    $variables['welding_process'] =  field_view_field('node', $node, 'field_welding_process',$display);
-    $variables['brazing_process'] =  field_view_field('node', $node, 'field_brazing_process',$display);
-    $variables['process_type'] =  field_view_field('node', $node, 'field_process_type',$display);
+  
+  if($node->type == 'wps'){
+	$entity_wrapper = entity_metadata_wrapper('node', $node);  
+	
+	//$variables['node'] = $node;
+    $variables['qualified_to'] = $entity_wrapper->field_wps_qualified_to->value();
+    $variables['date'] = $entity_wrapper->field_wps_qualified_to->value();
+    $variables[''] = $entity_wrapper->field_wps_company_name->value();
+    $variables[''] = $entity_wrapper->field_wps_revision_number->value();
 
-    //Base Metals Table
-    $variables['material_specification'] =  field_view_field('node', $node, 'field_material_specification',$display);
-    $variables['type_grade_uns'] =  field_view_field('node', $node, 'field_type_or_grade',$display);
-    $variables['thickness_test_coupon'] =  field_view_field('node', $node, 'field_thickness_of_test_coupon',$display);
-    $variables['diameter_test_coupon'] =  field_view_field('node', $node, 'field_diameter_of_test_coupon',$display);
-    $variables['maximum_pass_thickness'] =  field_view_field('node', $node, 'field_maximum_pass_thickness',$display);
-    $variables['other_base_metals'] =  field_view_field('node', $node, 'field_other_base_metal',$display);
+    // Required Documents
+    $variables[''] = $entity_wrapper->field_wps_scope_notes->value();
+    $variables[''] = $entity_wrapper->field_wps_scope->value();
+    $variables[''] = $entity_wrapper->field_wps_reference_documents->value();
 
-    //PWHT Table
-    $variables['pwht_temperature'] =  field_view_field('node', $node, 'field_temperature',$display);
-    $variables['pwht_time'] =  field_view_field('node', $node, 'field_time',$display);
-    $variables['other_pwht'] =  field_view_field('node', $node, 'field_other_pwht',$display);
+    // Joint Design
+    $variables[''] = $entity_wrapper->field_wps_joint_design->value();
+    $variables[''] = $entity_wrapper->field_wps_root_spacing->value();
+    $variables[''] = $entity_wrapper->field_wps_backing->value();
+    $variables[''] = $entity_wrapper->field_wps_backing_material->value();
+    $variables[''] = $entity_wrapper->field_wps_qualified_to->value();
+    $variables[''] = $entity_wrapper->field_wps_retainers->value();
+    $variables[''] = $entity_wrapper->field_wps_joint_design_other->value();
+    $variables[''] = $entity_wrapper->field_joint_design_image->value();
+
+
+    // Base Metals
+    $variables[''] = $entity_wrapper->field_base_material_library->value();
+    $variables[''] = $entity_wrapper->field_wps_maximum_pass_thickness->value();
+    $variables[''] = $entity_wrapper->field_wps_base_metal_other->value();
+    $variables[''] = $entity_wrapper->field_wps_thickness_parameters->value();
+    $variables[''] = $entity_wrapper->field_wps_as_welded_min->value();
+    $variables[''] = $entity_wrapper->field_wps_as_welded_max->value();
+    $variables[''] = $entity_wrapper->field_wps_joint_design_other->value();
+    $variables[''] = $entity_wrapper->field_joint_design_image->value();
+
+    
+
+
+    $variables['welding_process'] =  weldata_get_array_value($node, 'field_wps_welding_process');
+	$variables['welding_type'] = weldata_get_array_value($node, 'field_wps_welding_type');
+	
+    //$variables['other_pwht'] =  field_view_field('node', $node, 'field_other_pwht',$display);
   }
 }
 
