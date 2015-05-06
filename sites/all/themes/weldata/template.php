@@ -66,27 +66,26 @@ function weldata_preprocess_print(&$variables) {
 	//$variables['node'] = $node;
     $variables['qualified_to'] = $entity_wrapper->field_wps_qualified_to->value();
     $variables['date'] = $entity_wrapper->field_wps_qualified_to->value();
-    $variables[''] = $entity_wrapper->field_wps_company_name->value();
-    $variables[''] = $entity_wrapper->field_wps_revision_number->value();
+    $variables['company_name'] = $entity_wrapper->field_wps_company_name->value();
+    $variables['revision_number'] = $entity_wrapper->field_wps_revision_number->value();
 
     // Required Documents
-    $variables[''] = $entity_wrapper->field_wps_scope_notes->value();
-    $variables[''] = $entity_wrapper->field_wps_scope->value();
-    $variables[''] = $entity_wrapper->field_wps_reference_documents->value();
+    $variables['scope_notes'] = $entity_wrapper->field_wps_scope_notes->value();
+    $variables['scope'] = $entity_wrapper->field_wps_scope->value();
+    $variables['reference_documents'] = $entity_wrapper->field_wps_reference_documents->value();
 
     // Joint Design
-    $variables[''] = $entity_wrapper->field_wps_joint_design->value();
-    $variables[''] = $entity_wrapper->field_wps_root_spacing->value();
-    $variables[''] = $entity_wrapper->field_wps_backing->value();
-    $variables[''] = $entity_wrapper->field_wps_backing_material->value();
-    $variables[''] = $entity_wrapper->field_wps_qualified_to->value();
-    $variables[''] = $entity_wrapper->field_wps_retainers->value();
-    $variables[''] = $entity_wrapper->field_wps_joint_design_other->value();
+    $variables['joint_design_name'] = $entity_wrapper->field_wps_joint_design->value();
+    $variables['joint_root_spacing'] = $entity_wrapper->field_wps_root_spacing->value();
+    $variables['joint_backing'] = $entity_wrapper->field_wps_backing->value();
+    $variables['backing_material'] = $entity_wrapper->field_wps_backing_material->value();
+    $variables['retainers'] = $entity_wrapper->field_wps_retainers->value();
+    $variables['joint_other'] = $entity_wrapper->field_wps_joint_design_other->value();
     $variables[''] = $entity_wrapper->field_joint_design_image->value();
 
 
     // Base Metals
-    $variables[''] = $entity_wrapper->field_base_material_library->value();
+    $variables['base_material_library'] = $entity_wrapper->field_base_material_library->value();
     $variables[''] = $entity_wrapper->field_wps_maximum_pass_thickness->value();
     $variables[''] = $entity_wrapper->field_wps_base_metal_other->value();
     $variables[''] = $entity_wrapper->field_wps_thickness_parameters->value();
@@ -95,7 +94,13 @@ function weldata_preprocess_print(&$variables) {
     $variables[''] = $entity_wrapper->field_wps_joint_design_other->value();
     $variables[''] = $entity_wrapper->field_joint_design_image->value();
 
-    
+    // Filler Metal Library
+    $filler_metal_library_gtaw = $entity_wrapper->field_gtaw->value(); // Getting Field Collection Entity
+    $variables['filler1_classification'] = $filler_metal_library_gtaw->field_filler_metal_library['und'][0]['entity']->title;
+    $variables['filler1_sfa'] = $filler_metal_library_gtaw->field_filler_metal_library['und'][0]['entity']->field_fml_specification['und'][0]['value'];
+    $variables['filler1_f_number'] = $filler_metal_library_gtaw->field_filler_metal_library['und'][0]['entity']->field_fml_f_number['und'][0]['value'];
+    $variables['filler1_a_number'] = $filler_metal_library_gtaw->field_filler_metal_library['und'][0]['entity']->field_fml_a_number['und'][0]['value'];
+    $variables[''] = $filler_metal_library_gtaw->field_filler_metal_library['und'][0]['entity']->field_fml_uns['und'][0]['value'];
 
 
     $variables['welding_process'] =  weldata_get_array_value($node, 'field_wps_welding_process');
