@@ -85,14 +85,14 @@ function weldata_preprocess_print(&$variables) {
 
 
     // Base Metals
-    $variables['base_material_library'] = $entity_wrapper->field_base_material_library->value();
+   /* $variables['base_material_library'] = $entity_wrapper->field_base_material_library->value();
     $variables[''] = $entity_wrapper->field_wps_maximum_pass_thickness->value();
     $variables[''] = $entity_wrapper->field_wps_base_metal_other->value();
     $variables[''] = $entity_wrapper->field_wps_thickness_parameters->value();
     $variables[''] = $entity_wrapper->field_wps_as_welded_min->value();
     $variables[''] = $entity_wrapper->field_wps_as_welded_max->value();
     $variables[''] = $entity_wrapper->field_wps_joint_design_other->value();
-    $variables[''] = $entity_wrapper->field_joint_design_image->value();
+    $variables[''] = $entity_wrapper->field_joint_design_image->value(); */
 
     // Filler Metal Library
     $filler_metal_library_gtaw = $entity_wrapper->field_gtaw->value(); // Getting Field Collection Entity
