@@ -32,6 +32,7 @@
   stylesheets[all][] = css/print.css
   stylesheets[all][] = color/colors.css
   stylesheets[all][] = css/weldata_theme.css
+  stylesheets[all][] = css/weldata_theme_forms.css
   stylesheets[all][] = css/weldata_theme_footer.css
   stylesheets[all][] = css/weldata_theme_login_box.css
 
