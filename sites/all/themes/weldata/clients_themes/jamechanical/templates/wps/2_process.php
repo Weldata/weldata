@@ -69,18 +69,20 @@ div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;
     <td bgcolor="#f2f2f2" class="Data">Joint</td>
     <td colspan="3" class="Data"><div align="center"><?php print $joint ; ?> </div></td>
   </tr>
-</table>
+</table><br>
 <div class="BlockHeading">WELDING PROCESSES (QW-401)</div>
 <table width="100%" border="1" cellspacing="0" cellpadding="2" style="border-collapse:collapse">
   <tr>
-    <td width="17%" bgcolor="#f2f2f2" class="Data">Welding Process</td>
-    <td class="Data"><div align="center"><?php print $welding_process ; ?> </div></td>
+    <td width="17%" height="10" bgcolor="#f2f2f2" class="Data">Welding Process</td>
+    <td width="39%" class="Data"><div align="center">GTAW</div></td>
+    <td width="44%" class="Data"><div align="center">SMAW</div></td>
   </tr>
   <tr>
-    <td bgcolor="#f2f2f2" class="Data">Type</td>
-    <td class="Data"><div align="center"><?php print $Type ; ?> </div></td>
+    <td height="10" bgcolor="#f2f2f2" class="Data">Type</td>
+    <td class="Data"><div align="center"><?php print $type_gtaw ; ?></div></td>
+    <td class="Data"><div align="center"><?php print $type_smaw ; ?></div></td>
   </tr>
-</table>
+</table><br>
 <div class="BlockHeading">
   <div align="left">BASE METALS (QW-403)......................................................................................................................THICKNESS RANGE QUALIFIED in.</div>
 </div>
@@ -138,7 +140,7 @@ div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;
     <td class="Data"><div align="center"><?php print $diameter_minimum ; ?> </div></td>
     <td class="Data"><div align="center"><?php print $diameter_maximum ; ?> </div></td>
   </tr>
-</table>
+</table><br>
 <div class="BlockHeading">
   <div align="left">FILLER METALS  (QW-404)...................................................................................................................THICKNESS RANGE QUALIFIED in.</div>
 </div>
@@ -155,91 +157,96 @@ div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;
     <td colspan="2" bgcolor="#f2f2f2" class="Data"><div align="center">With PWHT</div></td>
   </tr>
   <tr>
-    <td width="10%" bgcolor="#f2f2f2" class="Data"><div align="center">Min.</div></td>
+    <td width="10%" height="18" bgcolor="#f2f2f2" class="Data"><div align="center">Min.</div></td>
     <td width="9%" bgcolor="#f2f2f2" class="Data"><div align="center">Max.</div></td>
   </tr>
   <tr>
-    <td bgcolor="#f2f2f2" class="Data">Process-1</td>
-    <td class="Data"><div align="center"><?php print $filler1_sfa ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $filler1_classification ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $filler1_f_number ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $filler1_a_number ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $filler1_chemical_analysis_or_trade_name ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $filler1_size ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $filler1_product_form_type ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $filler1_minimum ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $filler_maximum ; ?> </div></td>
+    <td bgcolor="#f2f2f2" class="Data">GTAW</td>
+    <td class="Data"><div align="center"><?php print $gtaw_filler1_sfa ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $gtaw_filler1_classification ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $gtaw_filler1_f_number ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $gtaw_filler1_a_number ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $gtaw_filler1_chemical_analysis_or_trade_name ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $gtaw_filler1_size ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $gtaw_filler1_product_form_type ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $gtaw_filler1_minimum ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $gtaw_filler_maximum ; ?> </div></td>
+  </tr>
+  <tr>
+    <td bgcolor="#f2f2f2" class="Data">SMAW</td>
+    <td class="Data"><div align="center"><?php print $smaw_filler1_sfa ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $smaw_filler1_classification ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $smaw_filler1_f_number ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $smaw_filler1_a_number ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $smaw_filler1_chemical_analysis_or_trade_name ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $smaw_filler1_size ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $smaw_filler1_product_form_type ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $smaw_filler1_minimum ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $smaw_filler_maximum ; ?> </div></td>
   </tr>
   <tr>
     <td bgcolor="#f2f2f2" class="Data">Cons. Insert</td>
-    <td class="Data"><div align="center"><?php print $consumable_insert_SFA ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $consumable_insert_sfa ; ?> </div></td>
     <td class="Data"><div align="center"><?php print $consumable_insert_classification ; ?> </div></td>
     <td class="Data"><div align="center"><?php print $consumable_insert_f_number ; ?> </div></td>
     <td class="Data"><div align="center"><?php print $consumable_insert_a_number ; ?> </div></td>
     <td class="Data"><div align="center"><?php print $consumable_insert_chemical ; ?> </div></td>
     <td class="Data"><div align="center"><?php print $consumable_insert_size ; ?> </div></td>
     <td class="Data"><div align="center"><?php print $consumable_insert_productform ; ?> </div></td>
-    <td colspan="2" class="Data"><div align="center"></div></td>
+    <td colspan="2" class="Data"><div align="center"></div>      <div align="center"></div></td>
   </tr>
-  <tr>
-    <td bgcolor="#f2f2f2" class="Data">Flux</td>
-    <td class="Data"><div align="center"><?php print $flux_sfa ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $flux_classification ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $flux_f_number ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $flux_a_number ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $flux_chemical ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $flux_size ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $flux_productform ; ?> </div></td>
-    <td colspan="2" class="Data"><div align="center"></div></td>
-  </tr>
-  <tr>
-    <td bgcolor="#f2f2f2" class="Data">Suppl. Filler</td>
-    <td class="Data"><div align="center"><?php print $suppl_flux_sfa ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $suppl_flux_classification ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $suppl_flux_f_number ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $suppl_flux_a_number ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $suppl_flux_chemical ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $suppl_flux_size ; ?> </div></td>
-    <td class="Data"><div align="center"><?php print $suppl_flux_productform ; ?> </div></td>
-    <td bgcolor="#f2f2f2" class="Data"><div align="center">Volume (ft<sup>3</sup>)</div></td>
-    <td class="Data"><div align="center"><?php print $suppl_flux_volume ; ?> </div></td>
-  </tr>
-</table>
+</table><br>
 <div class="BlockHeading">
   <div align="left">POSITION   (QW-405)................................................................................................................................................PREHEAT (QW-406)</div>
 </div>
 <table width="100%" border="1" cellspacing="0" cellpadding="2" style="border-collapse:collapse">
   <tr>
-    <td width="14%"  bgcolor="#f2f2f2" class="Data">Position of Groove</td>
-    <td class="Data"><div align="center"><?php print $position_of_groove ; ?> </div></td>
-    <td width="18%" bgcolor="#f2f2f2" class="Data">Preheat Temp. (Min.)(°F)</td>
-    <td width="32%" class="Data"><div align="center"><?php print $preheat_temp ; ?> </div></td>
+    <td class="Data">Processes &gt;</td>
+    <td bgcolor="#f2f2f2" class="Data"><div align="center">GTAW</div></td>
+    <td bgcolor="#f2f2f2" class="Data"><div align="center">SMAW</div></td>
+    <td class="Data">Processes &gt;</td>
+    <td bgcolor="#f2f2f2" class="Data"><div align="center">GTAW</div></td>
+    <td bgcolor="#f2f2f2" class="Data"><div align="center">SMAW</div></td>
+  </tr>
+  <tr>
+    <td width="16%"  bgcolor="#f2f2f2" class="Data">Position of Groove</td>
+    <td width="17%" class="Data"><div align="center"><?php print $gtaw_position_of_groove ; ?></div></td>
+    <td width="17%" class="Data"><div align="center"><?php print $smaw_position_of_groove ; ?></div></td>
+    <td width="19%" bgcolor="#f2f2f2" class="Data">Preheat Temp. (Min.)(°F)</td>
+    <td width="17%" class="Data"><div align="center"><?php print $gtaw_preheat_temp ; ?></div></td>
+    <td width="14%" class="Data"><div align="center"><?php print $smaw_preheat_temp ; ?></div></td>
   </tr>
   <tr>
     <td bgcolor="#f2f2f2" class="Data">Welding Progreesion</td>
-    <td class="Data"><div align="center"><?php print $welding_progression ; ?> </div></td>
-    <td bgcolor="#f2f2f2" class="Data">Interpass Temp.(Max.)(°F)</td>
-    <td class="Data"><div align="center"><?php print $interpass_temp ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $gtaw_welding_progression ; ?></div></td>
+    <td class="Data"><div align="center"><?php print $smaw_welding_progression ; ?></div></td>
+    <td bgcolor="#f2f2f2" class="Data">Interpass Temp. (Max.)(°F)</td>
+    <td class="Data"><div align="center"><?php print $gtaw_interpass_temp ; ?></div></td>
+    <td class="Data"><div align="center"><?php print $smaw_interpass_temp ; ?></div></td>
   </tr>
   <tr>
     <td bgcolor="#f2f2f2" class="Data">Position of Fillet</td>
-    <td class="Data"><div align="center"><?php print $position_fillet ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $gtaw_position_fillet ; ?></div></td>
+    <td class="Data"><div align="center"><?php print $smaw_position_fillet ; ?></div></td>
     <td bgcolor="#f2f2f2" class="Data">Preheat Maintenance</td>
-    <td class="Data"><div align="center"><?php print $preheat_maintenance ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $gtaw_preheat_maintenance ; ?></div></td>
+    <td class="Data"><div align="center"><?php print $smaw_preheat_maintenance ; ?></div></td>
   </tr>
   <tr>
     <td bgcolor="#f2f2f2" class="Data">Other</td>
-    <td class="Data"><div align="center"><?php print $position_other ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $gtaw_position_other ; ?></div></td>
+    <td class="Data"><div align="center"><?php print $smaw_position_other ; ?></div></td>
     <td bgcolor="#f2f2f2" class="Data">Other</td>
-    <td class="Data"><div align="center"><?php print $preheat_other ; ?> </div></td>
+    <td class="Data"><div align="center"><?php print $gtaw_preheat_other ; ?></div></td>
+    <td class="Data"><div align="center"><?php print $smaw_preheat_other ; ?></div></td>
   </tr>
-</table>
+</table><br>
 <div class="BlockHeading">
   <div align="left">POSTWELD HEAT TREATMENT (QW-407)..................................................................................................................GAS (QW-408)</div>
 </div>
 <table width="100%" border="1" cellspacing="0" cellpadding="2" style="border-collapse:collapse">
   <tr>
-    <td width="14%" bgcolor="#f2f2f2" class="Data">Temp. Range(°F)</td>
+    <td width="16%" bgcolor="#f2f2f2" class="Data">Temp. Range(°F)</td>
     <td colspan="3" class="Data"><div align="center"><?php print $pwht_temp_range ; ?> </div></td>
     <td width="18%" bgcolor="#f2f2f2" class="Data"><div align="center">Type</div></td>
     <td width="18%" bgcolor="#f2f2f2" class="Data"><div align="center">Gas Mixture</div></td>
@@ -254,9 +261,9 @@ div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;
   </tr>
   <tr>
     <td bgcolor="#f2f2f2" class="Data">Heating Rate(°F/hr)</td>
-    <td width="7%" class="Data"><div align="center"><?php print $pwht_heating_rate ; ?> </div></td>
-    <td width="5%" bgcolor="#f2f2f2" class="Data"><div align="center">Type</div></td>
-    <td class="Data"><div align="center"><?php print $pwht_heating_type ; ?> </div></td>
+    <td width="6%" class="Data"><div align="center"><?php print $pwht_heating_rate ; ?> </div></td>
+    <td width="6%" bgcolor="#f2f2f2" class="Data"><div align="center">Type</div></td>
+    <td width="22%" class="Data"><div align="center"><?php print $pwht_heating_type ; ?> </div></td>
     <td bgcolor="#f2f2f2" class="Data">Trailing Gas</td>
     <td class="Data"><div align="center"><?php print $trailinggas_mixture ; ?> </div></td>
     <td class="Data"><div align="center"><?php print $trailinggas_flow_rate ; ?> </div></td>
@@ -277,60 +284,77 @@ div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;
     <td class="Data"><div align="center"><?php print $gas_other_mixture ; ?> </div></td>
     <td class="Data"><div align="center"><?php print $gas_other_flow_rate ; ?> </div></td>
   </tr>
-</table>
+</table><br>
 <div class="BlockHeading">
   <div align="left">ELECTRICAL CHARACTERISTICS (QW-409)</div>
 </div>
-<table width="100%" border="1" cellspacing="0" cellpadding="2" style="border-collapse:collapse">
+<table width="100%" height="110" border="1" cellpadding="2" cellspacing="0" style="border-collapse:collapse">
   <tr>
-    <td width="14%" bgcolor="#f2f2f2" class="Data">Current Polarity</td>
-    <td class="Data"><div align="center"><?php print $current_polarity ; ?> </div></td>
-    <td width="18%" bgcolor="#f2f2f2" class="Data">Tungsten Type</td>
-    <td width="18%" class="Data"><div align="center"><?php print $tungsten_type ; ?> </div></td>
-    <td width="8%" bgcolor="#f2f2f2" class="Data"><div align="center">Size (in.)</div></td>
-    <td width="6%" class="Data"><div align="center"><?php print $tungsten_size ; ?> </div></td>
+    <td height="10" class="Data">Processes &gt;</td>
+    <td height="10" colspan="3" bgcolor="#f2f2f2" class="Data"><div align="center">GTAW</div></td>
+    <td height="10" bgcolor="#f2f2f2" class="Data"><div align="center">SMAW</div></td>
   </tr>
   <tr>
-    <td bgcolor="#f2f2f2" class="Data">Ampere Range</td>
-    <td class="Data"><div align="center"><?php print $ampere_range ; ?> </div></td>
-    <td bgcolor="#f2f2f2" class="Data">Transfer Mode</td>
-    <td colspan="3" class="Data"><div align="center"><?php print $transfer_mode ; ?> </div></td>
+    <td width="21%" height="10" bgcolor="#f2f2f2" class="Data">Current Polarity</td>
+    <td height="10" colspan="3" class="Data"><div align="center"><?php print $gtaw_current_polarity ; ?></div></td>
+    <td width="41%" height="10" class="Data"><div align="center"><?php print $smaw_current_polarity ; ?></div></td>
   </tr>
   <tr>
-    <td bgcolor="#f2f2f2" class="Data">Voltage Range</td>
-    <td class="Data"><div align="center"><?php print $voltage_range ; ?> </div></td>
-    <td bgcolor="#f2f2f2" class="Data">Heat input(Max.) (kJ/in.)</td>
-    <td colspan="3" class="Data"><div align="center"><?php print $heat_input_max ; ?> </div></td>
+    <td height="10" bgcolor="#f2f2f2" class="Data">Ampere Range</td>
+    <td height="10" colspan="3" class="Data"><div align="center"><?php print $gtaw_ampere_range ; ?></div></td>
+    <td height="10" class="Data"><div align="center"><?php print $smaw_ampere_range ; ?></div></td>
   </tr>
   <tr>
-    <td bgcolor="#f2f2f2" class="Data">Pulsing Current</td>
-    <td class="Data"><div align="center"><?php print $pulsing_current ; ?> </div></td>
-    <td bgcolor="#f2f2f2" class="Data">Wire Feed Speed (in./min)</td>
-    <td colspan="3" class="Data"><div align="center"><?php print $wire_feed_speed ; ?> </div></td>
+    <td height="10" bgcolor="#f2f2f2" class="Data">Voltage Range</td>
+    <td height="10" colspan="3" class="Data"><div align="center"><?php print $gtaw_voltage_range ; ?></div></td>
+    <td height="10" class="Data"><div align="center"><?php print $smaw_voltage_range ; ?></div></td>
   </tr>
   <tr>
-    <td bgcolor="#f2f2f2" class="Data">Other</td>
-    <td colspan="5" class="Data"><div align="center"><?php print $electrical_other ; ?> </div></td>
+    <td height="10" bgcolor="#f2f2f2" class="Data">Pulsing Current</td>
+    <td height="10" colspan="3" class="Data"><div align="center"><?php print $gtaw_pulsing_current ; ?></div></td>
+    <td height="10" class="Data"><div align="center"><?php print $smaw_pulsing_current ; ?></div></td>
+  </tr>
+  <tr>
+    <td height="10" bgcolor="#f2f2f2" class="Data">Travel Speed (in./min)</td>
+    <td height="10" colspan="3" class="Data"><div align="center"><?php print $gtaw_travel_speed ; ?></div></td>
+    <td height="10" class="Data"><div align="center"><?php print $smaw_travel_speed ; ?></div></td>
+  </tr>
+  <tr>
+    <td height="10" bgcolor="#f2f2f2" class="Data">Wire Feed Type</td>
+    <td height="10" colspan="3" class="Data"><div align="center"><?php print $gtaw_wire_feed_type ; ?></div></td>
+    <td class="Data"><div align="center">--</div></td>
+  </tr>
+  <tr>
+    <td height="10" bgcolor="#f2f2f2" class="Data">Wire Feed Speed (in./min)</td>
+    <td height="10" colspan="3" class="Data"><div align="center"><?php print $gtaw_wire_feed_speed ; ?></div></td>
+    <td class="Data"><div align="center">--</div></td>
+  </tr>
+  <tr>
+    <td height="10" bgcolor="#f2f2f2" class="Data">Heat input (Max.) (kJ/in.)</td>
+    <td height="10" colspan="3" class="Data"><div align="center"><?php print $gtaw_heat_input_max ; ?></div></td>
+    <td height="10" class="Data"><div align="center"><?php print $smaw_heat_input_max ; ?></div></td>
+  </tr>
+  <tr>
+    <td width="21%" height="10" bgcolor="#f2f2f2" class="Data">Tungsten Type</td>
+    <td width="23%" height="10" class="Data"><div align="center"><?php print $gtaw_tungsten_type ; ?></div></td>
+    <td width="9%" height="10" bgcolor="#f2f2f2" class="Data"><div align="center">Size (in.)</div></td>
+    <td width="6%" height="10" class="Data"><div align="center"><?php print $gtaw_tungsten_size ; ?></div></td>
+    <td height="10" class="Data"><div align="center">--</div></td>
+  </tr>
+  <tr>
+    <td height="10" bgcolor="#f2f2f2" class="Data">Other</td>
+    <td height="10" colspan="3" class="Data"><div align="center"><?php print $gtaw_electrical_other ; ?></div></td>
+    <td height="10" class="Data"><div align="center"><?php print $smaw_electrical_other ; ?></div></td>
   </tr>
 </table>
-<p><br>
-  <br>
-  <br>
-  <br>
-  <br>
-</p>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-<p><br>
-  <br>
-</p>
+
 <table width=100% cellspacing=0 cellpadding=2 frame="hsides" rules="none" bordercolor="Black" style="border-width:1pt;">
 			<tr>
 				<td width=30% height="14" align="left"><div class="Footer">www.weldata.com</div></td>
 			  <td width=70% align="right"><div class="Footer">(c)Copyright 2015 WELDATA SOFTWARE. All rights reserved worldwide</div></td>
-		  </tr>
-		</table>
-<div style="page-break-after:always"></div>
+  </tr>
+</table><div style="page-break-after:always"></div>
 <table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse">
   <tr>
     <td width="15%" rowspan="3"><div align="center"><img src="logo.jpg" width="76" height="68"  alt=""/></div></td>
@@ -361,38 +385,46 @@ div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;
 </div>
 <table width="100%" border="1" cellspacing="0" cellpadding="2" style="border-collapse:collapse">
   <tr>
-    <td width="21%" bgcolor="#f2f2f2" class="Data">String or Wave</td>
-    <td width="29%" class="Data"><div align="center"><?php print $string_wave ; ?></div></td>
-    <td width="25%" bgcolor="#f2f2f2" class="Data">Contact Tube to Work Distance (in.)</td>
-    <td width="25%" class="Data"><div align="center"><?php print $contact_tube_to_work_distance ; ?></div></td>
+    <td class="Data">Processes &gt;</td>
+    <td bgcolor="#f2f2f2" class="Data"><div align="center">GTAW</div></td>
+    <td bgcolor="#f2f2f2" class="Data"><div align="center">SMAW</div></td>
+    <td width="26%" bgcolor="#f2f2f2" class="Data"> Initial &amp; Interpass Cleaning</td>
+    <td class="Data"><div align="center"><?php print $initial_interpass_cleaning ; ?></div></td>
+  </tr>
+  <tr>
+    <td width="27%" bgcolor="#f2f2f2" class="Data">String or Weave</td>
+    <td width="15%" class="Data"><div align="center"><?php print $gtaw_string_weave ; ?></div></td>
+    <td width="14%" class="Data"><div align="center"><?php print $smaw_string_weave ; ?></div></td>
+    <td bgcolor="#f2f2f2" class="Data">Methode of Back Gauging</td>
+    <td width="18%" class="Data"><div align="center"><?php print $methode_back_gouging ; ?></div></td>
   </tr>
   <tr>
     <td bgcolor="#f2f2f2" class="Data">Orifice/Gas Cup Size</td>
-    <td class="Data"><div align="center"><?php print $orifice_gas_cup_size ; ?></div></td>
-    <td bgcolor="#f2f2f2" class="Data">Multi/Single Pass Per Side</td>
-    <td class="Data"><div align="center"><?php print $multi_single_pass ; ?></div></td>
-  </tr>
-  <tr>
-    <td bgcolor="#f2f2f2" class="Data">Initial &amp; Interpass Cleaning</td>
-    <td class="Data"><div align="center"><?php print $initia_interpass_cleaning ; ?></div></td>
-    <td bgcolor="#f2f2f2" class="Data">Multiple/Single Electrode</td>
-    <td class="Data"><div align="center"><?php print $multi_single_electrode ; ?></div></td>
-  </tr>
-  <tr>
-    <td bgcolor="#f2f2f2" class="Data">Methode of Back Gouging</td>
-    <td class="Data"><div align="center"><?php print $methode_back_gouging ; ?></div></td>
+    <td class="Data"><div align="center"><?php print $gtaw_orifice_gas_cup_size ; ?></div></td>
+    <td class="Data"><div align="center"><?php print $smaw_orifice_gas_cup_size ; ?></div></td>
     <td bgcolor="#f2f2f2" class="Data">Peening</td>
     <td class="Data"><div align="center"><?php print $peening ; ?></div></td>
   </tr>
   <tr>
-    <td bgcolor="#f2f2f2" class="Data">Oscillation</td>
-    <td class="Data"><div align="center"><?php print $oscillation ; ?></div></td>
+    <td bgcolor="#f2f2f2" class="Data">Multi/Single Pass Per Side</td>
+    <td class="Data"><div align="center"><?php print $gtaw_multi_single_pass ; ?></div></td>
+    <td class="Data"><div align="center"><?php print $smaw_multi_single_pass ; ?></div></td>
     <td bgcolor="#f2f2f2" class="Data">Surface Preparation </td>
     <td class="Data"><div align="center"><?php print $surface_cleaning ; ?></div></td>
   </tr>
   <tr>
+    <td bgcolor="#f2f2f2" class="Data">Multiple/Single Electrode</td>
+    <td class="Data"><div align="center"><?php print $gtaw_multi_single_electrode ; ?></div></td>
+    <td class="Data"><div align="center"><?php print $smaw_multi_single_electrode ; ?></div></td>
+    <td bgcolor="#f2f2f2" class="Data">Maximum Pass thickness (in.)SMAW</td>
+    <td class="Data"><div align="center"><?php print $maximum_pass_thickness ; ?></div></td>
+  </tr>
+  <tr>
+    <td bgcolor="#f2f2f2" class="Data">Oscillation</td>
+    <td class="Data"><div align="center"><?php print $gtaw_oscillation ; ?></div></td>
+    <td class="Data"><div align="center"><?php print $smaw_oscillation ; ?></div></td>
     <td bgcolor="#f2f2f2" class="Data">Other</td>
-    <td colspan="3" class="Data">&nbsp;</td>
+    <td class="Data"><div align="center"><?php print $technique_other ; ?></div></td>
   </tr>
 </table>
 <div class="BlockHeading">
@@ -444,7 +476,6 @@ div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;
   </tr>
 </table>
 <br>
-<br>
 <table width=100% cellspacing=0 cellpadding=2 frame="hsides" rules="none" bordercolor="Black" style="border-width:1pt;">
 			<tr>
 				<td width=30% height="14" align="left"><div class="Footer">www.weldata.com</div></td>
@@ -458,7 +489,7 @@ div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;
     <td width="85%"> <div align="center" class="CName">J&amp;A MECHANICAL CONTRACTORS INC.</div></td>
   </tr>
   <tr>
-    <td height="21"><div align="center" class="CAddress"><span itemprop="streetAddress">5814 State Route 104</span>,<span itemprop="addressLocality">Oswego</span>, <span itemprop="addressRegion">NY</span> <span itemprop="postalCode">13126</span>,USA<br>
+    <td height="21"><div align="center" class="CAddress"><span itemprop="streetAddress">5814 State Route 104</span>,<span itemprop="addressLocality">Oswego</span>, <span itemprop="addressRegion">NY</span> <span itemprop="postalCode">13126</span>,USA<br>
     </div></td>
   </tr>
   <tr>
@@ -513,84 +544,6 @@ div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;
     <td class="Data"><div align="center"><?php print $volts_range_array ; ?></div></td>
     <td class="Data"><div align="center"><?php print $travel_speed_array ; ?></div></td>
     <td class="Data"><div align="center"><?php print $max_bead_width_array ; ?></div></td>
-  </tr>
-  <tr>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-  </tr>
-  <tr>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-  </tr>
-  <tr>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-  </tr>
-  <tr>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-  </tr>
-  <tr>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-  </tr>
-  <tr>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
   </tr>
 </table>
 <p>&nbsp;</p>
