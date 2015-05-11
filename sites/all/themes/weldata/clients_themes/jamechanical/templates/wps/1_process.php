@@ -59,7 +59,7 @@ div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;
   </tr>
   <tr>
     <td bgcolor="#f2f2f2" class="Data">Reference Docs.</td>
-    <td colspan="3" class="Data"><div align="center"><?php print $reference_documents ; ?> </div></td>
+    <td colspan="3" class="Data"><div align="center"><?php print $reference_documents; ?> </div></td>
   </tr>
   <tr>
     <td bgcolor="#f2f2f2" class="Data">Scope</td>
