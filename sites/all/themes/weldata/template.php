@@ -64,8 +64,8 @@ function weldata_preprocess_print(&$variables) {
 	$entity_wrapper = entity_metadata_wrapper('node', $node);  
 	
 	//$variables['node'] = $node;
-    $variables['qualified_to'] = $entity_wrapper->field_wps_qualified_to->value();
-    $variables['date'] = $entity_wrapper->field_wps_qualified_to->value();
+    //$variables['qualified_to'] = $entity_wrapper->field_wps_qualified_to->value();
+    //$variables['date'] = $entity_wrapper->field_date->value();
     $variables['company_name'] = $entity_wrapper->field_wps_company_name->value();
     $variables['revision_number'] = $entity_wrapper->field_wps_revision_number->value();
 
@@ -85,28 +85,46 @@ function weldata_preprocess_print(&$variables) {
 
 
     // Base Metals
-   $variables['base_material_library'] = $entity_wrapper->field_base_material_library->value();
+       //Base Metal Library
+    $base_material_library = $entity_wrapper->field_base_material_library->value();
+    $variables['metal1_p_number'] = $base_material_library[0]->field_bml_p['und'][0]['value'];
+    $variables['metal1_group_number'] = $base_material_library[0]->field_bml_g['und'][0]['value'];
+    $variables['metal1_specification'] = $base_material_library[0]->title;
+    $variables['metal1_grade'] = $base_material_library[0]->field_bml_grade['und'][0]['value'];
+    $variables['metal1_uns'] = $base_material_library[0]->field_bml_uns['und'][0]['value'];
+
+    $variables['welded_to_p_number'] = $base_material_library[1]->field_bml_p['und'][0]['value'];
+    $variables['welded_to_group_number'] = $base_material_library[1]->field_bml_g['und'][0]['value'];
+    $variables['welded_to_specification'] = $base_material_library[1]->title;
+    $variables['welded_to_grade'] = $base_material_library[1]->field_bml_grade['und'][0]['value'];
+    $variables['welded_to_uns'] = $base_material_library[1]->field_bml_uns['und'][0]['value'];
+
+       //Base Metal Details
     $variables['base_maximum_pass_thickness'] = $entity_wrapper->field_wps_maximum_pass_thickness->value();
     $variables['base_metal_other'] = $entity_wrapper->field_wps_base_metal_other->value();
-    $variables[''] = $entity_wrapper->field_wps_thickness_parameters->value();
-    $variables[''] = $entity_wrapper->field_wps_pwht_parameters->value();
-    $variables[''] = $entity_wrapper->field_wps_pwht_minimum->value();
-    $variables[''] = $entity_wrapper->field_wps_pwht_maximum->value();
-    $variables[''] = $entity_wrapper->field_wps_diameter_type->value();
+    $variables['pwht_minimum'] = weldata_get_array_value($node, 'field_wps_pwht_minimum');
+    $variables['pwht_maximum'] = weldata_get_array_value($node, 'field_wps_pwht_maximum');
+       //Thickness Range Qualified
+    $variables['diameter_type'] = $entity_wrapper->field_wps_diameter_type->value();
     $variables['diameter_minimum'] = $entity_wrapper->field_wps_minimum_diameter->value();
     $variables['diameter_maximum'] = $entity_wrapper->field_wps_maximum_diameter->value();
 
-    // Filler Metal Library
-    $filler_metal_library_gtaw = $entity_wrapper->field_gtaw->value(); // Getting Field Collection Entity
-    $variables['filler1_classification'] = $filler_metal_library_gtaw->field_filler_metal_library['und'][0]['entity']->title;
-    $variables['filler1_sfa'] = $filler_metal_library_gtaw->field_filler_metal_library['und'][0]['entity']->field_fml_specification['und'][0]['value'];
-    $variables['filler1_f_number'] = $filler_metal_library_gtaw->field_filler_metal_library['und'][0]['entity']->field_fml_f_number['und'][0]['value'];
-    $variables['filler1_a_number'] = $filler_metal_library_gtaw->field_filler_metal_library['und'][0]['entity']->field_fml_a_number['und'][0]['value'];
-    $variables[''] = $filler_metal_library_gtaw->field_filler_metal_library['und'][0]['entity']->field_fml_uns['und'][0]['value'];
+    // Filler Metal
+      // Filler Metal Library
+    $gtaw = $entity_wrapper->field_gtaw->value(); // Getting Field Collection Entity
+    $variables['filler1_classification'] = $gtaw->field_filler_metal_library['und'][0]['entity']->title;
+    $variables['filler1_sfa'] = $gtaw->field_filler_metal_library['und'][0]['entity']->field_fml_specification['und'][0]['value'];
+    $variables['filler1_f_number'] = $gtaw->field_filler_metal_library['und'][0]['entity']->field_fml_f_number['und'][0]['value'];
+    $variables['filler1_a_number'] = $gtaw->field_filler_metal_library['und'][0]['entity']->field_fml_a_number['und'][0]['value'];
+      // Filler Metal Details
+    $variables['filler1_chemical_analysis_or_trade_name'] = $gtaw->field_chemical_analysis['und'][0]['value'];
+    $variables['filler1_product_form_type'] = $gtaw->field_product_form_type['und'][0]['value'];
+    $variables['filler1_minimum'] = $gtaw->field_thickness_range_min['und'][0]['value'];
+    $variables['filler_maximum'] = $gtaw->field_thickness_range_max['und'][0]['value'];
 
     
-    $variables['welding_process'] =  weldata_get_array_value($node, 'field_wps_welding_process');
-	  $variables['welding_type'] = weldata_get_array_value($node, 'field_wps_welding_type');
+    //$variables['welding_process'] =  weldata_get_array_value($node, 'field_wps_welding_process');
+	  //$variables['welding_type'] = weldata_get_array_value($node, 'field_wps_welding_type');
 
 
     $variables[''] = $entity_wrapper->field_joint_design_image->value();
