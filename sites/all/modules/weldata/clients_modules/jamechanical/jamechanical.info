@@ -1,0 +1,5 @@
+name = J&A Mechanical (Client)
+description = J&A Mechanical Client Module
+core = 7.x
+package = Weldata
+dependencies[] = weldata

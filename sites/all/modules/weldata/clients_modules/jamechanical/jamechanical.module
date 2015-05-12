@@ -1,0 +1,27 @@
+<?php
+
+/**
+* Implements hook_form_FORM_ID_alter
+* Used to hide form elements in WPS
+*/
+function jamechanical_form_wps_node_form_alter(&$form, &$form_state){
+	//$form['actions']['preview']['#value'] = "Calculate";
+    $form['field_gmaw']['#access']  = FALSE;
+    $form['field_saw']['#access']  = FALSE;
+    $form['field_paw']['#access']  = FALSE;
+    $form['field_esw']['#access']  = FALSE;
+    $form['field_fcaw']['#access']  = FALSE;
+    $form['field_egw']['#access']  = FALSE;
+    $form['field_ofw']['#access']  = FALSE;
+}
+
+/**
+* Implements hook_form_FORM_ID_alter
+* Used to hide form elements in PQR
+*/
+function jamechanical_form_pqr_node_form_alter(&$form, &$form_state){
+	dpm($form['field_gtaw']);
+	//$form['actions']['preview']['#value'] = "Calculate";
+    $form['field_dummy_4']['#access']  = FALSE;
+    $form['field_dummy_2']['#access']  = FALSE;
+}

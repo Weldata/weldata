@@ -19,10 +19,7 @@
 	
 }
 div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;}
-	
-@media screen{
-}
-    </style>
+</style>
 </head>
 
 <body class="BlockHeading">
@@ -479,112 +476,25 @@ div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;
     <td width="7%" bgcolor="#f2f2f2" class="Data"><div align="center">Amps Range</div></td>
     <td width="9%" bgcolor="#f2f2f2" class="Data"><div align="center">Volts Range</div></td>
   </tr>
-  <tr>
-    <td height="10" class="Data"><div align="center"><?php print $weld_layers_array ; ?></div></td>
-    <td height="10" class="Data"><div align="center"><?php print $welding_process_array ; ?></div></td>
-    <td height="10" class="Data"><div align="center"><?php print $filler_metal_size_array ; ?></div></td>
-    <td class="Data"><div align="center"><?php print $filler_metal_aws_class_array ; ?></div></td>
-    <td class="Data"><div align="center"><?php print $gas_type_array ; ?></div></td>
-    <td class="Data"><div align="center"><?php print $gas_flow_rate_array ; ?></div></td>
-    <td class="Data"><div align="center"><?php print $polarity_array ; ?></div></td>
-    <td class="Data"><div align="center"><?php print $amps_range_array ; ?></div></td>
-    <td class="Data"><div align="center"><?php print $volts_range_array ; ?></div></td>
-    <td class="Data"><div align="center"><?php print $travel_speed_array ; ?></div></td>
-    <td class="Data"><div align="center"><?php print $max_bead_width_array ; ?></div></td>
+  <?php 
+  $i=0;
+  foreach($weld_layers_array as $key):
+  ?> 
+    <tr>
+    <td height="10" class="Data"><div align="center"><?php print $weld_layers_array[$i]['value']; ?></div></td>
+    <td height="10" class="Data"><div align="center"><?php print $welding_process_array[$i]['value']; ?></div></td>
+    <td height="10" class="Data"><div align="center"><?php print $filler_metal_size_array[$i]['value']; ?></div></td>
+    <td class="Data"><div align="center"><?php print $filler_metal_aws_class_array[$i]['value']; ?></div></td>
+    <td class="Data"><div align="center"><?php print $gas_type_array[$i]['value']; ?></div></td>
+    <td class="Data"><div align="center"><?php print $gas_flow_rate_array[$i]['value']; ?></div></td>
+    <td class="Data"><div align="center"><?php print $polarity_array[$i]['value']; ?></div></td>
+    <td class="Data"><div align="center"><?php print $amps_range_array[$i]['value']; ?></div></td>
+    <td class="Data"><div align="center"><?php print $volts_range_array[$i]['value']; ?></div></td>
+    <td class="Data"><div align="center"><?php print $travel_speed_array[$i]['value']; ?></div></td>
+    <td class="Data"><div align="center"><?php print $max_bead_width_array[$i]['value']; ?></div></td>
   </tr>
-  <tr>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-  </tr>
-  <tr>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-  </tr>
-  <tr>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-  </tr>
-  <tr>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-  </tr>
-  <tr>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-  </tr>
-  <tr>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td height="10" class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-    <td class="Data"><div align="center"></div></td>
-  </tr>
+  <?php $i++; endforeach; ?>
 </table>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <table width="100%" border="1" cellspacing="0" cellpadding="2" style="border-collapse:collapse">
   <tr>
     <td colspan="2" bgcolor="#f2f2f2" class="Data"><strong>PREPARED BY</strong></td>
