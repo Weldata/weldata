@@ -376,14 +376,14 @@ div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;
 </div>
 <table width="100%" border="1" cellspacing="0" cellpadding="2" style="border-collapse:collapse">
   <tr>
-    <td width="208" height="194"><div align="center"><?php print $joint_image1 ; ?></div></td>
-    <td width="208" height="194"><div align="center"><?php print $joint_image2 ; ?></div></td>
-    <td width="208"><div align="center"><?php print $joint_image3 ; ?></div></td>
+    <td width="208" height="194"><div align="center"><img src="<?php print $joint_image1 ; ?>" /></div></td>
+    <td width="208" height="194"><div align="center"><img src="<?php print $joint_image2 ; ?>" /></div></td>
+    <td width="208"><div align="center"><img src="<?php print $joint_image3 ; ?>" /></div></td>
   </tr>
   <tr>
-    <td height="194"><div align="center"><?php print $joint_image4 ; ?></div></td>
-    <td><div align="center"><?php print $joint_image5 ; ?></div></td>
-    <td><div align="center"><?php print $joint_image6 ; ?></div></td>
+    <td height="194"><div align="center"><img src="<?php print $joint_image4 ; ?>" /></div></td>
+    <td><div align="center"><img src="<?php print $joint_image5 ; ?>" /></div></td>
+    <td><div align="center"><img src="<?php print $joint_image6 ; ?>" /></div></td>
   </tr>
 </table>
 <table width="100%" border="1" cellspacing="0" cellpadding="2" style="border-collapse:collapse">

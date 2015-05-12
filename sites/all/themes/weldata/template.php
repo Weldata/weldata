@@ -232,6 +232,15 @@ function weldata_preprocess_print (&$variables) {
     $variables['approved_by_date'] = format_date($certification_date[2], $type = 'wps_pqr');
 
     $variables['note'] = $entity_wrapper->field_notes->value();
+
+    //Images
+    $images = $entity_wrapper->field_joint_design_image->value();
+    $variables['joint_image1'] = file_create_url($images[0]->field_joint_design[LANGUAGE_NONE][0]['uri']);
+    $variables['joint_image2'] = file_create_url($images[1]->field_joint_design[LANGUAGE_NONE][0]['uri']);
+    $variables['joint_image3'] = file_create_url($images[2]->field_joint_design[LANGUAGE_NONE][0]['uri']);
+    $variables['joint_image4'] = file_create_url($images[3]->field_joint_design[LANGUAGE_NONE][0]['uri']);
+    $variables['joint_image5'] = file_create_url($images[4]->field_joint_design[LANGUAGE_NONE][0]['uri']);
+    $variables['joint_image6'] = file_create_url($images[5]->field_joint_design[LANGUAGE_NONE][0]['uri']);
  
 	   
     //$variables['other_pwht'] =  field_view_field('node', $node, 'field_other_pwht',$display);
