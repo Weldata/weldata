@@ -1,0 +1,71 @@
+form div.form-type-textfield, form div.form-type-select, form div.form-type-checkboxes {
+	float: left;
+	width: 50%;
+}
+form div.field-type-entityreference, form div.field-group-multiple-table {
+	clear: both;
+}
+/*============================= Chosen Select Box Styling =============================*/
+.chosen-container-single .chosen-single {
+	height: 34px;
+	line-height: 34px;
+	font-size: 16px;
+	border-radius: 0;
+	background: #fff;
+}
+.chosen-container-active.chosen-with-drop .chosen-single {
+	background: #fff;
+}
+.chosen-container-single .chosen-single div b {
+	background-position: 0 8px;
+}
+.chosen-container-active.chosen-with-drop .chosen-single div b {
+	background-position: -18px 8px;
+}
+.chosen-container .chosen-results li.highlighted {
+	background: #e25400;
+}
+.chosen-drop {
+	scrollbar-face-color: #000000;
+	scrollbar-shadow-color: #2D2C4D;
+	scrollbar-highlight-color: #7D7E94;
+	scrollbar-3dlight-color: #7D7E94;
+	scrollbar-darkshadow-color: #2D2C4D;
+	scrollbar-track-color: #7D7E94;
+	scrollbar-arrow-color: #C1C1D1;
+}
+/*=======================================Submit Buttons======================================*/
+input.form-button, input.form-submit {
+	background: #2e2e2d;
+	outline: none;
+	border: 1px solid #d8d8d8;
+}
+input.form-button:hover, input.form-submit:hover {
+	background-color: #e25400;
+}
+input.form-button:active, input.form-submit:active {
+	background-color: #d9d9d9;
+}
+div.form-actions input[type=submit] {
+	font-weight: bold;
+	color: #fff;
+	margin: 0 auto;
+	position: relative;
+	display: block;
+	padding: 20px 2em;
+}
+input.form-submit#edit-field-file-und-0-remove-button {
+	background: none;
+	border: none;
+	color: #086782;
+}
+input.form-submit#edit-field-file-und-0-remove-button:hover {
+	color: #e25400;
+}
+.form-type-managed-file a.button.browse {
+	background: url(images/button.png) repeat-x left top transparent;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	margin: 0 5px 0 0;
+	padding: 5px 11px;
+}
