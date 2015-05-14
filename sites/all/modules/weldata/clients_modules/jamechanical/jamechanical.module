@@ -28,9 +28,21 @@ function jamechanical_form_wps_node_form_alter(&$form, &$form_state){
 * Used to hide form elements in PQR
 */
 function jamechanical_form_pqr_node_form_alter(&$form, &$form_state){
-	dpm($form['field_gtaw']);
+	//dpm($form);
 	//$form['actions']['preview']['#value'] = "Calculate";
-    $form['field_dummy_2']['#access']  = FALSE;
+    $form['revision_information']['#access'] = FALSE;
+    $node = $form_state['node'];
+    if(isset($node->nid)){
+        $form['revision_information']['#access'] = TRUE;
+        $form['revision_information']['#type'] = 'vertical_tabs';
+        $form['revision_information']['revision']['#access'] = TRUE;
+        $form['revision_information']['log']['#type'] = 'textfield';
+        $form['revision_information']['log']['#title'] = 'Revision Number';
+        $form['revision_information']['log']['#maxlength'] = 5;
+        $form['revision_information']['log']['#description'] = 'Enter your revision number';
+    }
+
+    //$form['field_dummy_2']['#access']  = FALSE;
     //GTAW Field access
     $form['field_gtaw']['und'][0]['field_thickness_range_min']['#access'] = FALSE;
     $form['field_gtaw']['und'][0]['field_thickness_range_max']['#access'] = FALSE;
@@ -39,6 +51,8 @@ function jamechanical_form_pqr_node_form_alter(&$form, &$form_state){
     //SMAW Field Access
     $form['field_smaw']['und'][0]['field_thickness_range_min']['#access'] = FALSE;
     $form['field_smaw']['und'][0]['field_thickness_range_max']['#access'] = FALSE;
+
+
 
 
 }

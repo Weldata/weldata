@@ -58,15 +58,14 @@ function weldata_get_array_value($node, $variables_array) {
  */
 function weldata_preprocess_print (&$variables) {
   $node = $variables['node'];
-  
-  if($node->type == 'wps'){
+  if($node->type == 'wps' || $node->type == 'pqr' ){
 	$entity_wrapper = entity_metadata_wrapper('node', $node);  
 	  
     $variables['wps_number'] = $node->title;  
     $variables['qualified_to'] = $entity_wrapper->field_qualified_to->value();
     $variables['date'] = format_date($entity_wrapper->field_date->value(), $type = 'wps_pqr');
-    $variables['company_name'] = $entity_wrapper->field_wps_company_name->value();
-    $variables['revision_number'] = $entity_wrapper->field_wps_revision_number->value();
+    $variables['company_name'] = $entity_wrapper->field_company_name->value();
+    //$variables['revision_number'] = $entity_wrapper->field_wps_revision_number->value();
     $variables['welding_process'] = implode(', ', weldata_get_array_value($node, 'field_welding_process'));
     $variables['Type'] = implode(', ', weldata_get_array_value($node, 'field_welding_type'));
 

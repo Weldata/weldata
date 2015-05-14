@@ -14,6 +14,6 @@
     <?php print $css; ?>
   </head>
 <body>
-<?php require_once('wps_pqr/pqr.php'); ?>
+<?php require_once('pqr/1_process.php'); ?>
 </body>
 </html>

@@ -1,0 +1,11 @@
+<?php 
+ 
+/**
+ * Implements hook_hook_info().
+ */
+function weldata_falter_hook_info() {
+  $hooks['form_alter'] = array(
+    'group' => 'form',
+  );
+  return $hooks;
+}
