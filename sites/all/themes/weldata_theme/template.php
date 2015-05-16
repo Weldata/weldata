@@ -10,7 +10,7 @@
  * Implements hook_date_combo
  * Removes Fieldset from date fields
  */
-function weldata_date_combo($variables) {
+function weldata_theme_date_combo($variables) {
   return theme('form_element', $variables);
 }
 
@@ -27,7 +27,7 @@ function weldata_date_combo($variables) {
 * Custom theme function for the login/register link.
 * Change "Register" to create an account
 */
-function weldata_lt_login_link($variables) {
+function weldata_theme_lt_login_link($variables) {
 // Only display register text if registration is allowed.
 	if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
 		return t('Log in / Create an account');
@@ -38,7 +38,7 @@ function weldata_lt_login_link($variables) {
 }
 
 // Convert username to link in logged in users.
-function weldata_lt_loggedinblock(){
+function weldata_theme_lt_loggedinblock(){
   global $user;
   return l(check_plain($user->name), 'user/' . $user->uid) .' | ' . l(t('Log out'), 'user/logout');
 }
@@ -56,13 +56,14 @@ function weldata_get_array_value($node, $variables_array) {
  * Implements hook_preprocess_print
  * Adds Variables for PQR Table
  */
-function weldata_preprocess_print (&$variables) {
+function weldata_theme_preprocess_print (&$variables) {
   $node = $variables['node'];
+  $entity_wrapper = entity_metadata_wrapper('node', $node);
+  dpm($entity_wrapper->field_joint_design_qw_402->value());
+
   if($node->type == 'wps' || $node->type == 'pqr' ){
-	$entity_wrapper = entity_metadata_wrapper('node', $node);  
-	  
-    $variables['wps_number'] = $node->title;  
-    $variables['qualified_to'] = $entity_wrapper->field_qualified_to->value();
+
+	$variables['qualified_to'] = $entity_wrapper->field_qualified_to->value();
     $variables['date'] = format_date($entity_wrapper->field_date->value(), $type = 'wps_pqr');
     $variables['company_name'] = $entity_wrapper->field_company_name->value();
     //$variables['revision_number'] = $entity_wrapper->field_wps_revision_number->value();
@@ -75,18 +76,17 @@ function weldata_preprocess_print (&$variables) {
     $variables['reference_documents'] = implode(", ",weldata_get_array_value($node, 'field_wps_reference_documents'));
 
     // Joint Design
-    $variables['joint_design_name'] = $entity_wrapper->field_wps_joint_design->value();
-    $variables['joint_root_spacing'] = $entity_wrapper->field_wps_root_spacing->value();
-    $variables['joint_backing'] = $entity_wrapper->field_wps_backing->value();
-    $variables['backing_material'] = $entity_wrapper->field_wps_backing_material->value();
-    $variables['retainers'] = $entity_wrapper->field_wps_retainers->value();
-    $variables['joint_other'] = $entity_wrapper->field_wps_joint_design_other->value();
-    $variables[''] = $entity_wrapper->field_joint_design_image->value();
-
+    $joint_design = $entity_wrapper->field_joint_design_qw_402->value(); // Field Collection
+    $variables['joint_design_name'] = $joint_design->field_joint_design_name[LANGUAGE_NONE][0]['value'];
+    $variables['joint_root_spacing'] = $joint_design->field_root_spacing[LANGUAGE_NONE][0]['value'];
+    $variables['joint_backing'] = $joint_design->field_backing[LANGUAGE_NONE][0]['value'];
+    $variables['backing_material'] = $joint_design->field_backing_material[LANGUAGE_NONE][0]['value'];
+    $variables['retainers'] = $joint_design->field_retainers[LANGUAGE_NONE][0]['value'];
+    $variables['joint_other'] = $joint_design->field_other_joint_design[LANGUAGE_NONE][0]['value'];
 
     // Base Metals
        //Base Metal Library
-    $base_material_library = $entity_wrapper->field_base_material_library->value();
+    $base_material_library = $entity_wrapper->field_base_material_library->value(); // Entity Reference
     $variables['metal1_p_number'] = $base_material_library[0]->field_bml_p[LANGUAGE_NONE][0]['value'];
     $variables['metal1_group_number'] = $base_material_library[0]->field_bml_g[LANGUAGE_NONE][0]['value'];
     $variables['metal1_specification'] = $base_material_library[0]->title;
@@ -232,16 +232,34 @@ function weldata_preprocess_print (&$variables) {
 
     $variables['note'] = $entity_wrapper->field_notes->value();
 
+   
+    //$variables['other_pwht'] =  field_view_field('node', $node, 'field_other_pwht',$display);
+  }
+
+  /*----------------------WPS--------------------------*/
+
+  if($node->type == 'wps'){
+    $variables['wps_number'] = $node->title; 
+
+    $images = $entity_wrapper->field_joint_design_qw_402->field_wps_joint_design_image->value();
     //Images
-    $images = $entity_wrapper->field_joint_design_image->value();
     $variables['joint_image1'] = file_create_url($images[0]->field_joint_design[LANGUAGE_NONE][0]['uri']);
     $variables['joint_image2'] = file_create_url($images[1]->field_joint_design[LANGUAGE_NONE][0]['uri']);
     $variables['joint_image3'] = file_create_url($images[2]->field_joint_design[LANGUAGE_NONE][0]['uri']);
     $variables['joint_image4'] = file_create_url($images[3]->field_joint_design[LANGUAGE_NONE][0]['uri']);
     $variables['joint_image5'] = file_create_url($images[4]->field_joint_design[LANGUAGE_NONE][0]['uri']);
     $variables['joint_image6'] = file_create_url($images[5]->field_joint_design[LANGUAGE_NONE][0]['uri']);
- 
-	   
-    //$variables['other_pwht'] =  field_view_field('node', $node, 'field_other_pwht',$display);
   }
+
+/*---------------------- PQR --------------------------*/
+    if($node->type == 'pqr') { 
+        $variables['pqr_number'] = $node->title; 
+        $variables['pqr_revision_number'] = $node->title;
+        $variables['wps_number'] = $node->title;
+        $variables['wps_number'] = $node->title;
+        $variables['wps_number'] = $node->title;
+
+  }
+
+
 }

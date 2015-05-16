@@ -20,7 +20,7 @@
   ; Change the "base theme" if you are using a different base,
   ; e.g. "pixture_reloaded" or "sky" (without speechmarks).
 
-  base theme = weldata
+  base theme = weldata_theme
 
 
 
