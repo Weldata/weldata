@@ -50,21 +50,19 @@ function weldata_theme_lt_loggedinblock(){
 function weldata_theme_preprocess_print (&$variables) {
   $node = $variables['node'];
   $entity_wrapper = entity_metadata_wrapper('node', $node);
-  dpm($entity_wrapper->field_joint_design_qw_402->value());
+  dpm($entity_wrapper->field_reference_documents->field_reference_documents_name);
 
   if($node->type == 'wps' || $node->type == 'pqr' ){
 
-	$variables['qualified_to'] = $entity_wrapper->field_qualified_to->value();
+    $variables['qualified_to'] = $entity_wrapper->field_qualified_to->value();
     $variables['date'] = format_date($entity_wrapper->field_date->value(), $type = 'wps_pqr');
     $variables['company_name'] = $entity_wrapper->field_company_name->value();
     //$variables['revision_number'] = $entity_wrapper->field_wps_revision_number->value();
-    $variables['welding_process'] = implode(', ', weldata_get_array_value($node, 'field_welding_process'));
-    $variables['Type'] = implode(', ', weldata_get_array_value($node, 'field_welding_type'));
+    $variables['welding_process'] = implode(', ', $entity_wrapper->field_welding_process->value());
+    $variables['Type'] = implode(', ', $entity_wrapper->field_welding_type->value());
 
-    // Required Documents
-    $variables['scope'] = $entity_wrapper->field_wps_scope_notes->value();
-    $variables['joint'] = implode(", ",weldata_get_array_value($node, 'field_wps_scope'));
-    $variables['reference_documents'] = implode(", ",weldata_get_array_value($node, 'field_wps_reference_documents'));
+    // Reference Documents
+    $variables['reference_documents'] = implode(", ", $entity_wrapper->field_reference_documents->field_reference_documents_name->value());
 
     // Joint Design
     $joint_design = $entity_wrapper->field_joint_design_qw_402->value(); // Field Collection
@@ -230,7 +228,10 @@ function weldata_theme_preprocess_print (&$variables) {
   /*----------------------WPS--------------------------*/
 
   if($node->type == 'wps'){
-    $variables['wps_number'] = $node->title; 
+    $variables['wps_number'] = $node->title;
+
+    $variables['joint'] = implode(", ", $entity_wrapper->field_wps_scope->value());
+    $variables['scope'] = $entity_wrapper->field_wps_scope_notes->value();
 
     $images = $entity_wrapper->field_joint_design_qw_402->field_wps_joint_design_image->value();
     //Images
@@ -246,9 +247,7 @@ function weldata_theme_preprocess_print (&$variables) {
     if($node->type == 'pqr') { 
         $variables['pqr_number'] = $node->title; 
         $variables['pqr_revision_number'] = $node->title;
-        $variables['wps_number'] = $node->title;
-        $variables['wps_number'] = $node->title;
-        $variables['wps_number'] = $node->title;
+
 
   }
 
