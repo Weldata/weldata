@@ -17,7 +17,7 @@ function weldata_theme_date_combo($variables) {
 /**
 * Altering Date Popup to remove labels and description for specific field
 */
-/*function weldata_date_popup_process_alter(&$element, &$form_state, $context) {
+/*function weldata_theme_date_popup_process_alter(&$element, &$form_state, $context) {
   unset($element['date']['#description']);
   unset($element['date']['#title']);
 }*/
@@ -43,15 +43,6 @@ function weldata_theme_lt_loggedinblock(){
   return l(check_plain($user->name), 'user/' . $user->uid) .' | ' . l(t('Log out'), 'user/logout');
 }
  
-function weldata_get_array_value($node, $variables_array) { 
-	$results = array();
-	$entity_wrapper = entity_metadata_wrapper('node', $node);
-	foreach ($entity_wrapper->$variables_array as $wrapper) {
-	  $results[] = $wrapper->value();
-	} 
-	return $results;
-}
-
 /**
  * Implements hook_preprocess_print
  * Adds Variables for PQR Table

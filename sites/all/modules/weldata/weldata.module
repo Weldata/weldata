@@ -1,6 +1,20 @@
 <?php 
+/**
+* Common Functions to be used throughout weldata
+*/
 
-  /**    * Function to check if field exists    */     
- function field_collection_value_exists ( $entity, $field_name, $field_collection ) {
+
+  /**    Function to check if field exists    */     
+ function weldata_field_collection_value_exists ( $entity, $field_name, $field_collection ) {
    return isset($entity->{$field_collection}->{$field_name}[LANGUAGE_NONE]) ? $entity->{$field_collection}->{$field_name}[LANGUAGE_NONE] : FALSE;   
+}
+
+  /**    Function to get Array Values    */
+function weldata_get_array_value($node, $variables_array) { 
+	$results = array();
+	$entity_wrapper = entity_metadata_wrapper('node', $node);
+	foreach ($entity_wrapper->$variables_array as $wrapper) {
+	  $results[] = $wrapper->value();
+	} 
+	return $results;
 }
