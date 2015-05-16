@@ -2,13 +2,6 @@
 class weldataCalculator {
 
   /**
-   * Function to check if field exists
-   */
-  function field_value_exists($entity, $field_collection ,$field_name) {
-    return isset($entity->{$field_collection}->{$field_name}[LANGUAGE_NONE]) ? $entity->{$field_collection}->{$field_name}[LANGUAGE_NONE] : FALSE;
-  }
-
-  /**
    * Function to Calculate
    */
   function calculator($entity_type, $entity){

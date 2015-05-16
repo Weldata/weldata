@@ -1,0 +1,6 @@
+<?php 
+
+  /**    * Function to check if field exists    */     
+ function field_collection_value_exists ( $entity, $field_name, $field_collection ) {
+   return isset($entity->{$field_collection}->{$field_name}[LANGUAGE_NONE]) ? $entity->{$field_collection}->{$field_name}[LANGUAGE_NONE] : FALSE;   
+}

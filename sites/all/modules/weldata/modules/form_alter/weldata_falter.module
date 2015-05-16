@@ -1,11 +1,17 @@
 <?php 
+
+//For Loading External php files
+module_load_include('inc', 'weldata_falter', 'weldata_falter_pqr.form');
+module_load_include('inc', 'weldata_falter', 'weldata_falter_wps.form');
  
 /**
  * Implements hook_hook_info().
  */
+/*
 function weldata_falter_hook_info() {
   $hooks['form_alter'] = array(
     'group' => 'form',
   );
   return $hooks;
 }
+*/

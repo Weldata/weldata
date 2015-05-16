@@ -5,7 +5,7 @@
 * Used to hide form elements in WPS
 */
 function jamechanical_form_wps_node_form_alter(&$form, &$form_state){
-	//$form['actions']['preview']['#value'] = "Calculate";
+    //$form['actions']['preview']['#value'] = "Calculate";
     $form['field_gmaw']['#access']  = FALSE;
     $form['field_saw']['#access']  = FALSE;
     $form['field_paw']['#access']  = FALSE;
@@ -14,13 +14,6 @@ function jamechanical_form_wps_node_form_alter(&$form, &$form_state){
     $form['field_egw']['#access']  = FALSE;
     $form['field_ofw']['#access']  = FALSE;
 
-    //GTAW Field access
-    $form['field_gtaw']['und'][0]['field_weld_metal_thickness']['#access'] = FALSE;
-    
-
-    //SMAW Field Access
-    $form['field_smaw']['und'][0]['field_weld_metal_thickness']['#access'] = FALSE;
-    
 }
 
 /**
@@ -41,18 +34,5 @@ function jamechanical_form_pqr_node_form_alter(&$form, &$form_state){
         $form['revision_information']['log']['#maxlength'] = 5;
         $form['revision_information']['log']['#description'] = 'Enter your revision number';
     }
-
-    //$form['field_dummy_2']['#access']  = FALSE;
-    //GTAW Field access
-    $form['field_gtaw']['und'][0]['field_thickness_range_min']['#access'] = FALSE;
-    $form['field_gtaw']['und'][0]['field_thickness_range_max']['#access'] = FALSE;
-
-
-    //SMAW Field Access
-    $form['field_smaw']['und'][0]['field_thickness_range_min']['#access'] = FALSE;
-    $form['field_smaw']['und'][0]['field_thickness_range_max']['#access'] = FALSE;
-
-
-
 
 }
