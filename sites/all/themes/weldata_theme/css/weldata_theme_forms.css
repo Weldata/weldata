@@ -2,7 +2,7 @@ form div.form-type-textfield, form div.form-type-select, form div.form-type-chec
 	float: left;
 	width: 50%;
 }
-form div.field-type-entityreference, form div.field-group-multiple-table {
+form div.field-type-entityreference, form div.field-group-multiple-table, form fieldset {
 	clear: both;
 }
 /*============================= Chosen Select Box Styling =============================*/
