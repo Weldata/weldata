@@ -1,0 +1,16 @@
+<?php
+
+/**
+* Implements hook_entity_info_alter().
+*/
+function weldata_ui_entity_info_alter(&$entity_info) {
+    $entity_info['node']['view modes']['wps'] = array(
+      'label' => t('WPS'),
+      'custom settings' => TRUE,
+    );
+    $entity_info['node']['view modes']['pqr'] = array(
+      'label' => t('PQR'),
+      'custom settings' => TRUE,
+    );
+
+}
