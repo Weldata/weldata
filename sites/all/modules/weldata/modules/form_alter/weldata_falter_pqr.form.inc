@@ -7,16 +7,16 @@
 function weldata_falter_form_pqr_node_form_alter(&$form, &$form_state) {
   dpm($form);
 
-	//Joint Design Field access
+  //Joint Design Field access - The following fields are required only for WPS.
   	$form['field_joint_design_qw_402'][LANGUAGE_NONE][0]['field_wps_joint_design_image']['#access'] = FALSE;
 
   
-  	//GTAW Field access
+  //GTAW Field access - The following fields are required only for WPS.
     $form['field_gtaw'][LANGUAGE_NONE][0]['field_thickness_range_min']['#access'] = FALSE;
     $form['field_gtaw'][LANGUAGE_NONE][0]['field_thickness_range_max']['#access'] = FALSE;
 
 
-    //SMAW Field Access
+   //SMAW Field Access - The following fields are required only for WPS.
     $form['field_smaw'][LANGUAGE_NONE][0]['field_thickness_range_min']['#access'] = FALSE;
     $form['field_smaw'][LANGUAGE_NONE][0]['field_thickness_range_max']['#access'] = FALSE;
 

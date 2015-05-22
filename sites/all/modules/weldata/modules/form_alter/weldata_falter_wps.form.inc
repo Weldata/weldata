@@ -5,28 +5,29 @@
 * Used to alter WPS form
 */
 function weldata_falter_form_wps_node_form_alter(&$form, &$form_state) {
+  dpm($form);
 
-	//Joint Design Field access
+	//Joint Design Field access - The following fields are required only for PQR.
   	$form['field_joint_design_qw_402'][LANGUAGE_NONE][0]['field_pqr_joint_design_image']['#access'] = FALSE;
   	$form['field_joint_design_qw_402'][LANGUAGE_NONE][0]['field_pqr_welding_sequence_image']['#access']= FALSE;
 
-    //GTAW Field access
+    //GTAW Field access - The following fields are required only for WPS.
     $form['field_gtaw'][LANGUAGE_NONE][0]['field_weld_metal_thickness']['#access'] = FALSE;
     
 
-    //SMAW Field Access
+    //SMAW Field Access - The following fields are required only for WPS.
     $form['field_smaw'][LANGUAGE_NONE][0]['field_weld_metal_thickness']['#access'] = FALSE;
 
-    // Permenant Text for GAS Table
-    $form['field_gtaw'][LANGUAGE_NONE][0]['fgm_field_collection_item_field_gtaw_form_group_gtaw_gas_table']['fields']['items'][0]['field_type_of_shielding'][LANGUAGE_NONE]['value']['#default_value'] = 'Shielding Gas';
-    $form['field_gtaw'][LANGUAGE_NONE][0]['fgm_field_collection_item_field_gtaw_form_group_gtaw_gas_table']['fields']['items'][1]['field_type_of_shielding'][LANGUAGE_NONE]['value']['#default_value'] = 'Backing Gas';
-    $form['field_gtaw'][LANGUAGE_NONE][0]['fgm_field_collection_item_field_gtaw_form_group_gtaw_gas_table']['fields']['items'][2]['field_type_of_shielding'][LANGUAGE_NONE]['value']['#default_value'] = 'Trailing Gas';
-    $form['field_gtaw'][LANGUAGE_NONE][0]['fgm_field_collection_item_field_gtaw_form_group_gtaw_gas_table']['fields']['items'][3]['field_type_of_shielding'][LANGUAGE_NONE]['value']['#default_value'] = 'Other Gas';
+    // Permanent Text for PWHT Thickness Range Qualified Table
+    $form['fgm_node_wps_form_group_wps_pwht_thickness']['fields']['items'][0]['field_wps_pwht_parameters'][LANGUAGE_NONE]['value']['#default_value'] = 'Complete Penetration';
+  $form['fgm_node_wps_form_group_wps_pwht_thickness']['fields']['items'][1]['field_wps_pwht_parameters'][LANGUAGE_NONE]['value']['#default_value'] = 'Partial Penetration';
+  $form['fgm_node_wps_form_group_wps_pwht_thickness']['fields']['items'][2]['field_wps_pwht_parameters'][LANGUAGE_NONE]['value']['#default_value'] = 'Impact Tested';
+  $form['fgm_node_wps_form_group_wps_pwht_thickness']['fields']['items'][3]['field_wps_pwht_parameters'][LANGUAGE_NONE]['value']['#default_value'] = 'Fillet Welds';
 
-    // Disabling Text for GAS Table
-    $form['field_gtaw'][LANGUAGE_NONE][0]['fgm_field_collection_item_field_gtaw_form_group_gtaw_gas_table']['fields']['items'][0]['field_type_of_shielding'][LANGUAGE_NONE]['value']['#disabled'] = TRUE;
-    $form['field_gtaw'][LANGUAGE_NONE][0]['fgm_field_collection_item_field_gtaw_form_group_gtaw_gas_table']['fields']['items'][1]['field_type_of_shielding'][LANGUAGE_NONE]['value']['#disabled'] = TRUE;
-    $form['field_gtaw'][LANGUAGE_NONE][0]['fgm_field_collection_item_field_gtaw_form_group_gtaw_gas_table']['fields']['items'][2]['field_type_of_shielding'][LANGUAGE_NONE]['value']['#disabled'] = TRUE;
-    $form['field_gtaw'][LANGUAGE_NONE][0]['fgm_field_collection_item_field_gtaw_form_group_gtaw_gas_table']['fields']['items'][3]['field_type_of_shielding'][LANGUAGE_NONE]['value']['#disabled'] = TRUE;
+    // Disabling Text for PWHT Thickness Range Qualified Table
+  $form['fgm_node_wps_form_group_wps_pwht_thickness']['fields']['items'][0]['field_wps_pwht_parameters'][LANGUAGE_NONE]['value']['#disabled'] = TRUE;
+  $form['fgm_node_wps_form_group_wps_pwht_thickness']['fields']['items'][1]['field_wps_pwht_parameters'][LANGUAGE_NONE]['value']['#disabled'] = TRUE;
+  $form['fgm_node_wps_form_group_wps_pwht_thickness']['fields']['items'][2]['field_wps_pwht_parameters'][LANGUAGE_NONE]['value']['#disabled'] = TRUE;
+  $form['fgm_node_wps_form_group_wps_pwht_thickness']['fields']['items'][3]['field_wps_pwht_parameters'][LANGUAGE_NONE]['value']['#disabled'] = TRUE;
 
 }
