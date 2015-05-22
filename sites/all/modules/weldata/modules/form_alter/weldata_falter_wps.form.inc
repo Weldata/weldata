@@ -5,9 +5,25 @@
 * Used to alter WPS form
 */
 function weldata_falter_form_wps_node_form_alter(&$form, &$form_state) {
-  dpm($form);
 
-	//Joint Design Field access - The following fields are required only for PQR.
+
+  // Revision
+  $form['revision_information']['#access'] = FALSE;
+
+  $node =  $form_state['node'];
+
+  if(isset($node->nid)){
+    $form['revision_information']['#access'] = TRUE;
+    $form['revision_information']['#type'] = 'vertical_tabs';
+    $form['revision_information']['revision']['#access'] = TRUE;
+    $form['revision_information']['log']['#type'] = 'textfield';
+    $form['revision_information']['log']['#title'] = 'Revision Number';
+    $form['revision_information']['log']['#maxlength'] = 5;
+    $form['revision_information']['log']['#description'] = 'Enter your revision number';
+  }
+
+
+  //Joint Design Field access - The following fields are required only for PQR.
   	$form['field_joint_design_qw_402'][LANGUAGE_NONE][0]['field_pqr_joint_design_image']['#access'] = FALSE;
   	$form['field_joint_design_qw_402'][LANGUAGE_NONE][0]['field_pqr_welding_sequence_image']['#access']= FALSE;
 
