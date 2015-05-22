@@ -16,27 +16,11 @@ function jamechanical_form_wps_node_form_alter(&$form, &$form_state){
     $form['field_ofw']['#access']  = FALSE;
 
   // Unset Values form Scope Checkbox
-
-
-}
-
-/**
-* Implements hook_form_FORM_ID_alter
-* Used to hide form elements in PQR
-*/
-function jamechanical_form_pqr_node_form_alter(&$form, &$form_state){
-	//dpm($form);
-	//$form['actions']['preview']['#value'] = "Calculate";
-    $form['revision_information']['#access'] = FALSE;
-    $node = $form_state['node'];
-    if(isset($node->nid)){
-        $form['revision_information']['#access'] = TRUE;
-        $form['revision_information']['#type'] = 'vertical_tabs';
-        $form['revision_information']['revision']['#access'] = TRUE;
-        $form['revision_information']['log']['#type'] = 'textfield';
-        $form['revision_information']['log']['#title'] = 'Revision Number';
-        $form['revision_information']['log']['#maxlength'] = 5;
-        $form['revision_information']['log']['#description'] = 'Enter your revision number';
-    }
+  unset($form['field_wps_scope'][LANGUAGE_NONE]['#options']['Corrosion Resistance Overlay']);
+  unset($form['field_wps_scope'][LANGUAGE_NONE]['#options']['Hard - Facing Spray Fuse']);
+  unset($form['field_wps_scope'][LANGUAGE_NONE]['#options']['Hard - Facing Overlay']);
+  unset($form['field_wps_scope'][LANGUAGE_NONE]['#options']['Stud Welding']);
+  unset($form['field_wps_scope'][LANGUAGE_NONE]['#options']['Tube - Tubesheet']);
+  unset($form['field_wps_scope'][LANGUAGE_NONE]['#options']['Tube Expansion Prior to Welding']);
 
 }
