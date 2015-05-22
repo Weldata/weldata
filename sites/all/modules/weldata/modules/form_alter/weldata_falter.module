@@ -1,6 +1,7 @@
 <?php 
 
 //For Loading External php files
+module_load_include('inc', 'weldata_falter', 'weldata_falter_common.form');
 module_load_include('inc', 'weldata_falter', 'weldata_falter_pqr.form');
 module_load_include('inc', 'weldata_falter', 'weldata_falter_wps.form');
 module_load_include('inc', 'weldata_falter', 'weldata_falter_wpq.form');

@@ -18,8 +18,9 @@ function weldata_falter_form_wps_node_form_alter(&$form, &$form_state) {
     //SMAW Field Access - The following fields are required only for WPS.
     $form['field_smaw'][LANGUAGE_NONE][0]['field_weld_metal_thickness']['#access'] = FALSE;
 
-    // Permanent Text for PWHT Thickness Range Qualified Table
-    $form['fgm_node_wps_form_group_wps_pwht_thickness']['fields']['items'][0]['field_wps_pwht_parameters'][LANGUAGE_NONE]['value']['#default_value'] = 'Complete Penetration';
+
+  // Permanent Text for PWHT Thickness Range Qualified Table
+  $form['fgm_node_wps_form_group_wps_pwht_thickness']['fields']['items'][0]['field_wps_pwht_parameters'][LANGUAGE_NONE]['value']['#default_value'] = 'Complete Penetration';
   $form['fgm_node_wps_form_group_wps_pwht_thickness']['fields']['items'][1]['field_wps_pwht_parameters'][LANGUAGE_NONE]['value']['#default_value'] = 'Partial Penetration';
   $form['fgm_node_wps_form_group_wps_pwht_thickness']['fields']['items'][2]['field_wps_pwht_parameters'][LANGUAGE_NONE]['value']['#default_value'] = 'Impact Tested';
   $form['fgm_node_wps_form_group_wps_pwht_thickness']['fields']['items'][3]['field_wps_pwht_parameters'][LANGUAGE_NONE]['value']['#default_value'] = 'Fillet Welds';
