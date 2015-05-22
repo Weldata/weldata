@@ -12,5 +12,9 @@ function weldata_ui_entity_info_alter(&$entity_info) {
       'label' => t('PQR'),
       'custom settings' => TRUE,
     );
+    $entity_info['node']['view modes']['pop_up'] = array(
+      'label' => t('Pop-Up'),
+      'custom settings' => TRUE,
+    );    
 
 }
