@@ -5,7 +5,8 @@
 * Used to hide form elements in WPS
 */
 function jamechanical_form_wps_node_form_alter(&$form, &$form_state){
-    //$form['actions']['preview']['#value'] = "Calculate";
+
+    // Disable Welding Processes for JA Mechanical
     $form['field_gmaw']['#access']  = FALSE;
     $form['field_saw']['#access']  = FALSE;
     $form['field_paw']['#access']  = FALSE;
@@ -13,6 +14,9 @@ function jamechanical_form_wps_node_form_alter(&$form, &$form_state){
     $form['field_fcaw']['#access']  = FALSE;
     $form['field_egw']['#access']  = FALSE;
     $form['field_ofw']['#access']  = FALSE;
+
+  // Unset Values form Scope Checkbox
+
 
 }
 
