@@ -69,3 +69,10 @@ input.form-submit#edit-field-file-und-0-remove-button:hover {
 	margin: 0 5px 0 0;
 	padding: 5px 11px;
 }
+
+/*Edited by Karthi Start*/
+
+.field-items { float:right; }
+.field-item even { float:right; }
+
+/*Edited by Karthi End*/
