@@ -5,6 +5,9 @@ form div.form-type-textfield, form div.form-type-select, form div.form-type-chec
 form div.field-type-entityreference, form div.field-group-multiple-table, form fieldset {
 	clear: both;
 }
+input.select-or-other-other {
+	clear: both;
+}
 /*============================= Chosen Select Box Styling =============================*/
 .chosen-container-single .chosen-single {
 	height: 34px;
@@ -80,5 +83,15 @@ div.ctools-modal-content .modal-header
 
 #modalContent .ctools-modal-content .modal-header
 {background-color: #000000;}
+
+div.ctools-modal-content a.close img {
+	display: none;
+}
+div.ctools-modal-content a.close:after {
+	content: "X";
+}
+.field-widget-entityreference-view-widget .ervw-add-items, input.field-group-multiple-add-more-submit {
+    background: #fff;
+}
 
 /*Edited by Karthi End*/
