@@ -15,18 +15,14 @@ form div.entityconnect-edit input {
 }
 .entityconnect-add,
 .entityconnect-edit {
-  float: right;
+  display: inline-block;
   height: 16px;
   min-width: 16px;
-  padding: 3px;
-  width: 3.5%;
+  padding: 0 0 0 10px;
 }
 .entityconnect-edit input[disabled] {
   background: none;
 }
-.field-type-node-reference .form-type-textfield input[type=text] {
-  width: 88%;
-}
-.field-type-entityreference .form-type-textfield input[type=text] {
-  width: 88%;
+.field-type-entityreference.inline-label label{
+  display: inline;
 }

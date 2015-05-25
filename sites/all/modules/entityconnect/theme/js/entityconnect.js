@@ -5,49 +5,62 @@
 
       // Treatments for each widget type.
       // Autocomplete widget.
-      $(".entityconnect-add.autocomplete.single-value", context).each(function() {
-        $(this).insertAfter($(this).next().find("label"));
+      $(".entityconnect-add.autocomplete", context).each(function() {
+        $(this).insertAfter($(this).siblings('.form-type-textfield').children("input").first());
       });
-      $(".entityconnect-edit.autocomplete.single-value", context).each(function() {
-        $(this).insertAfter($(this).next().find("label"));
+      $(".entityconnect-edit.autocomplete", context).each(function() {
+        $(this).insertAfter($(this).siblings('.form-type-textfield').children("input").first());
       });
 
       // Autocomplete tags style widget.
       $(".entityconnect-add.textfield", context).each(function() {
-        $(this).insertAfter($(this).next().find("label"));
+        $(this).insertAfter($(this).siblings('.form-type-textfield').children("input").first());
       });
       $(".entityconnect-edit.textfield", context).each(function() {
-        $(this).insertAfter($(this).next().find("label"));
+        $(this).insertAfter($(this).siblings('.form-type-textfield').children("input").first());
       });
+
       // Select widget.
       $(".entityconnect-add.select", context).each(function() {
-        $(this).insertAfter($(this).next().find("label"));
+        var $form_type_select = $(this).siblings(".form-type-select");
+        if ($(this).hasClass('multiple-selection')) {
+          $(this).insertAfter($form_type_select.find("label").first());
+          $('<div class="clearfix"></div>').insertAfter(this);
+        }
+        else {
+          $(this).insertAfter($form_type_select.children("select"));
+        }
       });
       $(".entityconnect-edit.select.single-value", context).each(function() {
-        $(this).insertAfter($(this).next().find("label"));
+        var $form_type_select = $(this).siblings(".form-type-select");
+        if ($(this).hasClass('multiple-selection')) {
+          $(this).insertAfter($form_type_select.find("label").first());
+        }
+        else {
+          $(this).insertAfter($form_type_select.children("select"));
+        }
       });
+
       // Radios widget.
-      $(".entityconnect-edit.radios", context).each(function() {
-        $(this).insertBefore($(this).siblings("div.form-type-radios").find("label").first());
-      });
       $(".entityconnect-add.radios", context).each(function() {
-        $(this).insertBefore($(this).siblings("div.form-type-radios").find("label").first());
+        $(this).insertAfter($(this).siblings("div.form-type-radios").find("label").first());
       });
+      $(".entityconnect-edit.radios", context).each(function() {
+        $(this).insertAfter($(this).siblings("div.form-type-radios").find("label").first());
+      });
+
       // Checkboxes widget.
-      $(".entityconnect-edit.checkboxes", context).each(function() {
-        $(this).insertBefore($(this).siblings("div.form-type-checkboxes").find("label").first());
-      });
       $(".entityconnect-add.checkboxes", context).each(function() {
-        $(this).insertBefore($(this).siblings("div.form-type-checkboxes").find("label").first());
+        $(this).insertAfter($(this).siblings("div.form-type-checkboxes").find("label").first());
+      });
+      $(".entityconnect-edit.checkboxes", context).each(function() {
+        $(this).insertAfter($(this).siblings("div.form-type-checkboxes").find("label").first());
       });
 
       // Edit button control.
       $(".entityconnect-edit input").click(function() {
 
         var wrapper = $(this).parents(".entityconnect-edit");
-        if ($('.field-widget-entityreference-view-widget').length) {
-          wrapper = wrapper.parents;
-        }
 
         text = $(wrapper).siblings("[type='text']");
         radio = $(wrapper).siblings("[type='radio']");

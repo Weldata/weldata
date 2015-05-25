@@ -10,13 +10,21 @@
  * We redirect to the form page with the build_cache_id as a get param.
  */
 function entityconnect_return($cache_id) {
-  $cache = cache_get($cache_id);
+  $cache = entityconnect_cache_get($cache_id);
   $css_id = "edit-" . str_replace('_', '-', $cache->data['field']);
-  drupal_goto($cache->data['dest'], array(
-      'query' => array(
-        'build_cache_id' => $cache_id,
-        'return' => TRUE),
-          'fragment' => $css_id));
+  $options = array('query' => array(
+              'build_cache_id' => $cache_id,
+              'return' => TRUE),
+            'fragment' => $css_id);
+  //Collect additional request parameters, skip 'q', since this is the destination
+  foreach ($cache->data['params'] as $key => $value) {
+    if ('build_cache_id' == $key) {
+      continue;
+    }
+    $options['query'][$key] = $value;
+  }
+
+  drupal_goto($cache->data['dest'], $options);
 }
 
 /**
@@ -32,7 +40,7 @@ function entityconnect_return($cache_id) {
  */
 function entityconnect_add($cache_id) {
   $content = array();
-  $cache = cache_get($cache_id);
+  $cache = entityconnect_cache_get($cache_id);
   $field = field_info_field($cache->data['field']);
 
   $entity_type = $cache->data['target_entity_type'];
@@ -122,7 +130,7 @@ function entityconnect_add($cache_id) {
  * We use this to redirect to a edit form but pass the build_cache_id.
  */
 function entityconnect_edit($cache_id) {
-  $cache = cache_get($cache_id);
+  $cache = entityconnect_cache_get($cache_id);
   $entity_type = $cache->data['target_entity_type'];
   $target_id = $cache->data['target_id'];
   $output = '';
