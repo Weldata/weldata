@@ -5,8 +5,14 @@ form div.form-type-textfield, form div.form-type-select, form div.form-type-chec
 form div.field-type-entityreference, form div.field-group-multiple-table, form fieldset {
 	clear: both;
 }
-input.select-or-other-other {
-	clear: both;
+div.select-or-other div.form-type-select{
+    display: table-cell;
+    width: 25%;
+}
+.select-or-other div.form-type-textfield  {
+	display: table-cell;
+	width: 25%;
+	float: left;
 }
 /*============================= Chosen Select Box Styling =============================*/
 .chosen-container-single .chosen-single {
