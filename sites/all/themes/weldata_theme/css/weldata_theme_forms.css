@@ -75,4 +75,10 @@ input.form-submit#edit-field-file-und-0-remove-button:hover {
 .field-items { float:right; }
 .field-item even { float:right; }
 
+div.ctools-modal-content .modal-header
+{background-color: #000000;}
+
+#modalContent .ctools-modal-content .modal-header
+{background-color: #000000;}
+
 /*Edited by Karthi End*/

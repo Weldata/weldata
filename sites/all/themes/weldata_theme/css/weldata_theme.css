@@ -17,3 +17,11 @@ form#weld-cost-estimator-node-form div.form-type-radio, form#pqr-wps-node-form d
 #edit-field-dummy, #edit-field-dummy-1, #edit-field-dummy-2, #edit-field-dummy-3, #edit-field-dummy-4{
 display: none;
 }
+
+
+/*Edited by Karthi Start*/
+
+.field-items { float:right; }
+.field-item even { float:right; }
+
+/*Edited by Karthi End*/
