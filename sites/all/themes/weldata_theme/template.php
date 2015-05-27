@@ -47,17 +47,19 @@ function weldata_theme_lt_loggedinblock(){
  * Implements hook_preprocess_print
  * Adds Variables for PQR Table
  */
-function weldata_theme_preprocess_print (&$variables) {
+function weldata_theme_preprocess_print (&$variables) {  
+  
   $node = $variables['node'];
   $entity_wrapper = entity_metadata_wrapper('node', $node);
-  dpm($entity_wrapper->field_reference_documents->field_reference_documents_name);
+  
+  dpm($entity_wrapper->log);
 
   if($node->type == 'wps' || $node->type == 'pqr' ){
 
     $variables['qualified_to'] = $entity_wrapper->field_qualified_to->value();
     $variables['date'] = format_date($entity_wrapper->field_date->value(), $type = 'wps_pqr');
     $variables['company_name'] = $entity_wrapper->field_company_name->value();
-    //$variables['revision_number'] = $entity_wrapper->field_wps_revision_number->value();
+    $variables['revision_number'] = $entity_wrapper->log->value();
     $variables['welding_process'] = implode(', ', $entity_wrapper->field_welding_process->value());
     $variables['Type'] = implode(', ', $entity_wrapper->field_welding_type->value());
 

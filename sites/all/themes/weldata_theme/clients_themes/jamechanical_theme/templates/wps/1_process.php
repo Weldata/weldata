@@ -4,15 +4,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">		
 	div.BlockHeading {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;}
-
-		div.CName {font-family:Arial; font-size: 11pt;  font-weight: bold; color: black;}
-		div.CAddress {font-family:Arial; font-size: 8pt; font-weight: bold; color: black;}
-		div.Title {font-family:Arial; font-size: 10pt; font-weight: bold; color: black;}
-		div.Heading {font-family:Arial; font-size: 7pt; font-weight: bold; color: black;}
-		div.Footer {font-family:Arial; font-size: 6pt; color: black;}
-		div.Required {font-family:Arial; font-size: 6pt; color: navy;}
-		div.Certify {font-family:Arial; font-size: 7pt; color: navy;}
-		td.Data {
+	div.CName {font-family:Arial; font-size: 11pt;  font-weight: bold; color: black;}
+	div.CAddress {font-family:Arial; font-size: 8pt; font-weight: bold; color: black;}
+	div.Title {font-family:Arial; font-size: 10pt; font-weight: bold; color: black;}
+	div.Heading {font-family:Arial; font-size: 7pt; font-weight: bold; color: black;}
+	div.Footer {font-family:Arial; font-size: 6pt; color: black;}
+	div.Required {font-family:Arial; font-size: 6pt; color: navy;}
+	div.Certify {font-family:Arial; font-size: 7pt; color: navy;}
+	td.Data {
 	font-family: Arial;
 	font-size: 7pt;
 	color: #000;
@@ -25,7 +24,7 @@ div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;
 <body class="BlockHeading">
 <table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse">
   <tr>
-    <td width="15%" rowspan="3"><div align="center"><img src="logo.jpg" width="76" height="68"  alt=""/></div></td>
+    <td width="15%" rowspan="3"><div align="center"><img src="logo.png" width="76" height="68"  alt=""/></div></td>
     <td width="85%"> <div align="center" class="CName">J&amp;A MECHANICAL CONTRACTORS INC.</div></td>
   </tr>
   <tr>
@@ -376,14 +375,14 @@ div.Heading1 {font-family:Arial; font-size: 7pt; font-weight: bold; color: navy;
 </div>
 <table width="100%" border="1" cellspacing="0" cellpadding="2" style="border-collapse:collapse">
   <tr>
-    <td width="208" height="194"><div align="center"><img src="<?php print $joint_image1 ; ?>" /></div></td>
-    <td width="208" height="194"><div align="center"><img src="<?php print $joint_image2 ; ?>" /></div></td>
-    <td width="208"><div align="center"><img src="<?php print $joint_image3 ; ?>" /></div></td>
+    <td width="208" height="194"><div align="center"><img src="<?php print $joint_image1; ?>" width="208" height="194"/></div></td>
+    <td width="208" height="194"><div align="center"><img src="<?php print $joint_image2; ?>" width="208" height="194"/></div></td>
+    <td width="208"><div align="center"><img src="<?php print $joint_image3; ?>" width="208" height="194"/></div></td>
   </tr>
   <tr>
-    <td height="194"><div align="center"><img src="<?php print $joint_image4 ; ?>" /></div></td>
-    <td><div align="center"><img src="<?php print $joint_image5 ; ?>" /></div></td>
-    <td><div align="center"><img src="<?php print $joint_image6 ; ?>" /></div></td>
+    <td height="194"><div align="center"><img src="<?php print $joint_image4; ?>" width="208" height="194"/></div></td>
+    <td><div align="center"><img src="<?php print $joint_image5; ?>" width="208" height="194" /></div></td>
+    <td><div align="center"><img src="<?php print $joint_image6; ?>" width="208" height="194" /></div></td>
   </tr>
 </table>
 <table width="100%" border="1" cellspacing="0" cellpadding="2" style="border-collapse:collapse">

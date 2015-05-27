@@ -14,6 +14,6 @@
     <?php print $css; ?>
   </head>
 <body>
-<?php require_once('wps/1_process.php'); ?>
+<?php include('wps/1_process.php'); ?>
 </body>
 </html>

@@ -6,6 +6,7 @@
 */
 function weldata_falter_form_pqr_node_form_alter(&$form, &$form_state) {
 
+  dpm($form);
 
   // Revision
   $form['revision_information']['#access'] = FALSE;
@@ -35,6 +36,11 @@ function weldata_falter_form_pqr_node_form_alter(&$form, &$form_state) {
     $form['field_smaw'][LANGUAGE_NONE][0]['field_thickness_range_min']['#access'] = FALSE;
     $form['field_smaw'][LANGUAGE_NONE][0]['field_thickness_range_max']['#access'] = FALSE;
 
+  // Adds Label for Certification Details Table
+  $form['fgm_node_pqr_form_group_pqr_certification_table']['fields']['items'][0]['field_pqr_certification_details'][LANGUAGE_NONE]['value']['#title'] = 'Manufacturer';
+  $form['fgm_node_pqr_form_group_pqr_certification_table']['fields']['items'][0]['field_pqr_certification_details'][LANGUAGE_NONE]['value']['#title_display']= TRUE;
+  $form['fgm_node_pqr_form_group_pqr_certification_table']['fields']['items'][1]['field_pqr_certification_details'][LANGUAGE_NONE]['value']['#title'] = 'Certified By';
+  $form['fgm_node_pqr_form_group_pqr_certification_table']['fields']['items'][1]['field_pqr_certification_details'][LANGUAGE_NONE]['value']['#title_display']= TRUE;
 
 
 }

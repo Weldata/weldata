@@ -5,7 +5,7 @@ form div.form-type-textfield, form div.form-type-select, form div.form-type-chec
 form div.field-type-entityreference, form div.field-group-multiple-table, form fieldset {
 	clear: both;
 }
-div.select-or-other div.form-type-select{
+/*div.select-or-other div.form-type-select{
     display: table-cell;
     width: 25%;
 }
@@ -13,7 +13,67 @@ div.select-or-other div.form-type-select{
 	display: table-cell;
 	width: 25%;
 	float: left;
+}*/
+/*==============================================Radio Buttons=============================================*/
+.form-checkboxes .form-item, .form-radios .form-item {
+	display: inline;
 }
+div.form-type-radio label, div.form-type-checkbox label {
+	width: auto;
+	border: 1px solid #D1D3D4;
+	padding: 0 4px 0 0;
+	margin: 5px;
+	font-weight: normal;
+}
+/* hide input */
+div.form-type-radio input.form-radio:empty, div.form-type-checkbox input.form-checkbox:empty  {
+	margin-left: -99999px;
+}
+/* style label */
+div.form-type-radio input.form-radio:empty ~ label, div.form-type-checkbox input.form-checkbox:empty ~ label {
+	position: relative;
+	float: left;
+	text-indent: 2.4em;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+div.form-type-radio input.form-radio:empty ~ label:before, div.form-type-checkbox input.form-checkbox:empty ~ label:before {
+	position: absolute;
+	display: block;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	content: '';
+	width: 2em;
+	background: /*#D1D3D4*/#fff;
+	border-right: 1px solid #D1D3D4;
+}
+/* toggle hover */
+div.form-type-radio input.form-radio:hover:not(:checked) ~ label:before, div.form-type-checkbox input.form-checkbox:hover:not(:checked) ~ label:before {
+	content: '\2714';
+	text-indent: .5em;
+	color: #C2C2C2;
+}
+div.form-type-radio input.form-radio:hover:not(:checked) ~ label, div.form-type-checkbox input.form-checkbox:hover:not(:checked) ~ label {
+	color: #888;
+}
+/* toggle on */
+div.form-type-radio input.form-radio:checked ~ label:before, div.form-type-checkbox input.form-checkbox:checked ~ label:before {
+	content: '\2714';
+	text-indent: .5em;
+	color: #9CE2AE;
+	background-color: #4DCB6D;
+}
+div.form-type-radio input.form-radio:checked ~ label, div.form-type-checkbox input.form-checkbox:checked ~ label{
+	color: #777;
+}
+/* radio focus */
+/*div.form-type-radio input.form-radio:focus ~ label:before {
+	box-shadow: 0 0 0 3px #999;
+}*/
 /*============================= Chosen Select Box Styling =============================*/
 .chosen-container-single .chosen-single {
 	height: 34px;
@@ -81,9 +141,6 @@ input.form-submit#edit-field-file-und-0-remove-button:hover {
 
 /*Edited by Karthi Start*/
 
-.field-items { float:right; }
-.field-item even { float:right; }
-
 div.ctools-modal-content .modal-header
 {background-color: #000000;}
 
@@ -98,6 +155,12 @@ div.ctools-modal-content a.close:after {
 }
 .field-widget-entityreference-view-widget .ervw-add-items, input.field-group-multiple-add-more-submit {
     background: #fff;
+}
+.view input#edit-combine {
+	width: 250px;
+}
+.view input.form-submit {
+	color: #fff;
 }
 
 /*Edited by Karthi End*/
