@@ -2,9 +2,10 @@ form div.form-type-textfield, form div.form-type-select, form div.form-type-chec
 	float: left;
 	width: 50%;
 }
-form div.field-type-entityreference, form div.field-group-multiple-table, form fieldset {
+form div.field-type-entityreference, form div.field-group-multiple-table, form fieldset, div.horizontal-tabs {
 	clear: both;
 }
+
 /*div.select-or-other div.form-type-select{
     display: table-cell;
     width: 25%;

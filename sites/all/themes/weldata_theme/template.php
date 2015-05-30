@@ -52,8 +52,6 @@ function weldata_theme_preprocess_print (&$variables) {
   $node = $variables['node'];
   $entity_wrapper = entity_metadata_wrapper('node', $node);
   
-  dpm($entity_wrapper->log);
-
   if($node->type == 'wps' || $node->type == 'pqr' ){
 
     $variables['qualified_to'] = $entity_wrapper->field_qualified_to->value();
